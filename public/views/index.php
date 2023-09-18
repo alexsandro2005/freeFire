@@ -16,11 +16,12 @@
 
 <body>
     <!-- {{-- Imagen de diseño que hace referencia a los colores emblema de la aplicacion --}} -->
-    
-    <div class="knife-icon">
-    </div>
+
+    <div class="showcase"></div>
     <div class="container__vector"><img src="../assets/images/chrono.png" alt=""></div>
-    <div class="hero">      
+
+    <div class="overlay">
+        <video src="../assets/images/login.mp4" muted loop autoplay></video>
     </div>
 
     <div class="container">
@@ -58,7 +59,7 @@
                     <div class="redirecciones">
                         <a href="passwords/recuperar_contrasena.php">Olvido su contraseña?</a>
                         <a href="register.php">Registrarme</a>
-                        <a href="../../../index.php">Regresar</a>
+                        <a href="../../index.php">Inicio</a>
                     </div>
 
                     <input type="submit" class="btn" value="Iniciar Sesion">
@@ -71,7 +72,7 @@
 
     <script>
 
-        
+
         // <!-- FUNCION DE JAVASCRIPT QUE PERMITE INGRESAR SOLO EL NUMERO VALORES REQUERIDOS DE ACUERDO A LA LONGITUD MAXLENGTH DEL CAMPO -->
 
         function maxlengthNumber(obj) {
