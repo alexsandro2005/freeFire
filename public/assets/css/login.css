@@ -219,7 +219,7 @@ form {
 	height: 2px;
 	background: rgb(0, 234, 255);
 	background: linear-gradient(90deg, rgba(0, 234, 255, 1) 0%, rgba(9, 108, 121, 1) 47%, rgba(0, 255, 207, 0.9094012605042017) 100%);
-	transition: .4s;
+	transition: .4s; 
 }
 
 .input-div:before {

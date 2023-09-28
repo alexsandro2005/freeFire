@@ -14,7 +14,6 @@
   <section class="showcase">
     <header>
       <h2 class="logo"><img src="public/assets/images/logo.png" alt=""></h2>
-      <div class="toggle"></div>
     </header>
     <video src="public/assets/images/login.mp4" muted loop autoplay></video>
     <div class="overlay"></div>
@@ -22,17 +21,11 @@
       <h2>30 Jugadores / 5 minutos / 1 Sobreviviente</h2>
 
       <p>¡Prepárate para la batalla definitiva en Free Fire: Donde la supervivencia es tu única opción!<p>
-      <a href="public/views/index.php">Iniciar Sesion</a>
-      <a href="#">Registrarme</a>
+      <a href="public/views/auth/index.php">Iniciar Sesion</a>
+      <a href="public/views/auth/index.php">Registrarme</a>
     </div>
   </section>
-  <div class="menu">
-    <ul>
-      <li><a href="#">Iniciar Sesion</a></li>
-      <li><a href="#">Registrarme</a></li>
 
-    </ul>
-  </div>
 
   <script src="public/assets/js/transition.js"></script>
 </body>
