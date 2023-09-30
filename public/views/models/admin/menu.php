@@ -32,8 +32,9 @@ if (isset($_POST['btncerrar'])) {
 	<link href="vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
 	<link rel="stylesheet" href="vendor/nouislider/nouislider.min.css">
 	<link rel="shortcut icon" href="../../../assets/images/Gareena.png" type="image/x-icon">
-
-	<!-- Style css -->
+    <!-- Datatable -->
+    <link href="vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+	<!-- Style css -->	
     <link href="css/style.css" rel="stylesheet">
 
 </head>
@@ -62,7 +63,7 @@ if (isset($_POST['btncerrar'])) {
         ***********************************-->
 		<div class="nav-header">
             <a href="index.html" class="brand-logo">
-				<img src="../../../assets/images/logo.png" alt="" class="logo-abbr">
+				<img src="../../../assets/images/Gareena.png" alt="" class="logo-abbr">
 				<div class="brand-title">
 					<h2 class="">Bienvenido</h2>
 
@@ -769,24 +770,15 @@ if (isset($_POST['btncerrar'])) {
 									<img src="images/user.jpg" width="56" alt="">
 								</a>
 								<div class="dropdown-menu dropdown-menu-end">
-									<a href="app-profile.html" class="dropdown-item ai-icon">
-										<svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-										<span class="ms-2">Profile </span>
-									</a>
-									<a href="email-inbox.html" class="dropdown-item ai-icon">
-										<svg id="icon-inbox" xmlns="http://www.w3.org/2000/svg" class="text-success" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-										<span class="ms-2">Inbox </span>
-									</a>
-									<a href="page-error-404.html" class="dropdown-item ai-icon">
+									<div class="dropdown-item ai-icon row">
 										<svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
 
 										<form method="POST" action="">
 											<span class="ms-2">
-                                                <input type="submit" value="Cerrar sesion" id="btn_quote" name="btncerrar" class="ms-2"/>
+                                                <input type="submit" value="Cerrar sesion" id="btn_quote" name="btncerrar" class="ms-2 btn-logout"/>
 											</span>
-
                                         </form>
-									</a>
+									</div>
 								</div>
 							</li>
                         </ul>
@@ -804,146 +796,88 @@ if (isset($_POST['btncerrar'])) {
         <div class="dlabnav">
             <div class="dlabnav-scroll">
 				<ul class="metismenu" id="menu">
-                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-							<i class="fas fa-home"></i>
-							<span class="nav-text">Dashboard</span>
+					<!-- MODULO USUARIOS -->
+					<li>
+						<a class="has-arrow " href="javascript:void()" aria-expanded="false">
+							<i class="fas fa-user-check"></i>
+							<span class="nav-text">Usuarios</span>
 						</a>
                         <ul aria-expanded="false">
-							<li><a href="index.html">Dashboard Light</a></li>
-							<li><a href="index-2.html">Dashboard Dark</a></li>
-							<li><a href="project-page.html">Project</a></li>
-							<li><a href="contacts.html">Contacts</a></li>
-							<li><a href="kanban.html">Kanban</a></li>
-							<li><a href="calendar-page.html">Calendar</a></li>
-							<li><a href="message.html">Messages</a></li>
+                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Admin</a>
+								<!-- MODULO PARA ENLISTAR O CREAR UN ADMINISTRADOR -->
+                                <ul aria-expanded="false">
+                                    <li><a href="email-compose.html">Listado</a></li>
+                                    <li><a href="email-inbox.html">Crear</a></li>
+
+                                </ul>
+                            </li>
+								<!-- MODULO PARA ENLISTAR O CREAR JUGADORES  -->
+							<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Jugadores</a>
+                                <ul aria-expanded="false">
+                                    <li><a href="ecom-product-grid.html">Listado</a></li>
+									<li><a href="ecom-product-list.html">Crear</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+					<!-- MODULO DE AVATARS -->
+					<li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+							<i class="fas fa-home"></i>
+							<span class="nav-text">Avatars</span>
+						</a>
+                        <ul aria-expanded="false">
+							<li><a href="index.html">Lista</a></li>
+							<li><a href="./createAvatar.php">crear</a></li>
+						</ul>
+                    </li>
+
+					<!-- MODULO DE NIVELES -->
+
+					<li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+							<i class="fas fa-home"></i>
+							<span class="nav-text">Niveles</span>
+						</a>
+                        <ul aria-expanded="false">
+							<li><a href="index.html">Lista</a></li>
+							<li><a href="./createLevel.php">crear</a></li>
+						</ul>
+                    </li>
+
+					<!-- MODULO DE ARMAS -->
+					<li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+							<i class="fas fa-chart-line"></i>
+							<span class="nav-text">Armas</span>
+						</a>
+                        <ul aria-expanded="false">
+                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Categorias</a>
+								<!-- MODULO PARA ENLISTAR O CREAR UN ADMINISTRADOR -->
+                                <ul aria-expanded="false">
+                                    <li><a href="email-compose.html">Listado</a></li>
+                                    <li><a href="./createWeapon.php">Crear</a></li>
+
+                                </ul>
+                            </li>
+								<!-- MODULO PARA ENLISTAR O CREAR JUGADORES  -->
+							<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Armas</a>
+                                <ul aria-expanded="false">
+                                    <li><a href="ecom-product-grid.html">Listado</a></li>
+									<li><a href="ecom-product-list.html">Crear</a></li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+					<li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+							<i class="fas fa-home"></i>
+							<span class="nav-text">Estadisticas</span>
+						</a>
+                        <ul aria-expanded="false">
+							<li><a href="index.html">Partidas</a></li>
+							<li><a href="index.html">Usuarios Bloqueados</a></li>
 						</ul>
 
-                    </li>
-
-                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-						<i class="fas fa-info-circle"></i>
-							<span class="nav-text">Apps</span>
-						</a>
-                        <ul aria-expanded="false">
-                            <li><a href="app-profile.html">Profile</a></li>
-							<li><a href="post-details.html">Post Details</a></li>
-                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Email</a>
-                                <ul aria-expanded="false">
-                                    <li><a href="email-compose.html">Compose</a></li>
-                                    <li><a href="email-inbox.html">Inbox</a></li>
-                                    <li><a href="email-read.html">Read</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="app-calender.html">Calendar</a></li>
-							<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Shop</a>
-                                <ul aria-expanded="false">
-                                    <li><a href="ecom-product-grid.html">Product Grid</a></li>
-									<li><a href="ecom-product-list.html">Product List</a></li>
-									<li><a href="ecom-product-detail.html">Product Details</a></li>
-									<li><a href="ecom-product-order.html">Order</a></li>
-									<li><a href="ecom-checkout.html">Checkout</a></li>
-									<li><a href="ecom-invoice.html">Invoice</a></li>
-									<li><a href="ecom-customers.html">Customers</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-							<i class="fas fa-chart-line"></i>
-							<span class="nav-text">Charts</span>
-						</a>
-                        <ul aria-expanded="false">
-                            <li><a href="chart-flot.html">Flot</a></li>
-                            <li><a href="chart-morris.html">Morris</a></li>
-                            <li><a href="chart-chartjs.html">Chartjs</a></li>
-                            <li><a href="chart-chartist.html">Chartist</a></li>
-                            <li><a href="chart-sparkline.html">Sparkline</a></li>
-                            <li><a href="chart-peity.html">Peity</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-							<i class="fab fa-bootstrap"></i>
-							<span class="nav-text">Bootstrap</span>
-						</a>
-                        <ul aria-expanded="false">
-                            <li><a href="ui-accordion.html">Accordion</a></li>
-                            <li><a href="ui-alert.html">Alert</a></li>
-                            <li><a href="ui-badge.html">Badge</a></li>
-                            <li><a href="ui-button.html">Button</a></li>
-                            <li><a href="ui-modal.html">Modal</a></li>
-                            <li><a href="ui-button-group.html">Button Group</a></li>
-                            <li><a href="ui-list-group.html">List Group</a></li>
-                            <li><a href="ui-card.html">Cards</a></li>
-                            <li><a href="ui-carousel.html">Carousel</a></li>
-                            <li><a href="ui-dropdown.html">Dropdown</a></li>
-                            <li><a href="ui-popover.html">Popover</a></li>
-                            <li><a href="ui-progressbar.html">Progressbar</a></li>
-                            <li><a href="ui-tab.html">Tab</a></li>
-                            <li><a href="ui-typography.html">Typography</a></li>
-                            <li><a href="ui-pagination.html">Pagination</a></li>
-                            <li><a href="ui-grid.html">Grid</a></li>
-
-                        </ul>
-                    </li>
-                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-							<i class="fas fa-heart"></i>
-							<span class="nav-text">Plugins</span>
-						</a>
-                        <ul aria-expanded="false">
-                            <li><a href="uc-select2.html">Select 2</a></li>
-                            <li><a href="uc-nestable.html">Nestedable</a></li>
-                            <li><a href="uc-noui-slider.html">Noui Slider</a></li>
-                            <li><a href="uc-sweetalert.html">Sweet Alert</a></li>
-                            <li><a href="uc-toastr.html">Toastr</a></li>
-                            <li><a href="map-jqvmap.html">Jqv Map</a></li>
-							<li><a href="uc-lightgallery.html">Light Gallery</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="widget-basic.html" class="" aria-expanded="false">
-							<i class="fas fa-user-check"></i>
-							<span class="nav-text">Widget</span>
-						</a>
-					</li>
-                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-							<i class="fas fa-file-alt"></i>
-							<span class="nav-text">Forms</span>
-						</a>
-                        <ul aria-expanded="false">
-                            <li><a href="form-element.html">Form Elements</a></li>
-                            <li><a href="form-wizard.html">Wizard</a></li>
-                            <li><a href="form-ckeditor.html">CkEditor</a></li>
-                            <li><a href="form-pickers.html">Pickers</a></li>
-                            <li><a href="form-validation.html">Form Validate</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-							<i class="fas fa-table"></i>
-							<span class="nav-text">Table</span>
-						</a>
-                        <ul aria-expanded="false">
-                            <li><a href="table-bootstrap-basic.html">Bootstrap</a></li>
-                            <li><a href="table-datatable-basic.html">Datatable</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-							<i class="fas fa-clone"></i>
-							<span class="nav-text">Pages</span>
-						</a>
-                        <ul aria-expanded="false">
-                            <li><a href="page-login.html">Login</a></li>
-                            <li><a href="page-register.html">Register</a></li>
-                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Error</a>
-                                <ul aria-expanded="false">
-                                    <li><a href="page-error-400.html">Error 400</a></li>
-                                    <li><a href="page-error-403.html">Error 403</a></li>
-                                    <li><a href="page-error-404.html">Error 404</a></li>
-                                    <li><a href="page-error-500.html">Error 500</a></li>
-                                    <li><a href="page-error-503.html">Error 503</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="page-lock-screen.html">Lock Screen</a></li>
-                            <li><a href="empty-page.html">Empty Page</a></li>
-                        </ul>
                     </li>
                 </ul>
 				<div class="side-bar-profile">
@@ -971,40 +905,13 @@ if (isset($_POST['btncerrar'])) {
 				</div>
 
 				<div class="copyright">
-					<p><strong>Fillow Saas Admin</strong> © 2021 All Rights Reserved</p>
-					<p class="fs-12">Made with <span class="heart"></span> by DexignLabs</p>
+					<p><strong>Free Fire © 2023 Todos los derechos reservados</p>
+					<p class="fs-12">Hecho por <span class="heart"></span> Garena</p>
 				</div>
 			</div>
         </div>
         <!--**********************************
             Sidebar end
-        ***********************************-->
-
-        <!--**********************************
-            Content body end
-        ***********************************-->
-
-
-
-
-        <!--**********************************
-            Footer start
-        ***********************************-->
-        <div class="footer">
-            <div class="copyright">
-                <p>Copyright © Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2021</p>
-            </div>
-        </div>
-        <!--**********************************
-            Footer end
-        ***********************************-->
-
-		<!--**********************************
-           Support ticket button start
-        ***********************************-->
-
-        <!--**********************************
-           Support ticket button end
         ***********************************-->
 
 

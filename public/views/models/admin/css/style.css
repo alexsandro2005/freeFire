@@ -125,6 +125,47 @@
   background: linear-gradient(to right, #f25521 0%, #f9c70a 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f25521', endColorstr='#f9c70a',GradientType=1 ); }
 
+
+.btn-logout {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: #fff;
+    cursor: pointer; /* Cambiar el cursor a una mano cuando se pasa sobre el botón */
+    /* Otros estilos personalizados, como color de texto y fondo si es necesario */
+}
+
+
+.container-table{
+  margin-top: -350px;
+}
+
+-mb-3 .input-text {
+  padding: 14px 20px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  width: 100%;
+  outline: 0;
+  font-size: 14px;
+  border-radius: 20px;
+
+}
+
+-mb-3 .input-text:hover {
+  box-shadow: 0 0 0 0.1rem var(--color-negro);
+  background-color: #0397f9;
+  transition: 0.7s ease-in-out;
+}
+
+
+.body-card{
+  background-image: url('../../../../assets/images/2023-garena-free-fire-4k-o9.jpg');
+  background-size: cover;
+  background-position-x: -200px;
+
+}
+
 .gradient-5 {
   background: #f53c79;
   background: -moz-linear-gradient(left, #f53c79 0%, #f0a907 100%);
@@ -2002,11 +2043,18 @@ progress {
     border-inline-end-width: 1px;
     border-radius: 0;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
+
+    .form-control:hover{
+      box-shadow: 0 0 0 0.1rem #00a7fb;
+      background-color: #00eafbe6;
+      transition: 0.7s ease-in-out;
+    }
     @media (prefers-reduced-motion: reduce) {
       .form-control::-webkit-file-upload-button {
         transition: none; } }
   .form-control:hover:not(:disabled):not([readonly])::-webkit-file-upload-button {
     background-color: #dde0e3; }
+
 
 .form-control-plaintext {
   display: block;
@@ -2021,6 +2069,9 @@ progress {
   .form-control-plaintext.form-control-sm, .form-control-plaintext.form-control-lg {
     padding-right: 0;
     padding-left: 0; }
+
+
+  
 
 .form-control-sm {
   min-height: calc(1.5em + 0.5rem + 2px);
@@ -2639,11 +2690,11 @@ textarea.form-control-lg {
 
 .btn-danger {
   color: #000;
-  background-color: #FC2E53;
+  background-color: #2ec2fc;
   border-color: #FC2E53; }
   .btn-danger:hover {
     color: #000;
-    background-color: #fc4d6d;
+    background-color: #504dfc;
     border-color: #fc4364; }
   .btn-check:focus + .btn-danger, .btn-danger:focus {
     color: #000;
@@ -5884,7 +5935,7 @@ textarea.form-control-lg {
   background-color: #09BD3C !important; }
 
 .bg-info {
-  background-color: #D653C1 !important; }
+  background-color: #fbc00090 !important; }
 
 .bg-warning {
   background-color: #FFCF6D !important; }
@@ -16949,8 +17000,9 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   [data-headerbg="color_6"][data-theme-version="dark"] .header-right .search-area .input-group-text,
   [data-headerbg="color_6"] .header-right .search-area .form-control,
   [data-headerbg="color_6"] .header-right .search-area .input-group-text {
-    background-color: #fd9a47;
-    border-color: #fd9a47; }
+    background-color: #fbc000;
+    border-color: #fd9a47; 
+  }
     [data-headerbg="color_6"][data-theme-version="dark"] .header-right .search-area .form-control i,
     [data-headerbg="color_6"][data-theme-version="dark"] .header-right .search-area .input-group-text i,
     [data-headerbg="color_6"] .header-right .search-area .form-control i,
