@@ -16,49 +16,21 @@ $avatars = $listAvatars->fetchAll(PDO::FETCH_ASSOC);
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-xl-3 col-lg-6  col-md-6 col-xxl-5 ">
-                                        <!-- Tab panes -->
-                                        <div class="tab-content">
-                                            <div role="tabpanel" class="tab-pane fade show active" id="first">
-                                                <img class="img-fluid" src="images/product/1.jpg" alt="">
-                                            </div>
-                                            <div role="tabpanel" class="tab-pane fade" id="second">
-                                                <img class="img-fluid" src="images/product/2.jpg" alt="">
-                                            </div>
-                                            <div role="tabpanel" class="tab-pane fade" id="third">
-                                                <img class="img-fluid" src="images/product/3.jpg" alt="">
-                                            </div>
-											<div role="tabpanel" class="tab-pane fade" id="for">
-                                                <img class="img-fluid" src="images/product/4.jpg" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="tab-slide-content new-arrival-product mb-4 mb-xl-0">
-                                            <!-- Nav tabs -->
-                                            <ul class="nav slide-item-list mt-3" role="tablist">
-                                                <li role="presentation" class="show">
-                                                    <a href="#first" role="tab" data-bs-toggle="tab">
-                                                        <img class="img-fluid" src="images/tab/1.jpg" alt="" width="50">
-                                                    </a>
-                                                </li>
-                                                <li role="presentation">
-                                                    <a href="#second" role="tab" data-bs-toggle="tab"><img class="img-fluid" src="images/tab/2.jpg" alt="" width="50"></a>
-                                                </li>
-                                                <li role="presentation">
-                                                    <a href="#third" role="tab" data-bs-toggle="tab"><img class="img-fluid" src="images/tab/3.jpg" alt="" width="50"></a>
-                                                </li>
-												<li role="presentation">
-                                                    <a href="#for" role="tab" data-bs-toggle="tab"><img class="img-fluid" src="images/tab/4.jpg" alt="" width="50"></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!--Tab slider End-->
-                                    <div class="col-xl-9 col-lg-6  col-md-6 col-xxl-7 col-sm-12">
-                                        <div class="product-detail-content">
-                                            <!--Product details-->
+                    <div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-xxl-6 h-100">
+                <!-- Tab panes -->
+                <div class="tab-content h-100">
+                    <div role="tabpanel" class="tab-pane fade show active h-100" id="first">
+                        <img class="img-fluid h-100" src="../../../assets/images/br-clasificatoria.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            <!-- Tab slider End -->
+            <div class="col-xl-6 col-lg-6 col-md-6 col-xxl-6 col-sm-12 h-100">
+                <div class="product-detail-content h-100">
+                    <!-- Product details -->
                                             <div class="new-arrival-content pr">
                                                 <h4>Solid Women's V-neck Dark T-Shirt</h4>
                                                 <div class="comment-review star-rating">
@@ -88,34 +60,12 @@ $avatars = $listAvatars->fetchAll(PDO::FETCH_ASSOC);
                                                 <p class="text-content">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
                                                     If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing.</p>
 												<div class="d-flex align-items-end flex-wrap mt-4">
-													<div class="filtaring-area me-3">
-														<div class="size-filter">
-															<h4 class="m-b-15">Select size</h4>
-															
-															
-															<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-															  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" checked="">
-															  <label class="btn btn-outline-primary" for="btnradio1">XS</label>
-
-															  <input type="radio" class="btn-check" name="btnradio" id="btnradio2">
-															  <label class="btn btn-outline-primary" for="btnradio2">SM</label>
-
-															  <input type="radio" class="btn-check" name="btnradio" id="btnradio3">
-															  <label class="btn btn-outline-primary" for="btnradio3">MD</label>
-															  
-															  <input type="radio" class="btn-check" name="btnradio" id="btnradio4">
-															  <label class="btn btn-outline-primary" for="btnradio4">LG</label>
-															  
-															  <input type="radio" class="btn-check" name="btnradio" id="btnradio5">
-															  <label class="btn btn-outline-primary" for="btnradio5">XL</label>
-															</div>
-															
-														</div>
+                                                    													<!--Quanatity End-->
+													<div class="shopping-cart  mb-2 me-3">
+														<a class="btn btn-primary" href="javascript:void();"><i class="fa fa-shopping-basket me-2"></i>Add
+															to cart</a>
 													</div>
-													<!--Quantity start-->
-													<div class="col-2 px-0  mb-2 me-3">
-														<input type="number" name="num" class="form-control input-btn input-number" value="1">
-													</div>
+
 													<!--Quanatity End-->
 													<div class="shopping-cart  mb-2 me-3">
 														<a class="btn btn-primary" href="javascript:void();"><i class="fa fa-shopping-basket me-2"></i>Add

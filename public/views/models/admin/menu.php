@@ -831,7 +831,7 @@ if (isset($_POST['btncerrar'])) {
 							<span class="nav-text">Avatars</span>
 						</a>
                         <ul aria-expanded="false">
-							<li><a href="index.html">Lista</a></li>
+							<li><a href="./listaAvatars.php">Lista</a></li>
 							<li><a href="./createAvatar.php">crear</a></li>
 						</ul>
                     </li>
@@ -843,8 +843,20 @@ if (isset($_POST['btncerrar'])) {
 							<span class="nav-text">Niveles</span>
 						</a>
                         <ul aria-expanded="false">
-							<li><a href="index.html">Lista</a></li>
+							<li><a href="./listaLevels.php">Lista</a></li>
 							<li><a href="./createLevel.php">crear</a></li>
+						</ul>
+                    </li>
+
+					<!-- MODULO DE NIVELES -->
+
+					<li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+							<i class="fas fa-home"></i>
+							<span class="nav-text">Mundos</span>
+						</a>
+                        <ul aria-expanded="false">
+							<li><a href="./listaWorlds.php">Lista</a></li>
+							<li><a href="./createWorld.php">crear</a></li>
 						</ul>
                     </li>
 
