@@ -499,9 +499,19 @@ Responsive
 
 @media screen and (max-width: 768px) {
 
+
     .contenedor-login {
         flex-direction: column;
         height: 100%;
+    }
+
+    .titulo .log_free{
+        margin-top: 50px;
+    }
+
+
+    .contenedor-login{
+        background-color: var(--color-negro);
     }
 
     .contenedor-slider {
@@ -526,10 +536,10 @@ Responsive
     .contenedor-texto {
         width: calc(100% - 30px);
         position: relative;
-        background: #fff;
+        background: #000000;
         box-shadow: 0px 3px 6px rgba(0, 0, 0, .08);
         margin: auto;
-        margin-top: -50px;
+        margin-top: -300px;
         border-radius: 7px;
         margin-bottom: 40px;
     }

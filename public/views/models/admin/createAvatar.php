@@ -32,13 +32,13 @@ require_once 'menu.php';
                                 <div class="basic-form">
                                     <form method="POST" action="../../../controller/AvatarController.php" enctype="multipart/form-data" autocomplete="off">
                                         <div class="mb-3">
-                                            <input class="form-control form-control-lg input-text" type="text" required name="serialAvatar" placeholder="Ingresa el serial del avatar">
+                                            <input class="form-control form-control-lg input-text" onkeypress="return(multiplenumber(event));"  oninput="maxlengthNumber(this);" maxlength="10" minlength="5" type="number" required name="serialAvatar" placeholder="Ingresa el serial del avatar">
                                         </div>
                                         <div class="mb-3">
-                                            <input class="form-control form-control-lg input-text" type="text" required name="nombreAvatar" placeholder="Ingresa el nombre del avatar">
+                                            <input class="form-control form-control-lg input-text"  minlength="4" oninput="soloLetrasEspacios(event)" onkeypress="return(textspace(event));" maxlength="20" type="text" required name="nombreAvatar" placeholder="Ingresa el nombre del avatar">
                                         </div>
                                         <div class="mb-3">
-                                            <input class="form-control input-text" name="descripcionAvatar" required type="text" placeholder="Ingresa la descripcion del avatar">
+                                            <textarea name="descripcionAvatar" minlength="10" maxlength="1000" onkeypress="return(textguions(event));" oninput="(maxlengthNumber(this))" class="form-control input-text" rows="10" cols="10" placeholder="Ingresa la descripcion del avatar"></textarea>
                                         </div>
                                         <div class="input-group mb-3">
                                             <div class="form-file">
@@ -49,7 +49,7 @@ require_once 'menu.php';
 										
 										<div class=" mb-3 m-auto">
 
-											<input type="submit" class="btn btn-warning" value="Registrar"></input>
+											<input type="submit" class="btn bg-danger" value="Registrar"></input>
 											<input type="hidden"  value="formAvatar" name="MM_registerAvatar"></input>
 											<a href="./index.php" class="btn btn-danger">Cancelar Registro</a>
 										</div>

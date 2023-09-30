@@ -5,6 +5,8 @@ $db = new Database();
 $connection = $db->conectar();
 
 
+require_once "../../auth/validationSession.php";
+
 if (isset($_POST['btncerrar'])) {
 
 
@@ -36,6 +38,8 @@ if (isset($_POST['btncerrar'])) {
     <link href="vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
 	<!-- Style css -->	
     <link href="css/style.css" rel="stylesheet">
+	<!-- FUNCIONES DE JAVASCRIPT PARA REALIZAR LA VALIDACION DE LOS CAMPOS EN CADA UNO DE LOS FORMULARIOS -->
+	<script src="../../../assets/js/funciones.js"></script>
 
 </head>
 <body>

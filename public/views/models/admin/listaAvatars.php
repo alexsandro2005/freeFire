@@ -7,8 +7,18 @@ $avatars = $listAvatars->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
         
-        <div class="content-body ">
-            <div class="container-fluid">
+
+
+        <div class="content-body">
+        <div class="container-fluid">
+
+<div class="col-xs-12">
+    <a href="./createAvatar.php" class="btn btn-block bg-danger">Registrar Avatar</a>
+
+</div>
+
+</div>
+            <div class="container-fluid mt-ms-3">
 				<div class="row page-titles">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item active"><a href="javascript:void(0)">Listado</a></li>
@@ -43,7 +53,7 @@ $avatars = $listAvatars->fetchAll(PDO::FETCH_ASSOC);
                                                         <form method="GET" action="./updateAvatar.php">
 
                                                             <input type="hidden" name="idAvatar" value="<?= $avatar['id'] ?>">
-                                                            <button class="btn btn-primary shadow btn-xs sharp me-1" onclick="return confirm('¿Desea actualizar el avatar seleccionado?');" type="submit"><i class="fas fa-pencil-alt"></i></button>
+                                                            <button class="btn bg-danger shadow btn-xs sharp me-1" onclick="return confirm('¿Desea actualizar el avatar seleccionado?');" type="submit"><i class="fas fa-pencil-alt"></i></button>
                                                         </form>
                                                         <form method="GET" action="./deleteAvatar.php">
                                                             <input type="hidden" name="idAvatar" value="<?= $avatar['id'] ?>">

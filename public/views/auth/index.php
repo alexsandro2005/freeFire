@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Log in and Register || Free Fire</title>
+    <title>Login and Register || Free Fire</title>
 
     <!--========================================
         Fuentes - Tipo de letra - Iconografia
