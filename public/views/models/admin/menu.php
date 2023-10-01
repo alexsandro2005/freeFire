@@ -810,7 +810,7 @@ if (isset($_POST['btncerrar'])) {
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Admin</a>
 								<!-- MODULO PARA ENLISTAR O CREAR UN ADMINISTRADOR -->
                                 <ul aria-expanded="false">
-                                    <li><a href="email-compose.html">Listado</a></li>
+                                    <li><a href="./listar_admin.php">Listado</a></li>
                                     <li><a href="email-inbox.html">Crear</a></li>
 
                                 </ul>
@@ -818,7 +818,7 @@ if (isset($_POST['btncerrar'])) {
 								<!-- MODULO PARA ENLISTAR O CREAR JUGADORES  -->
 							<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Jugadores</a>
                                 <ul aria-expanded="false">
-                                    <li><a href="ecom-product-grid.html">Listado</a></li>
+                                    <li><a href="./listar_juga.php">Listado</a></li>
 									<li><a href="ecom-product-list.html">Crear</a></li>
                                 </ul>
                             </li>
