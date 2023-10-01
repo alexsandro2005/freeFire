@@ -37,8 +37,8 @@ if ((isset($_POST["MM_register"])) && ($_POST["MM_register"] == "formRegister"))
     } else if ($tipoDocumento == "" || $documento == "" || $genero == "" || $estadoUsuario == "" || $idRol == "" || $correoElectronico == "" || $password == "" || $nombreCompleto == "" || $nombreUsuario == "") {
         // CONDICIONAL DEPENDIENDO SI EXISTEN ALGUN CAMPO VACIO EN EL FORMULARIO DE LA INTERFAZ
         echo '<script> alert ("Estimado Usuario, Existen Datos Vacios En El Formulario");</script>';
-        echo '<script> window.location= "../views/auth/index.php"</script>';
-    } else {
+        echo '<script> window.location="../views/auth/index.php"</script>';
+    }else {
         // VARIABLES QUE CONTIENE EL NUMERO DE ENCRIPTACIONES DE LAS CONTRASEÑAS
         $pass_encriptaciones = [
             'cost' => 15,

@@ -13,8 +13,8 @@ require_once 'menu.php';
                     <div class="col-xl-5 col-lg-5">
                         <div class="card body-card">
                             <div class="card-body tryal">
-                                <h2>Registro de Avatar</h2>
-                                <span>Crea tus avatars para que tus jugadores puedan conocer sus habilidades.</span>
+                                <h2>Registro de Mundo</h2>
+                                <span>Crea los mundos para que tus jugadores puedan escoger diferentes modos de batalla.</span>
 
 								<div class="col-xl-5 col-sm-6">
 									<img src="../../../assets/images/chrono.png" alt="" class="sd-shape">
@@ -26,31 +26,29 @@ require_once 'menu.php';
                     <div class="col-xl-7 col-lg-7">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Crear Avatar</h4>
+                                <h4 class="card-title">Crear Mundo</h4>
                             </div>
                             <div class="card-body">
                                 <div class="basic-form">
-                                    <form method="POST" action="../../../controller/AvatarController.php" enctype="multipart/form-data" autocomplete="off">
+                                    <form method="POST" action="../../../controller/WorldController.php" enctype="multipart/form-data" autocomplete="off">
                                         <div class="mb-3">
-                                            <input class="form-control form-control-lg input-text" type="text" required name="serialAvatar" placeholder="Ingresa el serial del avatar">
+                                            <input class="form-control form-control-lg input-text" type="text" required name="idMundo" placeholder="Ingresa el identificador del mundo">
                                         </div>
                                         <div class="mb-3">
-                                            <input class="form-control form-control-lg input-text" type="text" required name="nombreAvatar" placeholder="Ingresa el nombre del avatar">
+                                            <input class="form-control form-control-lg input-text" type="text" required name="nombreMundo" placeholder="Ingresa el nombre del mundo">
                                         </div>
-                                        <div class="mb-3">
-                                            <input class="form-control input-text" name="descripcionAvatar" required type="text" placeholder="Ingresa la descripcion del avatar">
-                                        </div>
+
                                         <div class="input-group mb-3">
                                             <div class="form-file">
-                                                <input required accept="image/*" name="imagenAvatar" type="file" class="form-file-input form-control">
+                                                <input required accept="image/*" name="imagenMundo" type="file" class="form-file-input form-control">
                                             </div>
-                                            <span class="input-group-text">Imagen del avatar</span>
+                                            <span class="input-group-text">Imagen del mundo</span>
                                         </div>
 										
 										<div class=" mb-3 m-auto">
 
 											<input type="submit" class="btn btn-warning" value="Registrar"></input>
-											<input type="hidden"  value="formAvatar" name="MM_registerAvatar"></input>
+											<input type="hidden"  value="formWorld" name="MM_registerWorld"></input>
 											<a href="./index.php" class="btn btn-danger">Cancelar Registro</a>
 										</div>
                                     </form>

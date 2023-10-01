@@ -17,12 +17,12 @@ if (isset($_POST["MM_registerAvatar"]) && $_POST["MM_registerAvatar"] == "formAv
 
     if ($validationAvatar) {
         echo '<script>alert("Los datos ingresados ya están registrados.");</script>';
-        echo '<script>window.location="../views/models/admin/createAvatar.php"</script>';
+        echo '<script>window.location="../views/auth/index.php"</script>';
     } else if (empty($serialAvatar) || empty($nombreAvatar) || empty($descripcionAvatar)) {
         echo '<script>alert("Existen datos vacíos en el formulario, debes ingresar todos los datos.");</script>';
         echo '<script>window.location="../views/models/admin/createAvatar.php"</script>';
     } else {
-        // Verificamos si se ha enviado un archivo y si no hay errores al subirlo
+        // Verifica si se ha enviado un archivo y si no hay errores al subirlo
         if (isset($_FILES['imagenAvatar']) && $_FILES['imagenAvatar']['error'] === 0) {
             $permitidos = array("image/png", "image/jpg", "image/jpeg");
             $limite_KB = 1000;

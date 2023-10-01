@@ -37,7 +37,7 @@ $consulta->execute();
                             <table id="example3" class="display table-bordered" style="min-width: 845px">
                                 <thead>
                                     <tr>
-                                        <th style="text-align: center;">Avatar</th>
+                                        
                                         <th style="text-align: center;" width="210px">Tipo de documento</th>
                                         <th style="text-align: center;">Documento</th>
                                         <th style="text-align: center;">Nombre Completo</th>
@@ -56,9 +56,7 @@ $consulta->execute();
                                 ?>
                                     <tbody>
                                         <tr style="text-align: center;">
-                                            <td style="text-align: center;">
-                                                <?= $consul['avatar'] ?>
-                                            </td>
+
                                             <td style="text-align: center;">
                                                 <?= $consul['tipoDocumento'] ?>
                                             </td>
