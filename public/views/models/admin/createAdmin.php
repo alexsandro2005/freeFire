@@ -1,14 +1,21 @@
 <?php
-require_once 'menu.php';
+    require_once 'menu.php';
 
-require_once '../../../../database/connection.php';
-$basedatos = new Database();
-$conexion = $basedatos->conectar();
-session_start();
+    require_once '../../../../database/connection.php';
+    $basedatos = new Database();
+    $conexion = $basedatos->conectar();
+    session_start();
 
-date_default_timezone_set('America/Bogota');
+    date_default_timezone_set('America/Bogota');
+
+    $consulta = $conexion->prepare("SELECT * FROM usuario INNER JOIN roles ON usuario.idRol = roles.idRol");
+    $consulta->execute();
+    $consul=$consulta->fetch();
 ?>
 
+<?php
+    if ((isset($_POST[''])))
+?>
 
 <!DOCTYPE html>
 <html lang="en">
