@@ -38,7 +38,7 @@ if ((isset($_POST["MM_register"])) && ($_POST["MM_register"] == "formRegister"))
         // CONDICIONAL DEPENDIENDO SI EXISTEN ALGUN CAMPO VACIO EN EL FORMULARIO DE LA INTERFAZ
         echo '<script> alert ("Estimado Usuario, Existen Datos Vacios En El Formulario");</script>';
         echo '<script> window.location="../views/auth/index.php"</script>';
-    }else {
+    } else {
         // VARIABLES QUE CONTIENE EL NUMERO DE ENCRIPTACIONES DE LAS CONTRASEÑAS
         $pass_encriptaciones = [
             'cost' => 15,
@@ -48,8 +48,25 @@ if ((isset($_POST["MM_register"])) && ($_POST["MM_register"] == "formRegister"))
 
         $registerUser = $connection->prepare("INSERT INTO usuario(documento,nombreCompleto,nombreUsuario,password,idRol,fecha_registro,genero,estadoUsuario,correoElectronico,tipoDocumento) VALUES('$documento','$nombreCompleto','$nombreUsuario','$user_password','$idRol',NOW(),'$genero','$estadoUsuario','$correoElectronico','$tipoDocumento')");
         $registerUser->execute();
-        $register = $registerUser->fetchAll(PDO::FETCH_ASSOC);
-        echo '<script>alert ("Registro Exitoso ¡Bienvenido/a!, ¡ahora selecciona tu avatar, puedes escoger el que quieras!.");</script>';
-        echo '<script>window.location="../views/auth/index.php"</script>';
+
+        if ($registerUser) {
+            // creamos una funcion para encriptar el numero de documento del usuario
+
+            function encriptar($texto, $token)
+            {
+                $clave = md5($token); // generamos una clave a partir de un token especial
+                $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+                $textoEncriptado = openssl_encrypt($texto, 'aes-256-cbc', $clave, 0, $iv);
+                return base64_encode($iv . $textoEncriptado);
+            }
+            $token = "11SXDLSLDDDDKFE332KDKS";
+
+            $documentoEncriptado = encriptar($documento, $token);
+
+            echo '<script>alert ("Registro Exitoso ¡Bienvenido/a!, ¡ahora selecciona tu avatar, puedes escoger el que quieras!.");</script>';
+            echo '<script>window.location="../views/auth/avatarSelect.php"</script>';
+        }
+
     }
-}
+} 
+

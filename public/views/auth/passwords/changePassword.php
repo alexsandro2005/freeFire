@@ -6,18 +6,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Inicio de sesion || Free Fire</title>
+    <title>Cambiar contraseña || Free Fire</title>
 
     <!--========================================
         Fuentes - Tipo de letra - Iconografia
     ==========================================-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="../../assets/images/Gareena.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../../assets/images/Gareena.png" type="image/x-icon">
     <!--========================================
        Mis estilos
     ==========================================-->
-    <link rel="stylesheet" href="../../assets/css/register.css">
+    <link rel="stylesheet" href="../../../assets/css/register.css">
+    <script src="../../../assets/js/funciones.js"></script>
 </head>
 
 <body>
@@ -37,16 +38,16 @@
 
                 <!-- Slide 1 -->
                 <div class="slide fade ">
-                    <img src="../../assets/images/garena-free-fire-one-more-round-4k-wj.jpg" alt="">
+                    <img src="../../../assets/images/garena-free-fire-one-more-round-4k-wj.jpg" alt="">
                 </div>
 
                 <!-- Slide 2 -->
                 <div class="slide fade">
-                    <img src="../../assets/images/1098646.jpg" alt="">
+                    <img src="../../../assets/images/1098646.jpg" alt="">
                 </div>
                 <!-- Slide 2 -->
                 <div class="slide fade">
-                    <img src="../../assets/images/2023-garena-free-fire-4k-o9.jpg" alt="">
+                    <img src="../../../assets/images/2023-garena-free-fire-4k-o9.jpg" alt="">
                 </div>
 
 
@@ -74,15 +75,14 @@
 
                 <div class="container-center">
 
-                    <h1 class="titulo"><img src="../../assets/images/logo.png" alt="" class="log_free"></h1>
-                    <h1 class="titulo_login">Iniciar sesion </h1>
-                    <p class="descripcion">Ingresa a tu cuenta para batallar por ser el unico sobreviviente y avanzar de nivel para una mejor experiencia.</p>
+                    <h1 class="titulo"><img src="../../../assets/images/logo.png" alt="" class="log_free"></h1>
+                    <h1 class="titulo_login">Auntenticacion Usuario</h1>
+                    <p class="descripcion">Cambia tu contraseña de una manera facil y sencilla pero ante todo protegiendo la seguridad de tus datos.</p>
 
                     <!-- Tabs -->
                     <ul class="tabs-links">
-                        <li class="tab-link active">Iniciar Sesión</li>
-                        <li class="tab-link ">Registrate</li>
-                        <li class="tab-link "><a class="inicio" href="../../../index.php">Regresar</a></li>
+                        <li class="tab-link active">Autenticacion</li>
+
                     </ul>
 
                     <!--========================================
@@ -96,12 +96,9 @@
 
                         <input type="text" placeholder="Ingresa tu nombre de usuario" class="input-text" name="username" required onkeyup="espacios(this), minuscula(this)" autocomplete="off">
 
-                        <div class="grupo-input">
-                            <input type="password" placeholder="Ingresa tu Contraseña" name="password" class="input-text clave" title="Debe tener de 6 a 12 digitos" required onkeyup="espacios(this)" minlength="6" maxlength="12" >
-                            <button type="button" class="icono fas fa-eye mostrarClave"></button>
-                        </div>
+                        <input type="number" placeholder="Ingresa tu numero de documento" class="form-control form-control-lg input-text" name="documento" onkeypress="return(multiplenumber(event));" oninput="maxlengthNumber(this);" maxlength="10" required>
 
-                        <a href="passwords/changePassword.php" class="link">¿Ovidaste tu contraseña?</a>
+                        <a href="../index.php" class="link">¿iniciar sesion?</a>
 
 
                         <input class="btn" type="submit" name="iniciarSesion" value="Iniciar Sesion">
@@ -126,7 +123,7 @@
 
                         <input type="number" placeholder="Numero de documento" class="form-control form-control-lg input-text" name="documento" onkeypress="return(multiplenumber(event));" oninput="maxlengthNumber(this);" maxlength="10" required>
 
-                        <input type="text" placeholder="nombre Completo" class="form-control form-control-lg input-text" name="nombreCompleto" minlength="11" oninput="soloLetrasEspacios(event)" onkeypress="return(textspace(event));" maxlength="40" required>
+                        <input type="text" placeholder="nombre Completo" class="form-control form-control-lg input-text" name="nombreCompleto" minlength="11" oninput="soloLetrasEspacios(event)" onkeypress="return(textspace(event));" maxlength="40" required onkeyup="mayuscula(this)">
 
                         <input type="text" placeholder="Usuario" class="form-control form-control-lg input-text" name="nombreUsuario" required onkeyup="espacios(this), minuscula(this)" autocomplete="off">
 
@@ -182,7 +179,7 @@
     <!--========================================
        Mis Scripts
     ==========================================-->
-    <script src="../../assets/js/register.js"></script>
+    <script src="../../../assets/js/register.js"></script>
 
 
     <script>
