@@ -812,7 +812,7 @@ $entry = $userEntry->fetchAll(PDO::FETCH_ASSOC);
 								<!-- MODULO PARA ENLISTAR O CREAR UN ADMINISTRADOR -->
                                 <ul aria-expanded="false">
                                     <li><a href="./listar_admin.php">Listado</a></li>
-                                    <li><a href="email-inbox.html">Crear</a></li>
+                                    <li><a href="./createAdmin.php">Crear</a></li>
 
                                 </ul>
                             </li>

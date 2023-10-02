@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login and Register || Free Fire</title>
 
@@ -18,6 +19,7 @@
     ==========================================-->
     <link rel="stylesheet" href="../../assets/css/register.css">
 </head>
+
 <body>
 
     <!--========================================
@@ -86,18 +88,17 @@
                     <!--========================================
                         Formulario logue
                     ==========================================-->
-                    <form action="../../controller/AuthController.php"  autocomplete="off" method="POST" id="formLogin" class="formulario active">
+                    <form action="../../controller/AuthController.php" autocomplete="off" method="POST" id="formLogin" class="formulario active">
 
                         <div class="error-text">
                             <p>aqui los errores del formulario</p>
                         </div>
 
-                        <input type="text" placeholder="Ingresa tu nombre de usuario" class="input-text" name="username" >
+                        <input type="text" placeholder="Ingresa tu nombre de usuario" class="input-text" name="username" required onkeyup="espacios(this), minuscula(this)" autocomplete="off">
+
                         <div class="grupo-input">
-
-                            <input type="password" placeholder="Ingresa tu Contraseña" name="password" class="input-text clave">
+                            <input type="password" placeholder="Ingresa tu Contraseña" name="password" class="input-text clave" title="Debe tener de 6 a 12 digitos" required onkeyup="espacios(this)" minlength="6" maxlength="12" >
                             <button type="button" class="icono fas fa-eye mostrarClave"></button>
-
                         </div>
 
                         <a href="#" class="link">¿Ovidaste tu contraseña?</a>
@@ -110,7 +111,7 @@
                     <!--========================================
                         Formulario de Registro
                     ==========================================-->
-                    <form action="../../controller/RegisterController.php" name="formRegister"  autocomplete="off" method="POST" class="formulario">
+                    <form action="../../controller/RegisterController.php" name="formRegister" autocomplete="off" method="POST" class="formulario">
                         <!-- contenedor que nos permitira mostrar los errores de acuerdo al estado del formulario -->
                         <div class="error-text">
                         </div>
@@ -123,9 +124,11 @@
                             <option value="T.I.">Tarjeta de Identidad</option>
                         </select>
 
-                        <input type="number" placeholder="Numero de documento" class="input-text" name="documento">
-                        <input type="text" placeholder="nombre Completo" class="input-text" name="nombreCompleto">
-                        <input type="text" placeholder="Usuario" class="input-text" name="nombreUsuario">
+                        <input type="number" placeholder="Numero de documento" class="form-control form-control-lg input-text" name="documento" onkeypress="return(multiplenumber(event));" oninput="maxlengthNumber(this);" maxlength="10" required>
+
+                        <input type="text" placeholder="nombre Completo" class="form-control form-control-lg input-text" name="nombreCompleto" minlength="11" oninput="soloLetrasEspacios(event)" onkeypress="return(textspace(event));" maxlength="40" required onkeyup="mayuscula(this)">
+
+                        <input type="text" placeholder="Usuario" class="form-control form-control-lg input-text" name="nombreUsuario" required onkeyup="espacios(this), minuscula(this)" autocomplete="off">
 
                         <select name="genero" class="input-text" required id="">
                             <option value="" selected>Seleccione tipo de genero</option>
@@ -133,15 +136,14 @@
                             <option value="Femenino">Femenino</option>
                         </select>
 
-                        <input type="hidden" placeholder="Estado" readonly class="input-text" value="1" name="estadoUsuario">
-                        <input type="hidden" placeholder="Estado" readonly class="input-text" value="2" name="idRol">
-                        <input type="text" placeholder="Correo Electronico" class="input-text" name="correoElectronico">
+                        <input type="hidden" placeholder="Estado" readonly class="form-control form-control-lg input-text" value="1" name="estadoUsuario">
+                        <input type="hidden" placeholder="Estado" readonly class="form-control form-control-lg input-text" value="2" name="idRol">
 
+                        <input type="text" placeholder="Correo Electronico" class="form-control form-control-lg input-text" name="correoElectronico" required onkeyup="espacios(this)" maxlength="40">
 
                         <div class="grupo-input">
-                            <input type="password" placeholder="Contraseña" name="password" class="input-text clave">
+                            <input type="password" placeholder="Contraseña" name="password" class="form-control form-control-lg input-text clave" title="Debe tener de 6 a 12 digitos" required onkeyup="espacios(this)" minlength="6" maxlength="12" >
                             <button type="button" class="icono fas fa-eye mostrarClave"></button>
-
                         </div>
 
                         <!-- Checkbox Personalizados
@@ -161,7 +163,7 @@
 
                         </label> -->
 
-                        <input type="submit" name="validar" value="Registrarme"class="btn"></input>
+                        <input type="submit" name="validar" value="Registrarme" class="btn"></input>
                         <input type="hidden" name="MM_register" value="formRegister">
 
                     </form>
@@ -182,5 +184,79 @@
     ==========================================-->
     <script src="../../assets/js/register.js"></script>
 
+
+    <script>
+        // FUNCION QUE PERMITE PONER EL TEXT EN MAYUSCULA
+        function mayuscula(e) {
+            e.value = e.value.toUpperCase();
+        }
+
+        // FUNCION QUE PERMITE PONER EL TEXT EN MINUSCULA
+        function minuscula(e) {
+            e.value = e.value.toLowerCase();
+        }
+
+        // FUNCION QUE NO PERMITE INGRESAR ESPACIOS
+        function espacios(e) {
+            e.value = e.value.replace(/ /g, '');
+        }
+
+        // <!-- FUNCION DE JAVASCRIPT QUE PERMITE INGRESAR SOLO EL NUMERO VALORES REQUERIDOS DE ACUERDO A LA LONGITUD MAXLENGTH DEL CAMPO -->
+        function maxlengthNumber(obj) {
+
+            if (obj.value.length > obj.maxLength) {
+                obj.value = obj.value.slice(0, obj.maxLength);
+                alert("Debe ingresar solo el numeros de digitos requeridos");
+            }
+        }
+
+        // <!-- FUNCION DE JAVASCRIPT QUE PERMITE INGRESAR SOLO NUMEROS EN EL FORMULARIO ASIGNADO -->
+        function multiplenumber(e) {
+            key = e.keyCode || e.which;
+
+            teclado = String.fromCharCode(key).toLowerCase();
+
+            numeros = "1234567890";
+
+            especiales = "8-37-38-46-164-46";
+
+            teclado_especial = false;
+
+            for (var i in especiales) {
+                if (key == especiales[i]) {
+                    teclado_especial = true;
+                    alert("Debe ingresar solo numeros en el formulario");
+                    break;
+                }
+            }
+
+            if (numeros.indexOf(teclado) == -1 && !teclado_especial) {
+                return false;
+                alert("Debe ingresar solo numeros en el formulario ");
+            }
+        }
+
+
+        // <!-- FUNCION DE JAVASCRIPT QUE PERMITE INGRESAR SOLO LETRAS. NUMEROS Y GUIONES BAJOS PARA LA CONTRASEÑA   -->
+        function validarPassword(event) {
+            // Obtenemos la tecla que se ha presionado
+            var key = event.keyCode || event.which;
+
+            // Convertimos el código de la tecla a su respectivo carácter
+            var char = String.fromCharCode(key);
+
+            // Definimos una expresión regular que solo permita números, letras y guiones bajos
+            var regex = /[0-9a-zA-Z_]/;
+
+            // Validamos si el carácter ingresado cumple con la expresión regular
+            if (!regex.test(char)) {
+                // Si no cumple, cancelamos el evento de ingreso de datos
+                event.preventDefault();
+                return false;
+            }
+        }
+    </script>
+
 </body>
+
 </html>
