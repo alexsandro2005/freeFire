@@ -97,7 +97,7 @@
                         <input type="text" placeholder="Ingresa tu nombre de usuario" class="input-text" name="username" required onkeyup="espacios(this), minuscula(this)" autocomplete="off">
 
                         <div class="grupo-input">
-                            <input type="password" placeholder="Ingresa tu Contraseña" name="password" class="input-text clave" title="Debe tener de 6 a 12 digitos" required onkeyup="espacios(this)" minlength="6" maxlength="12" >
+                            <input type="password" placeholder="Ingresa tu Contraseña" name="password" class="input-text clave" title="Debe tener de 6 a 12 digitos" required onkeyup="espacios(this)" minlength="6" maxlength="20" >
                             <button type="button" class="icono fas fa-eye mostrarClave"></button>
                         </div>
 
