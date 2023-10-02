@@ -120,9 +120,9 @@ if ((isset($_POST["btn-registrar"]))) {
                                                 <br>
                                                 <input type="email" placeholder="Correo Electronico" class="form-control form-control-lg input-text" name="correoElectronico" required onkeyup="espacios(this)" maxlength="40">
                                                 <br>
-                                                <div class="grupo-input">
+                                                <div class=" input-group ">
                                                     <input type="password" placeholder="Contraseña" name="password" class="form-control form-control-lg input-text clave" title="Debe tener de 6 a 12 digitos" required onkeyup="espacios(this)" minlength="6" maxlength="12">
-                                                    <button type="button" class="icono fas fa-eye mostrarClave"></button>
+                                                    <button type="button" class="icono fas fa-eye mostrarClave w-20 bg-gradient"></button>
                                                 </div>
                                             </div>
 
