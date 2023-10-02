@@ -1,6 +1,6 @@
 <?php
 
-    // creamos la conexion a la base de datos 
+    // creamos una clase para realizar la conexion a la base de datos
 
     class Database
     {
