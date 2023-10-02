@@ -75,8 +75,8 @@ if ((isset($_POST["btn-registrar"]))) {
                         <div class="col-xl-5 col-lg-5">
                             <div class="card body-card">
                                 <div class="card-body tryal">
-                                    <h2 style="font-size: 26px;">Registro ADMINISTRADOR</h2>
-                                    <span>Crea a los administradores de free fire.</span>
+                                    <h2 style="font-size: 26px;">Registro JUGADORES</h2>
+                                    <span>Crea a los Jugadores de free fire.</span>
 
                                     <div class="col-xl-5 col-sm-6">
                                         <img src="../../../assets/images/chrono.png" alt="" class="sd-shape">
@@ -89,7 +89,7 @@ if ((isset($_POST["btn-registrar"]))) {
                         <div class="col-xl-7 col-lg-7">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">ADMINISTRADOR</h4>
+                                    <h4 class="card-title">JUGADORES</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="basic-form">
@@ -116,7 +116,7 @@ if ((isset($_POST["btn-registrar"]))) {
 
                                                 <input type="hidden" placeholder="Estado" readonly class="form-control form-control-lg input-text" value="1" name="estadoUsuario">
 
-                                                <input type="hidden" placeholder="Rol" readonly class="form-control form-control-lg input-text" value="1" name="idRol">
+                                                <input type="hidden" placeholder="Rol" readonly class="form-control form-control-lg input-text" value="2" name="idRol">
                                                 <br>
                                                 <input type="email" placeholder="Correo Electronico" class="form-control form-control-lg input-text" name="correoElectronico" required onkeyup="espacios(this)" maxlength="40">
                                                 <br>
@@ -127,7 +127,7 @@ if ((isset($_POST["btn-registrar"]))) {
                                             </div>
 
                                             <div class=" mb-3 m-auto">
-                                                <button type="submit" value="registrar" name="btn-registrar" class="btn btn-warning boton-registrar">REGISTAR ADMIN</button>
+                                                <button type="submit" value="registrar" name="btn-registrar" class="btn btn-warning boton-registrar">REGISTAR JUGADOR</button>
 
                                                 <a href="./index.php" class="btn btn-danger">CANCELAR REGISTRO</a>
                                             </div>
