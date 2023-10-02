@@ -79,6 +79,7 @@ if ((isset($_POST["btn-registrar"]))) {
                                     <span>Crea a los administradores de free fire.</span>
 
                                     <div class="col-xl-5 col-sm-6">
+                                        <br><br><br><br><br><br><br><br>
                                         <img src="../../../assets/images/chrono.png" alt="" class="sd-shape">
                                     </div>
                                 </div>
