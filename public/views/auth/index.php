@@ -170,6 +170,10 @@
                         <input type="submit" name="validar" value="Registrarme" class="btn"></input>
                         <input type="hidden" name="MM_register" value="formRegister">
 
+
+                        <div class="redirecciones">
+                            <a href="passwords/changePassword.php" class="link return">Regresar</a>
+                        </div>
                     </form>
 
 
