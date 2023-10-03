@@ -797,7 +797,7 @@ $entry = $userEntry->fetchAll(PDO::FETCH_ASSOC);
 					<li>
 						<a class="has-arrow " href="./index.php" aria-expanded="false">
 							<i class="fas fa-home"></i>
-							<span class="nav-text">Home</span>
+							<span class="nav-text">HOME</span>
 						</a>
 
                     </li>
@@ -805,7 +805,7 @@ $entry = $userEntry->fetchAll(PDO::FETCH_ASSOC);
 					<li>
 						<a class="has-arrow " href="javascript:void()" aria-expanded="false">
 							<i class="fas fa-user-check"></i>
-							<span class="nav-text">Usuarios</span>
+							<span class="nav-text">USUARIOS</span>
 						</a>
                         <ul aria-expanded="false">
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Admin</a>
@@ -829,11 +829,23 @@ $entry = $userEntry->fetchAll(PDO::FETCH_ASSOC);
 					<!-- MODULO DE AVATARS -->
 					<li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
 							<i class="fas fa-home"></i>
-							<span class="nav-text">Avatars</span>
+							<span class="nav-text">AVATARS</span>
 						</a>
                         <ul aria-expanded="false">
-							<li><a href="./listaAvatars.php">Lista</a></li>
-							<li><a href="./createAvatar.php">crear</a></li>
+							<li><a href="./listaAvatars.php">Lista Avatars</a></li>
+							<li><a href="./createAvatar.php">crear Avatar</a></li>
+						</ul>
+                    </li>
+
+					<!-- MODULO DE RANGOS -->
+
+					<li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+							<i class="fas fa-home"></i>
+							<span class="nav-text">RANGOS</span>
+						</a>
+                        <ul aria-expanded="false">
+							<li><a href="./listaLevels.php">Listar Rangos</a></li>
+							<li><a href="./createLevel.php">crear Rango</a></li>
 						</ul>
                     </li>
 
@@ -841,37 +853,25 @@ $entry = $userEntry->fetchAll(PDO::FETCH_ASSOC);
 
 					<li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
 							<i class="fas fa-home"></i>
-							<span class="nav-text">Niveles</span>
+							<span class="nav-text">MUNDOS</span>
 						</a>
                         <ul aria-expanded="false">
-							<li><a href="./listaLevels.php">Lista</a></li>
-							<li><a href="./createLevel.php">crear</a></li>
-						</ul>
-                    </li>
-
-					<!-- MODULO DE NIVELES -->
-
-					<li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-							<i class="fas fa-home"></i>
-							<span class="nav-text">Mundos</span>
-						</a>
-                        <ul aria-expanded="false">
-							<li><a href="./listaWorlds.php">Lista</a></li>
-							<li><a href="./createWorld.php">crear</a></li>
+							<li><a href="./listaWorlds.php">Listar Mundos</a></li>
+							<li><a href="./createWorld.php">crear Mundo</a></li>
 						</ul>
                     </li>
 
 					<!-- MODULO DE ARMAS -->
 					<li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
 							<i class="fas fa-chart-line"></i>
-							<span class="nav-text">Armas</span>
+							<span class="nav-text">ARMAS</span>
 						</a>
                         <ul aria-expanded="false">
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Tipo Arma</a>
 								<!-- MODULO PARA ENLISTAR O CREAR UN ADMINISTRADOR -->
                                 <ul aria-expanded="false">
-                                    <li><a href="./typeWeapons.php">Listado</a></li>
-                                    <li><a href="./createtypeWeapons.php">Crear</a></li>
+                                    <li><a href="email-compose.html">Listado</a></li>
+                                    <li><a href="./createWeapon.php">Crear</a></li>
 
                                 </ul>
                             </li>
@@ -889,7 +889,7 @@ $entry = $userEntry->fetchAll(PDO::FETCH_ASSOC);
 
 					<li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
 							<i class="fas fa-home"></i>
-							<span class="nav-text">Estadisticas</span>
+							<span class="nav-text">ESTADISTICAS</span>
 						</a>
                         <ul aria-expanded="false">
 							<li><a href="index.html">Partidas</a></li>
