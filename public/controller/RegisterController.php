@@ -48,10 +48,10 @@ if ((isset($_POST["MM_register"])) && ($_POST["MM_register"] == "formRegister"))
 
         $registerUser = $connection->prepare("INSERT INTO usuario(documento,nombreCompleto,nombreUsuario,password,idRol,fecha_registro,genero,estadoUsuario,correoElectronico,tipoDocumento) VALUES('$documento','$nombreCompleto','$nombreUsuario','$user_password','$idRol',NOW(),'$genero','$estadoUsuario','$correoElectronico','$tipoDocumento')");
         $registerUser->execute();
-
+        
         if ($registerUser) {
             // creamos una funcion para encriptar el numero de documento del usuario
-
+            
             function encriptar($texto, $token)
             {
                 $clave = md5($token); // generamos una clave a partir de un token especial

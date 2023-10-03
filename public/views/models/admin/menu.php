@@ -867,19 +867,20 @@ $entry = $userEntry->fetchAll(PDO::FETCH_ASSOC);
 							<span class="nav-text">Armas</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Categorias</a>
+                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Tipo Arma</a>
 								<!-- MODULO PARA ENLISTAR O CREAR UN ADMINISTRADOR -->
                                 <ul aria-expanded="false">
-                                    <li><a href="email-compose.html">Listado</a></li>
-                                    <li><a href="./createWeapon.php">Crear</a></li>
+                                    <li><a href="./typeWeapons.php">Listado</a></li>
+                                    <li><a href="./createtypeWeapons.php">Crear</a></li>
 
                                 </ul>
                             </li>
 								<!-- MODULO PARA ENLISTAR O CREAR JUGADORES  -->
+
 							<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Armas</a>
                                 <ul aria-expanded="false">
-                                    <li><a href="ecom-product-grid.html">Listado</a></li>
-									<li><a href="ecom-product-list.html">Crear</a></li>
+                                    <li><a href="./listaWeapons.php">Listado</a></li>
+									<li><a href="./createWeapon.php">Crear</a></li>
 
                                 </ul>
                             </li>

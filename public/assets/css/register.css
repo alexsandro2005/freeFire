@@ -1,11 +1,12 @@
 :root {
     --color-negro: #fbc000;
-    --color-texto: #ffffff;
+    --color-texto: #000000;
     --color-rojo: #ED0722;
     --color-rgba-rojo: rgba(237, 7, 34, .21);
     --color-rgba-celeste: rgba(55, 147, 246, .27);
     --color-celeste: #0397f9;
     --color-input: #94a7b339;
+    --color--blanco: #ffff;
 }
 
 .input-error {
@@ -28,6 +29,12 @@ body {
 }
 
 
+#color-text{
+    color: var(--color--blanco);
+}
+::selection{
+    color: #f2f2f2;
+}
 
 a {
     text-decoration: none;
@@ -293,6 +300,16 @@ Estilos Formularios
     outline: 0;
     font-size: 14px;
     border-radius: 20px;
+    color: var(--color-blanco);
+}
+#select, #select2{
+    color: var(--color--blanco);
+}
+
+#select:hover, #select2:hover{
+    color: var(--color-texto);
+}
+.input-text:hover{
     color: var(--color-texto);
 }
 
@@ -339,10 +356,23 @@ Estilos Formularios
     border: 1px solid green;
 }
 
+.redirecciones{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.return{
+    margin-top: 5px;
+}
 .link {
     font-size: 14px;
     color: var(--color-negro);
 }
+
+
 
 .link:hover {
     text-decoration: underline;
