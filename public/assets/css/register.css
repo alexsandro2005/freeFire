@@ -32,9 +32,11 @@ body {
 #color-text{
     color: var(--color--blanco);
 }
+
 ::selection{
     color: #f2f2f2;
 }
+
 
 a {
     text-decoration: none;
@@ -310,7 +312,7 @@ Estilos Formularios
     color: var(--color-texto);
 }
 .input-text:hover{
-    color: var(--color-texto);
+    color: var(--color-blanco);
 }
 
 .formulario .input-text:hover {

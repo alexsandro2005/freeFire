@@ -1,151 +1,270 @@
+<?php
+
+require_once "../../../database/connection.php";
+$db = new Database();
+$connection = $db->conectar();
+
+$listAvatars = $connection->prepare("SELECT * FROM avatars");
+$listAvatars->execute();
+$avatars = $listAvatars->fetchAll(PDO::FETCH_ASSOC);
+
+$documento = $_GET['smtp'];
+
+if ($_POST["registerAvatar"]) {
+    // creamos una funcion para desencriptar el numero de documento
+
+    function desencriptar($textoEncriptado, $token)
+    {
+        $clave = md5($token); // Generar clave a partir de la semilla
+        $textoEncriptado = base64_decode($textoEncriptado);
+        $ivTamanio = openssl_cipher_iv_length('aes-256-cbc');
+        $iv = substr($textoEncriptado, 0, $ivTamanio);
+        $textoEncriptado = substr($textoEncriptado, $ivTamanio);
+        return openssl_decrypt($textoEncriptado, 'aes-256-cbc', $clave, 0, $iv);
+    }
+
+    $token = "11SXDLSLDDDDKFE332KDKS";
+
+    $documentoPlayer = desencriptar($documento, $token);
+    // asingamos las variables
+    $idAvatar = $_POST['idAvatar'];
+    
+    $usuarioAsignado = $connection->prepare("SELECT * FROM usuario WHERE documento = '$documentoEncriptado' ");
+
+    // CONDICIONALES DEPENDIENDO EL RESULTADO DE LA CONSULTA
+    if ($register_validation) {
+
+        $update = $connection->prepare("UPDATE documentos SET id_documento='$id_documento', nombre='$nombre', precio='$precio' WHERE id_documento='$actu_documento'");
+        $update->execute();
+        // SI SE CUMPLE LA CONSULTA ES PORQUE EL USUARIO YA EXISTE
+        echo '<script> alert ("//Estimado Usuario la actualizacion se ha realizado con exito //");</script>';
+        echo '<script> window.location= "lista_documento.php"</script>';
+    } else if ($id_documento == "" || $nombre == "" || $precio == "") {
+        // CONDICIONAL DEPENDIENDO SI EXISTEN ALGUN CAMPO VACIO EN EL FORMULARIO DE LA INTERFAZ
+        echo '<script> alert (" //Estimado usuario existen datos vacios. //");</script>';
+        echo '<script> windows.location= "actualizar_docu.php"</script>';
+    } else {
+
+        echo '<script>alert("// Estimado Usuario la actualizacion no se realizo correctamente. //");</script>';
+        echo '<script>windows.location="actualizar_docu.php"</script>';
+    }
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seleccion de Avatar</title>
-    <link rel="stylesheet" href="../../assets/css/avatar.css">
-    <link rel="shortcut icon" href="../../assets/images/Gareena.png" type="image/x-icon">
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="keywords" content="">
+	<meta name="author" content="">
+	<meta name="robots" content="">
+	<meta name="format-detection" content="telephone=no">
+
+	<!-- PAGE TITLE HERE -->
+	<title>Seleccion de Avatar</title>
+
+	<!-- FAVICONS ICON -->
+	<link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <!-- STYLES -->
+    <link rel="stylesheet" href="../models/admin/vendor/jquery-nice-select/css/nice-select.css">
+    <link rel="stylesheet" href="../models/admin/vendor/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="../models/admin/vendor/nouislider/nouislider.min.css">
+
+
+	<link rel="shortcut icon" href="../../assets/images/Gareena.png" type="image/x-icon">
+    <!-- Datatable -->
+    <link rel="stylesheet" href="../models/admin/vendor/datatables/css/jquery.dataTables.min.css">
+	<!-- Style css -->
+    <link href="../models/admin/css/style.css" rel="stylesheet">
+	<!-- FUNCIONES DE JAVASCRIPT PARA REALIZAR LA VALIDACION DE LOS CAMPOS EN CADA UNO DE LOS FORMULARIOS -->
+	<script src="../../../assets/js/funciones.js"></script>
+
 </head>
 <body>
 
-    <!--Character section start-->
+    <div class="container text-center mt-5">
 
-    <div class="character">
-        <div class="title">
-            <h1>¡Selecciona tu avatar!</h1>
-        </div>
-        <div class="box">
-            <div class="cards">
-                <img src="../../assets/images/Alok.png">
-                <h2>Alok</h2>
-                <p>
-                    Aprovechando el poder de la música, Alok dejó Brasil y viajó por el mundo. Su nombre significa "luz".
-                     Ha firmado un contrato y se realizará un concierto cerrado en el campo de batalla de Free Fire.
-                     isla para algunos invitados VIP!
-                </p>
-            </div>
-            <div class="cards">
-                <img src="../../assets/images/Chrono.png">
-                <h2>chrono</h2>
-                <p>
-                    Tuvo una infancia normal en su universo original. sus padres eran famosos
-                     abogados que lucharon contra la pobreza y ayudaron a traer a las personas pobres sin hogar
-                     hacia la sociedad.
-
-                </p>
-            </div>
-            <div class="cards">
-                <img src="../../assets/images/Skyler.png">
-                <h2>Skyler</h2>
-                <p>
-                Impulsado a ser el mejor talento musical en el negocio y también a encontrar el
-                     mejor talento. No le gusta perder y cree que la creatividad permite
-                     que la gente vea lo bueno del mundo en lugar de lo malo.
-                </p>
-            </div>
-            <div class="cards">
-                <img src="../../assets/images/Caroline.png">
-                <h2>Caroline</h2>
-                <p>
-                    Tiene suficientes fanáticos para llenar un estadio entero. Ella es sin duda la más
-                     Chica popular en la escuela. Su padre y sus amigos son los dos más valiosos.
-                     cosas en su vida.
-                </p>
-            </div>
-            </div>
-
-            <!--2 Rows-->
-
-            <div class="box">
-                <div class="cards">
-                    <img src="../../assets/images/Hayato.png">
-                    <h2>Hayato</h2>
-                    <p>
-                    Hayato, un niño de una legendaria familia samurái. Ser hijo único significa
-                         que Hayato necesita continuar con la tradición familiar y la maldición.Este joven
-                         Samurai tiene un secreto que nadie más puede saber. 
-
-                    </p>
-                </div>
-                <div class="cards">
-                    <img src="../../assets/images/Dimitri.png">
-                    <h2>Dimitri</h2>
-                    <p>
-                    Dimitri es el hermano mayor de Thiva. En su vida diaria pasaba
-                         la mayor parte de su día en el laboratorio desarrollando nueva tecnología de sonido.
-
-                    </p>
-                </div>
-                <div class="cards">
-                    <img src="../../assets/images/Steffie.png">
-                    <h2>Steffie</h2>
-                    <p>
-                    Steffie es una artista liberal. Desde pequeña ya ha demostrado la
-                         regalo sorprendente para el arte. Después de la guerra, Steffie vio el surgimiento de Future.
-                         Horizontes en su país y cómo cazaban artistas de nombre
-                         de un futuro mejor.
-
-                    </p>
-                </div>
-                <div class="cards">
-                    <img src="../../assets/images/Xayne.png">
-                    <h2>Xayne</h2>
-                    <p>
-                    Xayne siempre estuvo interesada en actividades más extremas incluso cuando
-                         era un niño. Prefiere la adrenalina de los deportes extremos.
-                         de la interacción humana. De espíritu libre, quiere explorar la vida y encontrar
-                         sus límites.
-                    </p>
-                </div>
-                </div>
-
-
-                <!--3 Rows-->
-
-                <div class="box">
-                    <div class="cards">
-                        <img src="../../assets/images/Kenta.png">
-                        <h2>Kenta</h2>
-                        <p>
-                        Kenta sirvió como guardaespaldas y herrero de la familia de Hayato Yagami.
-                             durante años. Es un hombre de pocas palabras pero protege a su nuevo y joven maestro.
-                             en cualquier situación en la que se encuentren.
-
-                        </p>
-                    </div>
-                    <div class="cards">
-                        <img src="../../assets/images/Homer.png">
-                        <h2>Homer</h2>
-                        <p>
-                        Homer es un ciego que no sólo es un asesino, sino también uno de los
-                             fundadores de la próspera pandilla tecnológica en Griza.
-
-                        </p>
-                    </div>
-                    <div class="cards">
-                        <img src="../../assets/images/Dasha.png">
-                        <h2>Dasha</h2>
-                        <p>
-                        Dasha era una niña muy feliz y productiva, pero luego una serie de
-                             Sucesos desafortunados llegaron a su vida. Sus padres murieron, su mejor
-                             amiga se mudó, su familia adoptiva fue terrible con ella y su
-                             El país estaba al borde de la guerra.
-                        </p>
-                    </div>
-                    <div class="cards">
-                        <img src="../../assets/images/Clu.png">
-                        <h2>Clu</h2>
-                        <p>
-                        Clu creció en un suburbio de una gran ciudad. Sus padres eran ricos,
-                             Nunca tuvo que preocuparse por los aspectos básicos de la vida y tenía una vida muy
-                             infancia amorosa.
-                        </p>
-                    </div>
-                    </div>
-        </div>
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+		<div class="lds-ripple">
+			<div></div>
+			<div></div>
+		</div>
     </div>
-    
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+
+
+        <div class="container">
+        <div class="container-fluid">
+
+
+
+</div>
+            <div class="container-fluid mt-ms-3 text-center">
+				<div class="row page-titles text-center">
+					<ol class="breadcrumb text-center">
+
+						<li class="breadcrumb-item"> <h2>Selecciona tu Avatar</h2</li>
+					</ol>
+                </div>
+
+                <div class="row">
+                <?php
+foreach ($avatars as $avatar) {
+
+    ?>
+                    <div class="col-xl-3 col-lg-6 col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="new-arrival-product">
+                                    <div class="new-arrivals-img-contnent">
+                                        <img class="img-fluid" src="../../controller/<?=$avatar["imagenAvatar"]?>" alt="">
+                                    </div>
+                                    <div class="new-arrival-content text-center mt-3">
+                                        <h4><a href="ecom-product-detail.html"><?=$avatar["nombreAvatar"]?></a></h4>
+                                        <ul class="star-rating">
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        </ul>
+                                        <p class="text-content text-center"><?=$avatar["descripcionAvatar"]?></p>
+
+
+                                        <span class="price mg-center">
+                                            <form action="" method="POST">
+                                                <input type="hidden" name="idAvatar" value="<?=$avatar['id']?>">
+                                                <input type="submit" name="registerAvatar" class="btn bg-danger" value="Seleccionar">
+                                            </form>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+}
+
+?>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+
+	</div>
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <!-- Required vendors -->
+    <script src="../models/admin/vendor/global/global.min.js"></script>
+    <script src="../models/admin/vendor/chart.js/Chart.bundle.min.js"></script>
+    <script src="../models/admin/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+
+	<!-- Apex Chart -->
+    <script src="../models/admin/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="../models/admin/vendor/apexchart/apexchart.js"></script>
+
+
+
+    <script src="../models/admin/vendor/peity/jquery.peity.min.js"></script>
+
+
+	<!-- Dashboard 1 -->
+    <script src="../models/admin/js/dashboard/dashboard-1.js"></script>
+
+
+
+	<script src="vendor/owl-carousel/owl.carousel.js"></script>
+    <script src="../models/admin/vendor/owl-carousel/owl.carousel.js"></script>
+
+    <script src="../models/admin/js/custom.min.js"></script>
+
+    <script src="../models/admin/js/dlabnav-init.js"></script>
+
+    <script src="../models/admin/js/demo.js"></script>
+    <script src="../models/admin/js/styleSwitcher.js"></script>
+
+    <script src="js/styleSwitcher.js"></script>
+	<script>
+		function cardsCenter()
+		{
+
+			/*  testimonial one function by = owl.carousel.js */
+
+
+
+			jQuery('.card-slider').owlCarousel({
+				loop:true,
+				margin:0,
+				nav:true,
+				//center:true,
+				slideSpeed: 3000,
+				paginationSpeed: 3000,
+				dots: true,
+				navText: ['<i class="fas fa-arrow-left"></i>', '<i class="fas fa-arrow-right"></i>'],
+				responsive:{
+					0:{
+						items:1
+					},
+					576:{
+						items:1
+					},
+					800:{
+						items:1
+					},
+					991:{
+						items:1
+					},
+					1200:{
+						items:1
+					},
+					1600:{
+						items:1
+					}
+				}
+			})
+		}
+
+		jQuery(window).on('load',function(){
+			setTimeout(function(){
+				cardsCenter();
+			}, 1000);
+		});
+		jQuery(document).ready(function(){
+			setTimeout(function(){
+				dlabSettingsOptions.version = 'dark';
+				new dlabSettings(dlabSettingsOptions);
+			},1500)
+		});
+
+	</script>
+
 </body>
 </html>

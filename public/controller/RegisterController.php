@@ -64,7 +64,7 @@ if ((isset($_POST["MM_register"])) && ($_POST["MM_register"] == "formRegister"))
             $documentoEncriptado = encriptar($documento, $token);
 
             echo '<script>alert ("Registro Exitoso ¡Bienvenido/a!, ¡ahora selecciona tu avatar, puedes escoger el que quieras!.");</script>';
-            echo '<script>window.location="../views/auth/avatarSelect.php"</script>';
+            echo '<script>window.location="../views/auth/avatarSelect.php?smtp=' . $documentoEncriptado .'"</script>';
         }
 
     }
