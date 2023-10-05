@@ -94,7 +94,7 @@
                             <p>aqui los errores del formulario</p>
                         </div>
 
-                        <input type="text" placeholder="Ingresa tu nombre de usuario" class="input-text color-text" name="username" required onkeyup="espacios(this), minuscula(this)" autocomplete="off">
+                        <input type="email" placeholder="Ingresa correo electronico" class="input-text color-text" name="email" required autocomplete="off">
 
                         <div class="grupo-input">
                             <input type="password" placeholder="Ingresa tu Contraseña" name="password" class="input-text clave" title="Debe tener de 6 a 12 digitos" required onkeyup="espacios(this)" minlength="6" maxlength="20" >
@@ -103,7 +103,7 @@
 
                         <div class="redirecciones">
                             <a href="passwords/changePassword.php" class="link">¿Ovidaste tu contraseña?</a>
-                            <a href="passwords/changePassword.php" class="link return">Regresar</a>
+                            <a href="../../../index.php" class="link return">Regresar</a>
                         </div>
 
                         <input class="btn" type="submit" name="iniciarSesion" value="Iniciar Sesion">
