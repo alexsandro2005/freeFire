@@ -132,10 +132,32 @@ if ((isset($_POST["btn_actualizar"]))) {
                                                     } while ($consulll=$consulta2->fetch());
                                                     ?>
                                                 </select>
+                                                <br>
+                                                <select name="estadoUsuario" class="form-control form-control-lg input-text" >
+                                                    <option value="<?php echo $consul1['id_estado'] ?>"><?php echo $consul1['estado'] ?></option>
+                                                    <?php
 
-                                                <input type="hidden" placeholder="Estado" readonly class="form-control form-control-lg input-text" value="1" name="estadoUsuario">
+                                                    do {
 
-                                                <input type="hidden" placeholder="Rol" readonly class="form-control form-control-lg input-text" value="2" name="idRol">
+                                                    ?>
+                                                        <option value="<?php echo ($consulllll['id_estado']) ?>"><?php echo ($consulllll['estado']) ?></option>
+                                                    <?php
+                                                    } while ($consulllll=$consulta5->fetch());
+                                                    ?>
+                                                </select>
+                                                <br>
+                                                <select name="idRol" class="form-control form-control-lg input-text">
+                                                    <option value="<?php echo $consul1['idRol'] ?>"><?php echo $consul1['rol'] ?></option>
+                                                    <?php
+
+                                                    do {
+
+                                                    ?>
+                                                        <option value="<?php echo ($consullll['idRol']) ?>"><?php echo ($consullll['rol']) ?></option>
+                                                    <?php
+                                                    } while ($consullll=$consulta4->fetch());
+                                                    ?>
+                                                </select>
                                                 <br>
                                                 <input type="email" placeholder="Correo Electronico" class="form-control form-control-lg input-text" name="correoElectronico" required onkeyup="espacios(this)" maxlength="40" value="<?php echo $consul1['correoElectronico'] ?>">
                                                 <br>
