@@ -7,14 +7,14 @@ $connection = $db->conectar();
 if ($_POST["iniciarSesion"]) {
 
     //Iniciar sesion para los usuarios
-    $usuario = $_POST["username"];
+    $emailUser= $_POST["email"];
     $passwordLog = $_POST['password'];
 
     // VARIABLES A LAS CUALES SE LES ASIGNA LOS VALORES RECIBIDOS DE LA FECHA Y HORA DE INGRESO DL USUARIO
 
     //Consultamos el usuario y la clave//
 
-    $authValidation = $connection->prepare("SELECT * FROM usuario WHERE nombreUsuario ='$usuario' AND estadoUsuario=1");
+    $authValidation = $connection->prepare("SELECT * FROM usuario WHERE correoElectronico ='$emailUser' AND estadoUsuario = 1");
     $authValidation->execute();
     $authSession = $authValidation->fetch();
 

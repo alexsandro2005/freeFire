@@ -8,17 +8,13 @@
   <link rel="shortcut icon" href="public/assets/images/Gareena.png" type="image/x-icon">
 </head>
 <body>
-
-
-
   <section class="showcase">
     <header>
-      <h2 class="logo"><img src="public/assets/images/logo.png" alt=""></h2>
     </header>
     <video src="public/assets/images/login.mp4" muted loop autoplay></video>
     <div class="overlay"></div>
     <div class="text">
-      <h2>30 Jugadores / 5 minutos / 1 Sobreviviente</h2>
+      <h2 class="logo"><img src="public/assets/images/logo.png" alt=""></h2>
 
       <p>¡Prepárate para la batalla definitiva en Free Fire: Donde la supervivencia es tu única opción!<p>
       <a href="public/views/auth/index.php">Iniciar Sesion</a>

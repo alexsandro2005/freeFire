@@ -43,19 +43,25 @@ header .logo {
   background-position: center;
   cursor: pointer;
 }
+/* Estilos para centrar la estructura */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #111; /* Ajusta el color de fondo según tus preferencias */
+}
 
 .showcase {
-  position: absolute;
-  right: 0;
-  width: 100%;
-  min-height: 100vh;
-  padding: 100px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  text-align: center;
   background: #111;
-  transition: 0.5s;
-  z-index: 2;
+  padding: 100px;
+  color: #fff; /* Ajusta el color de texto según tus preferencias */
 }
 
 .showcase.active {
@@ -92,8 +98,8 @@ header .logo {
 
 
 .logo img {
-  width: 150px;
-  height: 50px;
+  width: 250px;
+  height: 60px;
 }
 
 .text h2 {
