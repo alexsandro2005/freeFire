@@ -16,7 +16,9 @@ $consulta->execute();
         ***********************************-->
 <div class="content-body">
     <div class="container-fluid">
-
+        <div class="col-xs-12 mb-3">
+            <a href="./createAdmin.php" class="btn btn-block bg-danger">Registrar Admin</a>
+        </div>
         <div class="row page-titles">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active"><a href="javascript:void(0)">Listados</a></li>
