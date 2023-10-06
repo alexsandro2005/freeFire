@@ -12,6 +12,24 @@ $consul = $consulta->fetch();
 ?>
 
 <?php
+    $consulta1 = $conexion->prepare("SELECT * FROM tipodocu");
+    $consulta1->execute();
+    $consul=$consulta1->fetch();
+
+    $consulta2 = $conexion->prepare("SELECT * FROM genero");
+    $consulta2->execute();
+    $consulll=$consulta2->fetch();
+
+    $consulta4 = $conexion->prepare("SELECT * FROM roles");
+    $consulta4->execute();
+    $consullll=$consulta4->fetch();
+
+    $consulta5 = $conexion->prepare("SELECT * FROM estado");
+    $consulta5->execute();
+    $consulllll=$consulta5->fetch();
+?>
+
+<?php
 if ((isset($_POST["btn-registrar"]))) {
     $tipDocu = $_POST['tipoDocumento'];
     $documento = $_POST['documento'];
@@ -98,9 +116,17 @@ if ((isset($_POST["btn-registrar"]))) {
 
                                             <div class="mb-3 m-auto">
                                                 <select name="tipoDocumento" class="form-control form-control-lg input-text" required id="">
-                                                    <option value="" selected>Seleccione tipo de documento</option>
-                                                    <option value="C.C.">Cedula de Ciudadania</option>
-                                                    <option value="T.I.">Tarjeta de Identidad</option>
+                                                    <option value="">Seleccione tipo de documento</option>
+                                                        <?php
+
+                                                        do{
+
+                                                        ?>
+                                                    <option value="<?php echo ($consul['id_tipoDocu'])?>"><?php echo ($consul['tipoDocu'])?></option>
+                                                    <?php
+                                                        }while($consul=$consulta1->fetch());
+                                                        
+                                                    ?>
                                                 </select>
                                                 <br>
                                                 <input type="number" placeholder="Numero de documento" class="form-control form-control-lg input-text" name="documento" onkeypress="return(multiplenumber(event));" oninput="maxlengthNumber(this);" maxlength="10" required>
@@ -110,9 +136,17 @@ if ((isset($_POST["btn-registrar"]))) {
                                                 <input type="text" placeholder="Usuario" class="form-control form-control-lg input-text" name="nombreUsuario" required onkeyup="espacios(this), minuscula(this)" autocomplete="off">
                                                 <br>
                                                 <select name="genero" class="form-control form-control-lg input-text" required id="">
-                                                    <option value="" selected>Seleccione tipo de genero</option>
-                                                    <option value="Masculino">Masculino</option>
-                                                    <option value="Femenino">Femenino</option>
+                                                    <option value="">Seleccione tipo de genero</option>
+                                                        <?php
+
+                                                        do{
+
+                                                        ?>
+                                                    <option value="<?php echo ($consulll['id_genero'])?>"><?php echo ($consulll['genero'])?></option>
+                                                    <?php
+                                                        }while($consulll=$consulta2->fetch());
+                                                        
+                                                    ?>
                                                 </select>
 
                                                 <input type="hidden" placeholder="Estado" readonly class="form-control form-control-lg input-text" value="1" name="estadoUsuario">
