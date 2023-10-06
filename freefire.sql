@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-10-2023 a las 04:22:24
+-- Tiempo de generación: 06-10-2023 a las 09:43:09
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -127,7 +127,13 @@ INSERT INTO `entrada_jugadores` (`id`, `horario_entrada`, `documento`) VALUES
 (14, '2023-10-02 10:38:30', 1110460410),
 (15, '2023-10-02 10:43:32', 1110460410),
 (16, '2023-10-03 06:16:50', 1110460410),
-(17, '2023-10-03 09:39:33', 1110460410);
+(17, '2023-10-03 09:39:33', 1110460410),
+(18, '2023-10-05 21:46:43', 1106632525),
+(19, '2023-10-05 21:53:56', 1106632525),
+(20, '2023-10-05 22:35:31', 1106632525),
+(21, '2023-10-05 22:37:09', 1106632525),
+(22, '2023-10-06 01:05:13', 1106632525),
+(23, '2023-10-06 01:54:32', 1106632525);
 
 -- --------------------------------------------------------
 
@@ -140,6 +146,14 @@ CREATE TABLE `estado` (
   `estado` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `estado`
+--
+
+INSERT INTO `estado` (`id_estado`, `estado`) VALUES
+(1, 'ACTIVO'),
+(2, 'INACTIVO');
+
 -- --------------------------------------------------------
 
 --
@@ -150,6 +164,14 @@ CREATE TABLE `genero` (
   `id_genero` int(11) NOT NULL,
   `genero` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `genero`
+--
+
+INSERT INTO `genero` (`id_genero`, `genero`) VALUES
+(1, 'masculino'),
+(2, 'Femenino');
 
 -- --------------------------------------------------------
 
@@ -281,6 +303,14 @@ CREATE TABLE `tipodocu` (
   `tipoDocu` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `tipodocu`
+--
+
+INSERT INTO `tipodocu` (`id_tipoDocu`, `tipoDocu`) VALUES
+(1, 'C.C'),
+(2, 'T.I');
+
 -- --------------------------------------------------------
 
 --
@@ -295,10 +325,10 @@ CREATE TABLE `usuario` (
   `password` varchar(255) NOT NULL,
   `idRol` int(5) NOT NULL,
   `fecha_registro` datetime NOT NULL,
-  `genero` varchar(100) NOT NULL,
+  `genero` int(11) NOT NULL,
   `estadoUsuario` varchar(10) NOT NULL,
   `correoElectronico` varchar(255) NOT NULL,
-  `tipoDocumento` varchar(100) NOT NULL
+  `tipoDocumento` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -306,10 +336,11 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`documento`, `nombreCompleto`, `nombreUsuario`, `avatar`, `password`, `idRol`, `fecha_registro`, `genero`, `estadoUsuario`, `correoElectronico`, `tipoDocumento`) VALUES
-(21013020, 'Alexander2301', 'ckkkd', NULL, '$2y$15$Rq3fLZwocjZbzHiVrwd/VuL/C.cguHiPsuYXEb7sxniQg7LtMAU2m', 2, '2023-10-02 09:46:41', 'Masculino', '1', 'alexander1201@gmail.com', 'C.C.'),
-(1108132210, 'Esteban Alvarez', 'estaban23', NULL, '$2y$15$/DrSQpi2wU1YlffpGrQQ4uRDc43X4cP8OKCIgB5MxZkB8sXawnlSS', 2, '2023-10-02 09:40:35', 'Masculino', '1', 'esteban2301@gmail.com', 'C.C.'),
-(1110460410, 'Alejandro Muñoz', 'muñoz1201', NULL, '$2y$15$pwCAuKeppnbHB6VvkdlJCegmY5CK9EK.Psvs4lg3dlRZd1QnOqZ8q', 1, '2023-09-28 01:15:54', 'Masculino', '1', 'luisalejandrm533@gmail.com', 'C.C.'),
-(1340302020, 'Camilo Acosta', 'camilin23', NULL, '$2y$15$tqbyqHGvEQfb08IbI8xxAeThqzgkyEUq2BXU8lfWgb8v4e10p/Uqu', 2, '2023-10-03 10:23:11', 'Masculino', '1', 'camilo@gmail.com', 'C.C.');
+(21013020, 'Alexander2301', 'ckkkd', NULL, '$2y$15$Rq3fLZwocjZbzHiVrwd/VuL/C.cguHiPsuYXEb7sxniQg7LtMAU2m', 2, '2023-10-02 09:46:41', 1, '1', 'alexander1201@gmail.com', 1),
+(1106632525, 'jhoen sahileth ramos joven', 'jhoenramos13', NULL, '$2y$15$Ug6rHj2KG66YGuZ0kJ.MDOQyUBQXeFVok70YNZAfyfsCChJEezYZS', 1, '2023-10-05 21:38:32', 2, '1', 'jsramos525@misena.edu.co', 1),
+(1108132210, 'Esteban Alvarez', 'estaban23', NULL, '$2y$15$/DrSQpi2wU1YlffpGrQQ4uRDc43X4cP8OKCIgB5MxZkB8sXawnlSS', 2, '2023-10-02 09:40:35', 1, '1', 'esteban2301@gmail.com', 1),
+(1110460410, 'Alejandro Muñoz', 'muñoz1201', NULL, '$2y$15$pwCAuKeppnbHB6VvkdlJCegmY5CK9EK.Psvs4lg3dlRZd1QnOqZ8q', 1, '2023-09-28 01:15:54', 1, '1', 'luisalejandrm533@gmail.com', 1),
+(1340302020, 'Camilo Acosta', 'camilin23', NULL, '$2y$15$tqbyqHGvEQfb08IbI8xxAeThqzgkyEUq2BXU8lfWgb8v4e10p/Uqu', 2, '2023-10-03 10:23:11', 1, '1', 'camilo@gmail.com', 1);
 
 --
 -- Índices para tablas volcadas
@@ -445,19 +476,19 @@ ALTER TABLE `detalle_partida`
 -- AUTO_INCREMENT de la tabla `entrada_jugadores`
 --
 ALTER TABLE `entrada_jugadores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `estado`
 --
 ALTER TABLE `estado`
-  MODIFY `id_estado` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_estado` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `genero`
 --
 ALTER TABLE `genero`
-  MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `partida`
@@ -493,7 +524,7 @@ ALTER TABLE `tipodaño`
 -- AUTO_INCREMENT de la tabla `tipodocu`
 --
 ALTER TABLE `tipodocu`
-  MODIFY `id_tipoDocu` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tipoDocu` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
