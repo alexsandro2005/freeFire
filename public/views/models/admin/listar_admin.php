@@ -7,7 +7,7 @@ require_once 'menu.php';
 require_once('../../../../database/connection.php');
 $bd = new Database();
 $conexion = $bd->conectar();
-$consulta = $conexion->prepare("SELECT * FROM usuario INNER JOIN roles ON usuario.idRol = roles.idRol WHERE usuario.idRol = 1");
+$consulta = $conexion->prepare("SELECT * FROM usuario INNER JOIN roles ON usuario.idRol = roles.idRol INNER JOIN estado ON usuario.estadoUsuario = estado.id_estado INNER JOIN tipodocu ON usuario.tipoDocumento = tipodocu.id_tipoDocu INNER JOIN genero ON usuario.genero = genero.id_genero WHERE usuario.idRol = 1");
 $consulta->execute();
 ?>
 
@@ -52,12 +52,18 @@ $consulta->execute();
 
                                 <?php
                                 foreach ($consulta as $consul) {
+                                    // Verificar el valor de id_estado
+                                    if ($consul['id_estado'] == 1) {
+                                        $color = 'rgb(6, 213, 0)'; // Verde si es estado 1
+                                    } else {
+                                        $color = 'rgb(209, 0, 0)'; // Rojo si es estado 2
+                                    }
                                 ?>
                                     <tbody>
                                         <tr style="text-align: center;">
 
                                             <td style="text-align: center;">
-                                                <?= $consul['tipoDocumento'] ?>
+                                                <?= $consul['tipoDocu'] ?>
                                             </td>
                                             <td style="text-align: center;">
                                                 <?= $consul['documento'] ?>
@@ -81,14 +87,28 @@ $consulta->execute();
                                                 <?= $consul['correoElectronico'] ?>
                                             </td>
                                             <td style="text-align: center;">
-                                                <?= $consul['estadoUsuario'] ?>
+                                                <?= $consul['estado'] ?>
+                                            </td>
+                                            
+                                            <td>
+                                                <form action="./actualizar_admin.php" method="get">
+                                                    <input type="hidden" name="actualizar" value="<?= $consul['documento'] ?> ">
+                                                    <button class="btn btn-primary shadow btn-xl sharp" 
+                                                        type="submit" onclick="return confirm('¿Está seguro de actualizar este usuario?')">
+                                                        <i class="fa fa-pencil-alt">
+                                                    </button>
+                                                </form>
                                             </td>
                                             <td>
-                                                <div class="d-flex">
-                                                    <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-                                                    <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                                </div>
+                                                <form action="./eliminar_admin.php" method="get">
+                                                    <input type="hidden" name="eliminar" value="<?= $consul['documento'] ?>">
+                                                    <button class="btn btn-danger shadow btn-xl sharp" type="submit"
+                                                        onclick="return confirm('¿Está seguro de eliminar este usuario?')">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </form>
                                             </td>
+
                                         </tr>
                                     </tbody>
 

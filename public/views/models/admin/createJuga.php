@@ -6,7 +6,7 @@ $basedatos = new Database();
 $conexion = $basedatos->conectar();
 session_start();
 
-$consulta = $conexion->prepare("SELECT * FROM usuario INNER JOIN roles ON usuario.idRol = roles.idRol");
+$consulta = $conexion->prepare("SELECT * FROM usuario INNER JOIN roles ON usuario.idRol = roles.idRol INNER JOIN estado ON usuario.estadoUsuario = estado.id_estado INNER JOIN tipodocu ON usuario.tipoDocumento = tipodocu.id_tipoDocu INNER JOIN genero ON usuario.genero = genero.id_genero");
 $consulta->execute();
 $consul = $consulta->fetch();
 ?>
@@ -39,18 +39,18 @@ if ((isset($_POST["btn-registrar"]))) {
 
     if ($consull) {
         echo '<script>alert ("El documento ya se ha registrado, ingrese otro.");</script>';
-        echo '<script>windows.location="createAdmin.php"</script>';
+        echo '<script>windows.location="createJuga.php"</script>';
     } else if ($consulll) {
         echo '<script>alert ("El usuario ya existe, por favor ingrese otro.");</script>';
-        echo '<script>windows.location="createAdmin.php"</script>';
+        echo '<script>windows.location="createJuga.php"</script>';
     } else if ($tipDocu == "" || $documento == "" || $nombre == "" || $usuario == "" || $genero == "" || $estado == "" || $rol == "" || $correo == "" || $password == "") {
         echo '<script>alert ("EXISTEN DATOS VACIOS");</script>';
-        echo '<script>windows.location="createAdmin.php"</script>';
+        echo '<script>windows.location="createJuga.php"</script>';
     } else {
         $consulta3 = $conexion->prepare("INSERT INTO usuario (tipoDocumento ,documento, nombreCompleto, nombreUsuario, genero, estadoUsuario, idRol, correoElectronico, password, fecha_registro) VALUES ('$tipDocu', '$documento','$nombre', '$usuario','$genero','$estado','$rol','$correo','$hash','$fecha_actual')");
         $consulta3->execute();
         echo '<script>alert ("Registro exitoso, gracias");</script>';
-        echo '<script>window.location="./listar_admin.php"</script>';
+        echo '<script>window.location="./listar_juga.php"</script>';
     }
 }
 ?>

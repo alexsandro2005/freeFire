@@ -6,7 +6,7 @@ $basedatos = new Database();
 $conexion = $basedatos->conectar();
 session_start();
 
-$consulta = $conexion->prepare("SELECT * FROM usuario INNER JOIN roles ON usuario.idRol = roles.idRol");
+$consulta = $conexion->prepare("SELECT * FROM usuario INNER JOIN roles ON usuario.idRol = roles.idRol INNER JOIN estado ON usuario.estadoUsuario = estado.id_estado INNER JOIN tipodocu ON usuario.tipoDocumento = tipodocu.id_tipoDocu INNER JOIN genero ON usuario.genero = genero.id_genero");
 $consulta->execute();
 $consul = $consulta->fetch();
 ?>
@@ -99,8 +99,8 @@ if ((isset($_POST["btn-registrar"]))) {
                                             <div class="mb-3 m-auto">
                                                 <select name="tipoDocumento" class="form-control form-control-lg input-text" required id="">
                                                     <option value="" selected>Seleccione tipo de documento</option>
-                                                    <option value="C.C.">Cedula de Ciudadania</option>
-                                                    <option value="T.I.">Tarjeta de Identidad</option>
+                                                    <option value="1">Cedula de Ciudadania</option>
+                                                    <option value="2">Tarjeta de Identidad</option>
                                                 </select>
                                                 <br>
                                                 <input type="number" placeholder="Numero de documento" class="form-control form-control-lg input-text" name="documento" onkeypress="return(multiplenumber(event));" oninput="maxlengthNumber(this);" maxlength="10" required>
