@@ -1,7 +1,6 @@
 <?php
 require_once 'menu.php';
 
-
 ?>
         <!--**********************************
             Content body start
@@ -21,7 +20,32 @@ require_once 'menu.php';
                                         </span>
                                         <div class="media-body text-white text-end">
                                             <p class="mb-1">Partidas Realizadas</p>
-                                            <h3 class="text-white">230</h3>
+                                            <?php
+$conteoPartidas = "SELECT COUNT(*) AS contadorPartidas FROM partida";
+try {
+    $conteosPartidas = $connection->query($conteoPartidas);
+    $contadorPartidas = $conteosPartidas->fetch(PDO::FETCH_ASSOC)['contadorPartidas'];
+
+    if ($contadorPartidas) {
+
+        ?>
+                                            <h3 class="text-white"><?php echo $contadorPartidas ?></h3>
+
+                                            <?php
+} else {
+        ?>
+                                                    <h3 class="text-white">0</h3>
+                                                    <?php
+}
+
+} catch (PDOException $e) {
+
+    ?>
+                                                    <h3 class="text-white"><?php $e->getMessage()?></h3>
+                                                    <?php
+}
+
+?>
                                         </div>
                                     </div>
                                 </div>
@@ -30,20 +54,61 @@ require_once 'menu.php';
                     </div>
                     <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
                         <a href="#">
-                            <div class="widget-stat card bg-danger">
-                                <div class="card-body p-4">
-                                    <div class="media">
-                                        <span class="me-3">
-                                        <img src="../../../assets/images/anime.png" class="la la-users sd-shape"></img>
+                        <div class="widget-stat card bg-danger">
+    <div class="card-body p-4">
+        <div class="media">
+            <span class="me-3">
+                <img src="../../../assets/images/anime.png" class="la la-users sd-shape"></img>
+            </span>
+            <div class="media-body text-white text-end">
+                <p class="mb-1">Partidas de Hoy</p>
+                <?php
+                try {
+                    // Obtener la fecha y hora actual en formato "YYYY-MM-DD HH:MM:SS"
+                    $fechaHoraActual = date("Y-m-d H:i:s");
 
-                                        </span>
-                                        <div class="media-body text-white text-end">
-                                            <p class="mb-1">Partidas de Hoy</p>
-                                            <h3 class="text-white">230</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    // Consulta SQL para contar las partidas de hoy
+                    $conteoPartidas = "SELECT COUNT(*) AS contadorPartidas 
+                                       FROM partida 
+                                       WHERE fechaInicial >= :fechaInicioHoy AND fechaInicial <= :fechaFinHoy";
+
+                    // Preparar la consulta
+                    $stmt = $connection->prepare($conteoPartidas);
+
+                    // Calcular el rango de fechas para hoy (desde las 00:00:00 hasta las 23:59:59)
+                    $fechaInicioHoy = date("Y-m-d 00:00:00");
+                    $fechaFinHoy = date("Y-m-d 23:59:59");
+
+                    // Bind de los parámetros de fecha
+                    $stmt->bindParam(':fechaInicioHoy', $fechaInicioHoy, PDO::PARAM_STR);
+                    $stmt->bindParam(':fechaFinHoy', $fechaFinHoy, PDO::PARAM_STR);
+
+                    // Ejecutar la consulta
+                    $stmt->execute();
+
+                    // Obtener el resultado
+                    $contadorPartidas = $stmt->fetch(PDO::FETCH_ASSOC)['contadorPartidas'];
+
+                    if ($contadorPartidas !== false) {
+                ?>
+                        <h3 class="text-white"><?php echo $contadorPartidas ?></h3>
+                    <?php
+                    } else {
+                    ?>
+                        <h3 class="text-white">0</h3>
+                    <?php
+                    }
+                } catch (PDOException $e) {
+                    ?>
+                    <h3 class="text-white"><?php echo $e->getMessage() ?></h3>
+                <?php
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+</div>
+
                         </a>
                     </div>
                     <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
@@ -57,7 +122,32 @@ require_once 'menu.php';
                                         </span>
                                         <div class="media-body text-white text-end">
                                             <p class="mb-1">Armas Activas</p>
-                                            <h3 class="text-white">230</h3>
+                                            <?php
+$conteoarmas = "SELECT COUNT(*) AS contadorarmas FROM armas";
+try {
+    $conteosarmas = $connection->query($conteoarmas);
+    $contadorarmas = $conteosarmas->fetch(PDO::FETCH_ASSOC)['contadorarmas'];
+
+    if ($contadorarmas) {
+
+        ?>
+                                            <h3 class="text-white"><?php echo $contadorarmas ?></h3>
+
+                                            <?php
+} else {
+        ?>
+                                                    <h3 class="text-white">0</h3>
+                                                    <?php
+}
+
+} catch (PDOException $e) {
+
+    ?>
+                                                    <h3 class="text-white"><?php $e->getMessage()?></h3>
+                                                    <?php
+}
+
+?>
                                         </div>
                                     </div>
                                 </div>
@@ -75,7 +165,32 @@ require_once 'menu.php';
                                         </span>
                                         <div class="media-body text-white text-end">
                                             <p class="mb-1">Mundos Activos</p>
-                                            <h3 class="text-white">230</h3>
+                                            <?php
+$conteoMundos = "SELECT COUNT(*) AS contadorMundos FROM armas";
+try {
+    $conteoMundos = $connection->query($conteoMundos);
+    $contadorMundos = $conteoMundos->fetch(PDO::FETCH_ASSOC)['contadorMundos'];
+
+    if ($contadorMundos) {
+
+        ?>
+                                            <h3 class="text-white"><?php echo $contadorMundos ?></h3>
+
+                                            <?php
+} else {
+        ?>
+                                                    <h3 class="text-white">0</h3>
+                                                    <?php
+}
+
+} catch (PDOException $e) {
+
+    ?>
+                                                    <h3 class="text-white"><?php $e->getMessage()?></h3>
+                                                    <?php
+}
+
+?>
                                         </div>
                                     </div>
                                 </div>
@@ -93,8 +208,33 @@ require_once 'menu.php';
 
                                         </span>
                                         <div class="media-body text-white text-end">
-                                            <p class="mb-1">Niveles Disponibles</p>
-                                            <h3 class="text-white">230</h3>
+                                            <p class="mb-1">Rangos Disponibles</p>
+                                            <?php
+$conteoRangos = "SELECT COUNT(*) AS contadorRangos FROM rangos";
+try {
+    $conteoRangos = $connection->query($conteoRangos);
+    $contadorRangos = $conteoRangos->fetch(PDO::FETCH_ASSOC)['contadorRangos'];
+
+    if ($contadorRangos) {
+
+        ?>
+                                            <h3 class="text-white"><?php echo $contadorRangos ?></h3>
+
+                                            <?php
+} else {
+        ?>
+                                                    <h3 class="text-white">0</h3>
+                                                    <?php
+}
+
+} catch (PDOException $e) {
+
+    ?>
+                                                    <h3 class="text-white"><?php $e->getMessage()?></h3>
+                                                    <?php
+}
+
+?>
                                         </div>
                                     </div>
                                 </div>
@@ -113,7 +253,32 @@ require_once 'menu.php';
                                         </span>
                                         <div class="media-body text-white text-end">
                                             <p class="mb-1">Avatars Activos</p>
-                                            <h3 class="text-white">230</h3>
+                                            <?php
+$conteoAvatars = "SELECT COUNT(*) AS contadorAvatars FROM avatars";
+try {
+    $conteoAvatars = $connection->query($conteoAvatars);
+    $contadorAvatars = $conteoAvatars->fetch(PDO::FETCH_ASSOC)['contadorAvatars'];
+
+    if ($contadorAvatars) {
+
+        ?>
+                                            <h3 class="text-white"><?php echo $contadorAvatars ?></h3>
+
+                                            <?php
+} else {
+        ?>
+                                                    <h3 class="text-white">0</h3>
+                                                    <?php
+}
+
+} catch (PDOException $e) {
+
+    ?>
+                                                    <h3 class="text-white"><?php $e->getMessage()?></h3>
+                                                    <?php
+}
+
+?>
                                         </div>
                                     </div>
                                 </div>
@@ -128,7 +293,7 @@ require_once 'menu.php';
         ***********************************-->
         <div class="content-body container-table">
             <div class="container-fluid">
-				
+
 				<div class="row page-titles">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item active"><a href="javascript:void(0)">Estadisticas</a></li>
@@ -155,25 +320,25 @@ require_once 'menu.php';
                                                 <th>Rol</th>
                                                 <th>Correo</th>
                                                 <th>Entrada</th>
-                                                
+
 
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach( $entry as $entrada){?>
+                                            <?php foreach ($entry as $entrada) {?>
                                             <tr>
-                                                <td><?= $entrada["tipoDocumento"] ?></td>
-                                                <td><?= $entrada["documento"] ?></td>
-                                                <td><?= $entrada["nombreCompleto"] ?></td>
-                                                <td><?= $entrada["rol"] ?></td>
-                                                <td><?= $entrada["correoElectronico"] ?></td>
-                                                <td><?= $entrada["horario_entrada"] ?></td>
-                                                
+                                                <td><?=$entrada["tipoDocumento"]?></td>
+                                                <td><?=$entrada["documento"]?></td>
+                                                <td><?=$entrada["nombreCompleto"]?></td>
+                                                <td><?=$entrada["rol"]?></td>
+                                                <td><?=$entrada["correoElectronico"]?></td>
+                                                <td><?=$entrada["horario_entrada"]?></td>
+
                                             </tr>
-                                        
+
                                             <?php
 }
-                                            ?>
+?>
 
                                         </tbody>
                                     </table>
@@ -185,113 +350,8 @@ require_once 'menu.php';
             </div>
         </div>
 
-        <!--**********************************
-            Footer start
-        ***********************************-->
-        <div class="footer">
-            <div class="copyright">
-                <p>Copyright © Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2021</p>
-            </div>
-        </div>
-        <!--**********************************
-            Footer end
-        ***********************************-->
 
-        <!--**********************************
-           Support ticket button start
-        ***********************************-->
-
-        <!--**********************************
-           Support ticket button end
-        ***********************************-->
-
-
-    </div>
-    <!--**********************************
-        Main wrapper end
-    ***********************************-->
-    <!--**********************************
-        Main wrapper end
-    ***********************************-->
-
-    <!--**********************************
-        Scripts
-    ***********************************-->
-    <!-- Required vendors -->
-    <script src="vendor/global/global.min.js"></script>
-	<script src="vendor/chart.js/Chart.bundle.min.js"></script>
-	<script src="vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-
-	<!-- Apex Chart -->
-	<script src="vendor/apexchart/apexchart.js"></script>
-
-	<script src="vendor/chart.js/Chart.bundle.min.js"></script>
-
-	<!-- Chart piety plugin files -->
-    <script src="vendor/peity/jquery.peity.min.js"></script>
-	<!-- Dashboard 1 -->
-	<script src="js/dashboard/dashboard-1.js"></script>
-
-	<script src="vendor/owl-carousel/owl.carousel.js"></script>
-
-    <script src="js/custom.min.js"></script>
-	<script src="js/dlabnav-init.js"></script>
-	<script src="js/demo.js"></script>
-    <script src="js/styleSwitcher.js"></script>
-
-        <!-- Datatable -->
-        <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="js/plugins-init/datatables.init.js"></script>
-
-	<?php
+        <?php
 require_once 'footer.php';
 
 ?>
-	<script>
-		function cardsCenter()
-		{
-
-			/*  testimonial one function by = owl.carousel.js */
-
-			jQuery('.card-slider').owlCarousel({
-				loop:true,
-				margin:0,
-				nav:true,
-				//center:true,
-				slideSpeed: 3000,
-				paginationSpeed: 3000,
-				dots: true,
-				navText: ['<i class="fas fa-arrow-left"></i>', '<i class="fas fa-arrow-right"></i>'],
-				responsive:{
-					0:{
-						items:1
-					},
-					576:{
-						items:1
-					},
-					800:{
-						items:1
-					},
-					991:{
-						items:1
-					},
-					1200:{
-						items:1
-					},
-					1600:{
-						items:1
-					}
-				}
-			})
-		}
-
-		jQuery(window).on('load',function(){
-			setTimeout(function(){
-				cardsCenter();
-			}, 1000);
-		});
-
-	</script>
-
-</body>
-</html>

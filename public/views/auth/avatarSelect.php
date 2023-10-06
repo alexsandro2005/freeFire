@@ -10,7 +10,7 @@ $avatars = $listAvatars->fetchAll(PDO::FETCH_ASSOC);
 
 $documento = $_GET['smtp'];
 
-if ($_POST["registerAvatar"]) {
+if ((isset($_POST["AvatarSelect"])) && ($_POST["AvatarSelect"] == "formAvatarSelect")) {
     // creamos una funcion para desencriptar el numero de documento
 
     function desencriptar($textoEncriptado, $token)
@@ -29,24 +29,25 @@ if ($_POST["registerAvatar"]) {
     // asingamos las variables
     $idAvatar = $_POST['idAvatar'];
     
-    $usuarioAsignado = $connection->prepare("SELECT * FROM usuario WHERE documento = '$documentoEncriptado' ");
-
+    $usuarioAsignado = $connection->prepare("SELECT * FROM usuario WHERE documento = '$documentoPlayer' ");
+    $usuarioAsignado->execute();
+    $usuarioSelect = $usuarioAsignado->fetchAll(PDO::FETCH_ASSOC);
     // CONDICIONALES DEPENDIENDO EL RESULTADO DE LA CONSULTA
-    if ($register_validation) {
+    if ($usuarioSelect) {
 
         $update = $connection->prepare("UPDATE documentos SET id_documento='$id_documento', nombre='$nombre', precio='$precio' WHERE id_documento='$actu_documento'");
         $update->execute();
         // SI SE CUMPLE LA CONSULTA ES PORQUE EL USUARIO YA EXISTE
-        echo '<script> alert ("//Estimado Usuario la actualizacion se ha realizado con exito //");</script>';
-        echo '<script> window.location= "lista_documento.php"</script>';
-    } else if ($id_documento == "" || $nombre == "" || $precio == "") {
+        echo '<script> alert ("//¡Estimado Usuario tu avatar ha sido seleccionado, puedes iniciar sesion! //");</script>';
+        echo '<script> window.location= "../index.php"</script>';
+    } else if ($idAvatar =="" || $documentoPlayer == "") {
         // CONDICIONAL DEPENDIENDO SI EXISTEN ALGUN CAMPO VACIO EN EL FORMULARIO DE LA INTERFAZ
         echo '<script> alert (" //Estimado usuario existen datos vacios. //");</script>';
-        echo '<script> windows.location= "actualizar_docu.php"</script>';
+        echo '<script> windows.location= "./index.php"</script>';
     } else {
 
         echo '<script>alert("// Estimado Usuario la actualizacion no se realizo correctamente. //");</script>';
-        echo '<script>windows.location="actualizar_docu.php"</script>';
+        echo '<script>windows.location="./index.php"</script>';
     }
 
 }
@@ -123,9 +124,9 @@ if ($_POST["registerAvatar"]) {
 
                 <div class="row">
                 <?php
-foreach ($avatars as $avatar) {
+                    foreach ($avatars as $avatar) {
 
-    ?>
+                        ?>
                     <div class="col-xl-3 col-lg-6 col-sm-6">
                         <div class="card">
                             <div class="card-body">
@@ -149,6 +150,7 @@ foreach ($avatars as $avatar) {
                                             <form action="" method="POST">
                                                 <input type="hidden" name="idAvatar" value="<?=$avatar['id']?>">
                                                 <input type="submit" name="registerAvatar" class="btn bg-danger" value="Seleccionar">
+                                                <input type="hidden" name="AvatarSelect" value="formAvatarSelectr">
                                             </form>
                                         </span>
                                     </div>

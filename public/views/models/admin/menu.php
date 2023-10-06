@@ -614,34 +614,33 @@ $entry = $userEntry->fetchAll(PDO::FETCH_ASSOC);
 									</svg>
 
 									<?php
-										$conteoEntrada = "SELECT COUNT(*) AS conteo FROM entrada_jugadores INNER JOIN usuario ON entrada_jugadores.documento = usuario.documento WHERE usuario.idRol = 2";
+$conteoEntrada = "SELECT COUNT(*) AS conteo FROM entrada_jugadores INNER JOIN usuario ON entrada_jugadores.documento = usuario.documento WHERE usuario.idRol = 2";
 
-										try{
-											$conteos= $connection->query($conteoEntrada);
-											$conteo = $conteos->fetch(PDO::FETCH_ASSOC)['conteo'];
+try {
+    $conteos = $connection->query($conteoEntrada);
+    $conteo = $conteos->fetch(PDO::FETCH_ASSOC)['conteo'];
 
-											if($conteo){
-									
-									
-									?>
-                                    <span class="badge light text-white bg-warning rounded-circle"><?php echo $conteo?></span>
+    if ($conteo) {
+
+        ?>
+                                    <span class="badge light text-white bg-warning rounded-circle"><?php echo $conteo ?></span>
 
 
 									<?php
-																				}else{
-																					?>	
+} else {
+        ?>
 																					<span class="badge light text-white bg-warning rounded-circle">0</span>
 
 																					<?php
 
-																				}
-																			}catch (PDOException $e) {
-																				echo '<span class="badge light text-white bg-warning rounded-circle"> ' . $e->getMessage();
-																			}
+    }
+} catch (PDOException $e) {
+    echo '<span class="badge light text-white bg-warning rounded-circle"> ' . $e->getMessage();
+}
 
-																			?>
-									
-									
+?>
+
+
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
                                     <div id="DZ_W_Notification1" class="widget-media dlab-scroll p-3" style="height:380px;">
@@ -649,38 +648,38 @@ $entry = $userEntry->fetchAll(PDO::FETCH_ASSOC);
 
 
 											<?php if (!empty($entry)) {
-												foreach ($entry as $entrada) {?>
+    foreach ($entry as $entrada) {?>
 											<li>
 												<div class="timeline-panel">
 													<div class="media me-2">
 														<img alt="image" width="50" src="../../../controller/<?=$level["imagenAvatar"]?>">
 													</div>
 													<div class="media-body">
-														<h6 class="mb-1"><?= $level['nombreCompleto']?></h6>
-														<small class="d-block"><?= $level['horario_entradsa']?></small>
+														<h6 class="mb-1"><?=$level['nombreCompleto']?></h6>
+														<small class="d-block"><?=$level['horario_entradsa']?></small>
 													</div>
 												</div>
 											</li>
 
 											<?php
 
-												}
-											} else {
+    }
+} else {
 
-												?>
+    ?>
 											<li>
 												<div class="timeline-panel">
 
 													<div class="media-body">
 														<h6 class="mb-1">No hay ingreso de jugadores</h6>
-														
+
 													</div>
 												</div>
 											</li>
 
 											<?php
-												}
-												?>
+}
+?>
 
 
 										</ul>
@@ -846,6 +845,18 @@ $entry = $userEntry->fetchAll(PDO::FETCH_ASSOC);
                         <ul aria-expanded="false">
 							<li><a href="./listaLevels.php">Listar Rangos</a></li>
 							<li><a href="./createLevel.php">crear Rango</a></li>
+						</ul>
+                    </li>
+
+						<!-- MODULO DE NIVELES -->
+
+						<li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+							<i class="fas fa-home"></i>
+							<span class="nav-text">NIVELES</span>
+						</a>
+                        <ul aria-expanded="false">
+							<li><a href="./listaNiveles.php">Listar niveles</a></li>
+							<li><a href="./createNiveles.php">crear niveles</a></li>
 						</ul>
                     </li>
 

@@ -25,7 +25,7 @@ if (isset($_POST["MM_registerWorld"]) && $_POST["MM_registerWorld"] == "formWorl
         // Verifica si se ha enviado un archivo y si no hay errores al subirlo
         if (isset($_FILES['imagenMundo']) && $_FILES['imagenMundo']['error'] === 0) {
             $permitidos = array("image/png", "image/jpg", "image/jpeg");
-            $limite_KB = 3000;
+            $limite_KB = 7000;
 
             if (in_array($_FILES["imagenMundo"]["type"], $permitidos) && $_FILES["imagenMundo"]["size"] <= $limite_KB * 1024) {
                 $ruta = 'worlds/';

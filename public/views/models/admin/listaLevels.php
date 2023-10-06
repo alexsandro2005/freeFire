@@ -1,9 +1,9 @@
 <?php
 require_once 'menu.php';
 
-$listlevels = $connection->prepare("SELECT * FROM niveles");
-$listlevels->execute();
-$levels = $listlevels->fetchAll(PDO::FETCH_ASSOC);
+$listranges = $connection->prepare("SELECT * FROM rangos");
+$listranges->execute();
+$ranges = $listranges->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
         
@@ -11,7 +11,7 @@ $levels = $listlevels->fetchAll(PDO::FETCH_ASSOC);
         <div class="container-fluid">
 
 <div class="col-xs-12">
-    <a href="./createLevel.php" class="btn btn-block bg-danger">Registrar Nivel</a>
+    <a href="./createLevel.php" class="btn btn-block bg-danger">Registrar Rango</a>
 
 </div>
 
@@ -20,25 +20,25 @@ $levels = $listlevels->fetchAll(PDO::FETCH_ASSOC);
 				<div class="row page-titles">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item active"><a href="javascript:void(0)">Listado</a></li>
-						<li class="breadcrumb-item"><a href="javascript:void(0)">Niveles Activos</a></li>
+						<li class="breadcrumb-item"><a href="javascript:void(0)">Rangos Activos</a></li>
 					</ol>
                 </div>
 				
                 <div class="row">
                 <?php
-                    foreach ($levels as $level) {
+                    foreach ($ranges as $range) {
 
                 ?>
                     <div class="col-xl-3 col-lg-6 col-sm-6">
                         <div class="card">
                             <div class="card-body">
-                                <div class="new-arrival-product">
+                                <div class="new-arrival-product text-center">
                                     <div class="new-arrivals-img-contnent">
-                                        <img class="img-fluid" src="../../../controller/<?= $level["imagenNivel"] ?>" alt="">
+                                        <img class="img-fluid" src="../../../controller/<?= $range["imagenRango"] ?>" alt="">
                                     </div>
                                     <div class="new-arrival-content text-center mt-3">
-										<h4><?= $level["nombreNivel"] ?></h4>
-										<h4>Puntos Requeridos <?= $level["puntosRequeridos"] ?></h4>
+										<h4><?= $range["nombreRango"] ?></h4>
+										<h4>Puntos Requeridos <?= $range["puntosRequeridos"] ?></h4>
                                         <ul class="star-rating">
                                             <li><i class="fa fa-star"></i></li>
                                             <li><i class="fa fa-star"></i></li>
@@ -46,16 +46,16 @@ $levels = $listlevels->fetchAll(PDO::FETCH_ASSOC);
                                             <li><i class="fa fa-star"></i></li>
                                             <li><i class="fa fa-star"></i></li>
                                         </ul>
-                                        <span class="price mg-center">
+                                        <span class="price mg-center text-center align-content-center">
                                             <div class="d-flex">
-                                                        <form method="GET" action="./updateAvatar.php">
+                                                        <form method="GET" action="./updateRange.php">
 
-                                                            <input type="hidden" name="idAvatar" value="<?= $level['idNivel'] ?>">
-                                                            <button class="btn bg-danger shadow btn-xs sharp me-1" onclick="return confirm('¿Desea actualizar el nivel seleccionado?');" type="submit"><i class="fas fa-pencil-alt"></i></button>
+                                                            <input type="hidden" name="idRango" value="<?= $range['idRango'] ?>">
+                                                            <button class="btn bg-danger shadow btn-xs sharp me-1" onclick="return confirm('¿Desea actualizar el rango seleccionado?');" type="submit"><i class="fas fa-pencil-alt"></i></button>
                                                         </form>
-                                                        <form method="GET" action="./deleteAvatar.php">
-                                                            <input type="hidden" name="idAvatar" value="<?= $level['idNivel'] ?>">
-                                                            <button class="btn btn-danger shadow btn-xs sharp" onclick="return confirm('¿Desea eliminar el avatar seleccionada?');" type="submit"><i class="fa fa-trash"></i></button>
+                                                        <form method="GET" action="./deleteRange.php">
+                                                            <input type="hidden" name="idRango" value="<?= $range['idRango'] ?>">
+                                                            <button class="btn btn-danger shadow btn-xs sharp" onclick="return confirm('¿Desea eliminar el rango seleccionada?');" type="submit"><i class="fa fa-trash"></i></button>
                                                         </form>
 											</div>
                                         </span>

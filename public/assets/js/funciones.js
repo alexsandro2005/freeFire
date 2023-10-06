@@ -55,6 +55,15 @@ function soloLetrasEspacios(event) {
     }
 }
 
+function soloLetrasEspaciosNum(event) {
+    const input = event.target;
+    const regex = /^[a-zA-ZÀ-ÿ\s0-9]{5,20}$/; // Expresión regular para letras, espacios y números
+
+    if (!regex.test(input.value)) {
+        input.value = input.value.replace(/[^a-zA-ZÀ-ÿ\s0-9]/g, ''); // Eliminar caracteres no permitidos
+    }
+}
+
 // <!-- FUNCION DE JAVASCRIPT QUE PERMITE INGRESAR SOLO NUMEROS EN EL FORMULARIO ASIGNADO -->
 
 function multiplenumber(e) {
@@ -90,7 +99,7 @@ function textspace(e) {
 
     teclado = String.fromCharCode(key).toLowerCase();
 
-    letrasspace = "qwertyuiopasdfghjklñzxcvbnm ";
+    letrasspace = "qwertyuiopasdfghjklñzxcvbnm123456789";
 
     especiales = "8-37-38-46-164-46";
 
