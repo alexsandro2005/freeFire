@@ -9,9 +9,7 @@ session_start();
 $consulta = $conexion->prepare("SELECT * FROM usuario INNER JOIN roles ON usuario.idRol = roles.idRol INNER JOIN estado ON usuario.estadoUsuario = estado.id_estado INNER JOIN tipodocu ON usuario.tipoDocumento = tipodocu.id_tipoDocu INNER JOIN genero ON usuario.genero = genero.id_genero");
 $consulta->execute();
 $consul = $consulta->fetch();
-?>
 
-<?php
 if ((isset($_POST["btn-registrar"]))) {
     $tipDocu = $_POST['tipoDocumento'];
     $documento = $_POST['documento'];

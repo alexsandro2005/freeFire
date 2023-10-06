@@ -34,7 +34,7 @@ if ((isset($_POST["MM_register"])) && ($_POST["MM_register"] == "formRegister"))
         // SI SE CUMPLE LA CONSULTA ES PORQUE EL USUARIO YA EXISTE
         echo '<script> alert ("// Estimado Usuario, los datos ingresados ya estan registrados. //");</script>';
         echo '<script> window.location= "../views/auth/index.php"</script>';
-    } else if ($tipoDocumento == "" || $documento == "" || $genero == "" || $estadoUsuario == "" || $idRol == "" || $correoElectronico == "" || $password == "" || $nombreCompleto == "" || $nombreUsuario == "") {
+    } elseif ($tipoDocumento == "" || $documento == "" || $genero == "" || $estadoUsuario == "" || $idRol == "" || $correoElectronico == "" || $password == "" || $nombreCompleto == "" || $nombreUsuario == "") {
         // CONDICIONAL DEPENDIENDO SI EXISTEN ALGUN CAMPO VACIO EN EL FORMULARIO DE LA INTERFAZ
         echo '<script> alert ("Estimado Usuario, Existen Datos Vacios En El Formulario");</script>';
         echo '<script> window.location="../views/auth/index.php"</script>';
@@ -48,25 +48,31 @@ if ((isset($_POST["MM_register"])) && ($_POST["MM_register"] == "formRegister"))
 
         $registerUser = $connection->prepare("INSERT INTO usuario(documento,nombreCompleto,nombreUsuario,password,idRol,fecha_registro,genero,estadoUsuario,correoElectronico,tipoDocumento) VALUES('$documento','$nombreCompleto','$nombreUsuario','$user_password','$idRol',NOW(),'$genero','$estadoUsuario','$correoElectronico','$tipoDocumento')");
         $registerUser->execute();
-        
+
         if ($registerUser) {
+
+            // Insertar en la tabla detalle nivel usuario
+            $insertDetalleNivelUsuario = $connection->prepare("INSERT INTO detalle_nivel (id_jugador, id_nivel) VALUES('$documento', 1)");
+            $insertDetalleNivelUsuario->execute();
+
             // creamos una funcion para encriptar el numero de documento del usuario
-            
-            function encriptar($texto, $token)
-            {
-                $clave = md5($token); // generamos una clave a partir de un token especial
-                $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
-                $textoEncriptado = openssl_encrypt($texto, 'aes-256-cbc', $clave, 0, $iv);
-                return base64_encode($iv . $textoEncriptado);
+            if($insertDetalleNivelUsuario) {
+                function encriptar($texto, $token)
+                {
+                    $clave = md5($token); // generamos una clave a partir de un token especial
+                    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+                    $textoEncriptado = openssl_encrypt($texto, 'aes-256-cbc', $clave, 0, $iv);
+                    return base64_encode($iv . $textoEncriptado);
+                }
+                $token = "11SXDLSLDDDDKFE332KDKS";
+
+                $documentoEncriptado = encriptar($documento, $token);
+
+                echo '<script>alert ("Registro Exitoso ¡Bienvenido/a!, ¡ahora selecciona tu avatar, puedes escoger el que quieras!.");</script>';
+                echo '<script>window.location="../views/auth/avatarSelect.php?smtp=' . $documentoEncriptado . '"</script>';
             }
-            $token = "11SXDLSLDDDDKFE332KDKS";
 
-            $documentoEncriptado = encriptar($documento, $token);
-
-            echo '<script>alert ("Registro Exitoso ¡Bienvenido/a!, ¡ahora selecciona tu avatar, puedes escoger el que quieras!.");</script>';
-            echo '<script>window.location="../views/auth/avatarSelect.php?smtp=' . $documentoEncriptado .'"</script>';
         }
-
     }
-} 
 
+}
