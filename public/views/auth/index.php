@@ -99,7 +99,7 @@ $consulllll=$consulta5->fetch();
 
                     <h1 class="titulo"><img src="../../assets/images/logo.png" alt="" class="log_free"></h1>
                     <h1 class="titulo_login">Iniciar sesion </h1>
-                    <p class="descripcion " id="color-text">Ingresa a tu cuenta para batallar por ser el unico sobreviviente y avanzar de nivel para una mejor experiencia.</p>
+                    <p class="descripcion">Ingresa a tu cuenta para batallar por ser el unico sobreviviente y avanzar de nivel para una mejor experiencia.</p>
 
                     <!-- Tabs -->
                     <ul class="tabs-links">
@@ -117,7 +117,7 @@ $consulllll=$consulta5->fetch();
                             <p>aqui los errores del formulario</p>
                         </div>
 
-                        <input type="email" placeholder="Ingresa correo electronico" class="input-text color-text" name="email" required autocomplete="off">
+                        <input type="email" placeholder="Ingresa correo electronico" class="input-text" name="email" required autocomplete="off">
 
                         <div class="grupo-input">
                             <input type="password" placeholder="Ingresa tu Contraseña" name="password" class="input-text clave" title="Debe tener de 6 a 12 digitos" required onkeyup="espacios(this)" minlength="6" maxlength="20" >
@@ -143,7 +143,7 @@ $consulllll=$consulta5->fetch();
 
                         <!-- campos para registrar un nuevo usuario -->
 
-                        <select name="tipoDocumento" class="form-control form-control-lg input-text" required id="">
+                        <select name="tipoDocumento" class="form-control form-control-lg input-text" required id="select">
                             <option value="">Seleccione tipo de documento</option>
                                 <?php
 
@@ -157,13 +157,13 @@ $consulllll=$consulta5->fetch();
                             ?>
                         </select>
 
-                        <input type="number" placeholder="Numero de documento" class="form-control form-control-lg input-text color-text" name="documento" onkeypress="return(multiplenumber(event));" oninput="maxlengthNumber(this);" maxlength="10" required>
+                        <input type="number" placeholder="Numero de documento" class="form-control form-control-lg input-text" name="documento" onkeypress="return(multiplenumber(event));" oninput="maxlengthNumber(this);" maxlength="10" required>
 
-                        <input type="text" placeholder="nombre Completo" class="form-control form-control-lg input-text color-text" name="nombreCompleto" minlength="11" oninput="soloLetrasEspacios(event)" onkeypress="return(textspace(event));" maxlength="40" required>
+                        <input type="text" placeholder="nombre Completo" class="form-control form-control-lg input-text" name="nombreCompleto" minlength="11" oninput="soloLetrasEspacios(event)" onkeypress="return(textspace(event));" maxlength="40" required>
 
-                        <input type="text" placeholder="Usuario" class="form-control form-control-lg input-text color-text" name="nombreUsuario" required onkeyup="espacios(this), minuscula(this)" autocomplete="off">
+                        <input type="text" placeholder="Usuario" class="form-control form-control-lg input-text" name="nombreUsuario" required onkeyup="espacios(this), minuscula(this)" autocomplete="off">
 
-                        <select name="genero" class="form-control form-control-lg input-text" required id="">
+                        <select name="genero" class="form-control form-control-lg input-text" required id="select2">
                             <option value="">Seleccione tipo de genero</option>
                                 <?php
 
@@ -177,13 +177,13 @@ $consulllll=$consulta5->fetch();
                             ?>
                         </select>
 
-                        <input type="hidden" placeholder="Estado" readonly class="form-control form-control-lg input-text color-text" value="1" name="estadoUsuario">
-                        <input type="hidden" placeholder="Estado" readonly class="form-control form-control-lg input-text color-text" value="2" name="idRol">
+                        <input type="hidden" placeholder="Estado" readonly class="form-control form-control-lg input-text " value="1" name="estadoUsuario">
+                        <input type="hidden" placeholder="Estado" readonly class="form-control form-control-lg input-text " value="2" name="idRol">
 
                         <input type="text" placeholder="Correo Electronico" class="form-control form-control-lg input-text" name="correoElectronico" required onkeyup="espacios(this)" maxlength="40">
 
                         <div class="grupo-input">
-                            <input type="password" placeholder="Contraseña" name="password" class="form-control form-control-lg input-text clave color-text" title="Debe tener de 6 a 12 digitos" required onkeyup="espacios(this)" minlength="6" maxlength="12" >
+                            <input type="password" placeholder="Contraseña" name="password" class="form-control form-control-lg input-text clave " title="Debe tener de 6 a 12 digitos" required onkeyup="espacios(this)" minlength="6" maxlength="12" >
                             <button type="button" class="icono fas fa-eye mostrarClave"></button>
                         </div>
 

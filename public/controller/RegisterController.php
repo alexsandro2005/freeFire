@@ -6,6 +6,8 @@ require_once '../../database/connection.php';
 $database = new Database();
 $connection = $database->conectar();
 
+require_once('../controller/funciones/funciones.php');
+
 // TRAEMOS LA FECHA Y HORA ACTUAL DE COLOMBIA
 
 date_default_timezone_set('America/Bogota');
@@ -25,7 +27,7 @@ if ((isset($_POST["MM_register"])) && ($_POST["MM_register"] == "formRegister"))
 
     // CONSULTA SQL PARA VERIFICAR SI EL USUARIO YA EXISTE EN LA BASE DE DATOS
 
-    $data = $connection->prepare("SELECT * FROM usuario WHERE documento= '$documento' OR nombreUsuario = '$nombreUsuario' OR correoElectronico = '$correoElectronico'");
+    $data = $connection->prepare("SELECT * FROM usuario WHERE documento = '$documento' OR nombreUsuario = '$nombreUsuario' OR correoElectronico = '$correoElectronico'");
     $data->execute();
     $register_validation = $data->fetchAll();
 
@@ -57,19 +59,9 @@ if ((isset($_POST["MM_register"])) && ($_POST["MM_register"] == "formRegister"))
 
             // creamos una funcion para encriptar el numero de documento del usuario
             if($insertDetalleNivelUsuario) {
-                function encriptar($texto, $token)
-                {
-                    $clave = md5($token); // generamos una clave a partir de un token especial
-                    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
-                    $textoEncriptado = openssl_encrypt($texto, 'aes-256-cbc', $clave, 0, $iv);
-                    return base64_encode($iv . $textoEncriptado);
-                }
-                $token = "11SXDLSLDDDDKFE332KDKS";
 
-                $documentoEncriptado = encriptar($documento, $token);
-
-                echo '<script>alert ("Registro Exitoso ¡Bienvenido/a!, ¡ahora selecciona tu avatar, puedes escoger el que quieras!.");</script>';
-                echo '<script>window.location="../views/auth/avatarSelect.php?smtp=' . $documentoEncriptado . '"</script>';
+                echo '<script>alert ("Registro Exitoso, Gracias por registrarte, puedes iniciar sesion.");</script>';
+                echo '<script>window.location="../views/auth/"</script>';
             }
 
         }

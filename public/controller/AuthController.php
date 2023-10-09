@@ -22,7 +22,7 @@ if ($_POST["iniciarSesion"]) {
 
         if ($authSession['idRol'] == 2) {
 
-            if ($suthSession['avatar'] != null) {
+            if ($authSession['avatar'] != null) {
                 // DECLARACION DE LAS VARIABLES GLOBALES DE LA SESSIONS
                 $_SESSION['id_user'] = $authSession['documento'];
                 $_SESSION['nombres'] = $authSession['nombreCompleto'];
@@ -39,31 +39,36 @@ if ($_POST["iniciarSesion"]) {
                 $userentry->execute();
 
                 ///dependiendo del tipo de usuario lo redireccionamos a una su pagina correspondiente//
-
-                if ($_SESSION['rol'] == 1) {
-
-                    header("Location:../views/models/admin/index.php");
-                    exit();
-                } elseif ($_SESSION['rol'] == 2) {
-                    header("Location:./views/models/player/index.php");
+                if ($_SESSION['rol'] == 2) {
+                    header("Location:../views/models/player/index.php");
                     exit();
                 }
             } else {
 
-                $documento = $authSession['documento'];
-                function encriptar($texto, $token)
-                {
-                    $clave = md5($token); // generamos una clave a partir de un token especial
-                    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
-                    $textoEncriptado = openssl_encrypt($texto, 'aes-256-cbc', $clave, 0, $iv);
-                    return base64_encode($iv . $textoEncriptado);
+                // DECLARACION DE LAS VARIABLES GLOBALES DE LA SESSIONS
+                $_SESSION['id_user'] = $authSession['documento'];
+                $_SESSION['nombres'] = $authSession['nombreCompleto'];
+                $_SESSION['rol'] = $authSession['idRol'];
+                $_SESSION['usuario'] = $authSession['nombreUsuario'];
+                $_SESSION['email'] = $authSession['correoElectronico'];
+
+                // HORARIO PREDETERMINADO PARA EL REGISTRO DE INGRESO DEL USUARIO A SU INTERFAZ
+                date_default_timezone_set("America/Bogota");
+
+                // REGISTRO DE INGRESO DEL USUARIO PARA VERIFICAR QUE TIPO DE USUARIO INGRESO
+                $userentry = $connection->prepare("INSERT INTO entrada_jugadores(horario_entrada, documento) VALUES (NOW(), :id_user)");
+                $userentry->bindParam(':id_user', $_SESSION['id_user']);
+                $userentry->execute();
+
+                ///dependiendo del tipo de usuario lo redireccionamos a una su pagina correspondiente//
+                if ($_SESSION['rol'] == 2) {
+                    header("Location:../views/models/player/avatarSelect.php?status=1");
+                    exit();
+                }else{
+                    session_destroy();
+                    echo '<script>alert("No tienes permiso para acceder a este tipo de cuenta.");</script>';
+                    echo '<script>window.location="../views/auth/error.php"</script>';
                 }
-                $token = "11SXDLSLDDDDKFE332KDKS";
-
-                $documentoEncriptado = encriptar($documento, $token);
-
-                echo '<script>alert ("Debes seleccionar un avatar para ingresar a tu cuenta ");</script>';
-                echo '<script>window.location="../views/auth/avatarSelect.php?smtp=' . $documentoEncriptado . '"</script>';
             }
 
         } else {
@@ -88,9 +93,11 @@ if ($_POST["iniciarSesion"]) {
 
                 header("Location:../views/models/admin/index.php");
                 exit();
-            } elseif ($_SESSION['rol'] == 2) {
-                header("Location:./views/models/player/index.php");
-                exit();
+            } else{
+                session_destroy();
+                echo '<script>alert("No tienes permiso para acceder a este tipo de cuenta.");</script>';
+                echo '<script>window.location="../views/auth/error.php"</script>';
+
             }
         }
 

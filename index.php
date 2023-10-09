@@ -16,7 +16,7 @@
     <div class="text">
       <h2 class="logo"><img src="public/assets/images/logo.png" alt=""></h2>
 
-      <p>¡Prepárate para la batalla definitiva en Free Fire: Donde la supervivencia es tu única opción!<p>
+      <p>¡Prepárate para la batalla definitiva en Free Fire, <br> Donde la supervivencia es tu única opción!<p>
       <a href="public/views/auth/index.php">Iniciar Sesion</a>
       <a href="public/views/auth/index.php">Registrarme</a>
     </div>

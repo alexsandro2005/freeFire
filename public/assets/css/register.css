@@ -28,10 +28,14 @@ body {
     font-size: 15px;
 }
 
-
-#color-text{
+.color-text{
     color: var(--color--blanco);
 }
+
+.color-text:hover{
+    color: var(--color--blanco);
+}
+
 
 ::selection{
     color: #f2f2f2;
@@ -234,7 +238,7 @@ Estilos contenedor formularios
 
 .contenedor-form .descripcion {
     font-size: 15px;
-    color: var(--color-texto);
+    color: var(--color--blanco);
 }
 
 /*========================================
@@ -302,7 +306,7 @@ Estilos Formularios
     outline: 0;
     font-size: 14px;
     border-radius: 20px;
-    color: var(--color-blanco);
+    color: var(--color--blanco);
 }
 #select, #select2{
     color: var(--color--blanco);
@@ -312,8 +316,8 @@ Estilos Formularios
     color: var(--color-texto);
 }
 .input-text:hover{
-    color: var(--color-blanco);
-}
+    color: var(--color--blanco);
+}   
 
 .formulario .input-text:hover {
     box-shadow: 0 0 0 0.1rem var(--color-negro);
@@ -362,8 +366,8 @@ Estilos Formularios
     display: flex;
     flex-direction: column;
     align-content: center;
-    align-items: center;
-    text-align: center;
+        align-items: center;
+        text-align: center;
 }
 
 .return{
@@ -413,6 +417,10 @@ Estilos Checkbox Personalizados
     font-size: 14px;
     color: var(--color-texto);
     user-select: none;
+}
+
+#color-text{
+    color: var(--color--blanco);
 }
 
 
