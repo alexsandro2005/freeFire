@@ -4,7 +4,6 @@ require_once 'menu.php';
 require_once '../../../../database/connection.php';
 $basedatos = new Database();
 $conexion = $basedatos->conectar();
-session_start();
 
 $consulta = $conexion->prepare("SELECT * FROM usuario INNER JOIN roles ON usuario.idRol = roles.idRol INNER JOIN estado ON usuario.estadoUsuario = estado.id_estado INNER JOIN tipodocu ON usuario.tipoDocumento = tipodocu.id_tipoDocu INNER JOIN genero ON usuario.genero = genero.id_genero");
 $consulta->execute();

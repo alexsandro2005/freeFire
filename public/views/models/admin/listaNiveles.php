@@ -26,8 +26,9 @@ $niveles = $listniveles->fetchAll(PDO::FETCH_ASSOC);
                             <div class="row">
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-xxl-6 h-100">
                                     <div class="tab-content h-100">
+                                        <!-- se pone la ruta en donde se encuentra las imagenes y se llama las imagenes que se traen de acuerdo a cada nivel -->
                                         <div role="tabpanel" class="tab-pane fade show active h-100" id="first">
-                                            <img class="img-fluid h-100" src="../../../controller/<?= $nivel['imagenNivel'] ?>" alt="">
+                                            <img class="img-fluid h-100" src="../../../controller/ <?= $nivel['imagenNivel'] ?>" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -51,20 +52,20 @@ $niveles = $listniveles->fetchAll(PDO::FETCH_ASSOC);
                                                 <p class="price float-start d-block"><?= $nivel['puntosRequeridos'] ?></p>
                                             </div>
                                             <div class="shopping-cart  mb-2 me-3">
-                                                <form action="">
-                                                    <div>
-                                                        <form method="GET" action="./updateRange.php">
-                                                            <div class="mb-3 mt-3">
-                                                                <input type="hidden" name="idRango" value="<?= $nivel['idNivel'] ?>">
-                                                                <button class="btn bg-danger" type="submit" onclick="return confirm('¿Desea actualizar el nivel seleccionado?');">Actualizar</button>
-                                                            </div>
-                                                        </form>
-                                                        <form method="GET" action="./deleteRange.php">
-                                                            <input type="hidden" name="idRango" value="<?= $nivel['idNivel'] ?>">
-                                                            <button class="btn btn-danger" type="submit">Eliminar</button>
-                                                        </form>
-                                                    </div>
-                                                </form>
+                                                
+                                                <div>
+                                                    <form method="GET" action="./actualizar_niveles.php">
+                                                        <div class="mb-3 mt-3">
+                                                            <input type="hidden" name="idNivel" value="<?= $nivel['idNivel'] ?>">
+                                                            <button class="btn bg-danger shadow btn-xs sharp me-1" type="submit" onclick="return confirm('¿Desea actualizar el nivel seleccionado?');"><i class="fas fa-pencil-alt"></i></button>
+                                                        </div>
+                                                    </form>
+                                                    <form method="GET" action="./eliminar_niveles.php">
+                                                        <input type="hidden" name="eliminar" value="<?= $nivel['idNivel'] ?>">
+                                                        <button class="btn btn-danger shadow btn-xs sharp" onclick="return confirm('¿Desea eliminar el nivel seleccionado?');" type="submit"><i class="fa fa-trash"></i></button>
+                                                    </form>
+                                                </div>
+                                                
                                             </div>
                                         </div>
                                     </div>
