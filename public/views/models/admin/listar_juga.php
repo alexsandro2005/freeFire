@@ -96,20 +96,40 @@ $consulta->execute();
                                             </td>
 
                                             <td>
+                                                <form action="./activar_juga.php" method="get">
+                                                    <input type="hidden" name="activar" value="<?= $consul['documento'] ?> ">
+                                                    <button class="btn btn-success shadow btn-xxl sharp" 
+                                                        type="submit" onclick="return confirm('¿Está seguro de activar este usuario?')">
+                                                        <!-- <i class="fas fa-sync-alt fa-2x"></i> -->
+                                                        <i class="fas fa-lock-open fa-2x"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form action="./inactivar_juga.php" method="get">
+                                                    <input type="hidden" name="inactivar" value="<?= $consul['documento'] ?> ">
+                                                    <button class="btn btn-warning shadow btn-xxl sharp" 
+                                                        type="submit" onclick="return confirm('¿Está seguro de bloquear este usuario?')">
+                                                        <!-- <i class="fas fa-sync-alt fa-2x"></i> -->
+                                                        <i class="fas fa-lock fa-2x"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                            <td>
                                                 <form action="./actualizar_juga.php" method="get">
                                                     <input type="hidden" name="actualizar" value="<?= $consul['documento'] ?>">
-                                                    <button class="btn btn-primary shadow btn-xl sharp" 
+                                                    <button class="btn btn-primary shadow btn-xxl sharp" 
                                                         type="submit" onclick="return confirm('¿Está seguro de actualizar este usuario?')">
-                                                        <i class="fa fa-pencil-alt">
+                                                        <i class="fa fa-pencil-alt fa-2x"></i>
                                                     </button>
                                                 </form>
                                             </td>
                                             <td>
                                                 <form action="./eliminar_juga.php" method="get">
                                                     <input type="hidden" name="eliminar" value="<?= $consul['documento'] ?>">
-                                                    <button class="btn btn-danger shadow btn-xl sharp" type="submit"
+                                                    <button class="btn btn-danger shadow btn-xxl sharp" type="submit"
                                                         onclick="return confirm('¿Está seguro de eliminar este usuario?')">
-                                                        <i class="fa fa-trash"></i>
+                                                        <i class="fa fa-trash-alt fa-2x"></i>
                                                     </button>
                                                 </form>
                                             </td>

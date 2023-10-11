@@ -93,7 +93,7 @@ $consulta->execute();
                                             </td>
                                             
                                             <td>
-                                                <form action="./activar_usua.php" method="get">
+                                                <form action="./activar_admin.php" method="get">
                                                     <input type="hidden" name="activar" value="<?= $consul['documento'] ?> ">
                                                     <button class="btn btn-success shadow btn-xxl sharp" 
                                                         type="submit" onclick="return confirm('¿Está seguro de activar este usuario?')">
@@ -103,7 +103,7 @@ $consulta->execute();
                                                 </form>
                                             </td>
                                             <td>
-                                                <form action="./inactivar_usua.php" method="get">
+                                                <form action="./inactivar_admin.php" method="get">
                                                     <input type="hidden" name="inactivar" value="<?= $consul['documento'] ?> ">
                                                     <button class="btn btn-warning shadow btn-xxl sharp" 
                                                         type="submit" onclick="return confirm('¿Está seguro de bloquear este usuario?')">

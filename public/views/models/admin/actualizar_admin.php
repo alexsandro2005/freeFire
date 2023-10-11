@@ -50,7 +50,7 @@ if ((isset($_POST["btn_actualizar"]))) {
     $consulta2->execute();
     $consull = $consulta2->fetch();
 
-    $consulta3 = $conexion->prepare("UPDATE usuario SET tipoDocumento='$tipDocu', nombreCompleto='$nombre', nombreUsuario='$usuario', genero='$genero', estadoUsuario='$estado', idRol='$rol', correoElectronico='$correo' WHERE documento='$documento'");
+    $consulta3 = $conexion->prepare("UPDATE usuario SET tipoDocumento='$tipDocu', nombreCompleto='$nombre', nombreUsuario='$usuario', genero='$genero', idRol='$rol', correoElectronico='$correo' WHERE documento='$documento'");
     $consulta3->execute();
     echo '<script>alert ("Actualizacion exitosa, gracias");</script>';
     echo '<script>window.location="./listar_admin.php"</script>';
@@ -131,8 +131,8 @@ if ((isset($_POST["btn_actualizar"]))) {
                                                     } while ($consulll=$consulta2->fetch());
                                                     ?>
                                                 </select>
-                                                <br>
-                                                <select name="estadoUsuario" class="form-control form-control-lg input-text" >
+                                                <!-- <br> -->
+                                                <!-- <select name="estadoUsuario" class="form-control form-control-lg input-text" >
                                                     <option value="<?php echo $consul1['id_estado'] ?>"><?php echo $consul1['estado'] ?></option>
                                                     <?php
 
@@ -143,7 +143,7 @@ if ((isset($_POST["btn_actualizar"]))) {
                                                     <?php
                                                     } while ($consulllll=$consulta5->fetch());
                                                     ?>
-                                                </select>
+                                                </select> -->
                                                 <br>
                                                 <select name="idRol" class="form-control form-control-lg input-text">
                                                     <option value="<?php echo $consul1['idRol'] ?>"><?php echo $consul1['rol'] ?></option>
