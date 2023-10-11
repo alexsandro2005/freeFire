@@ -5,7 +5,6 @@ require_once("../../../../database//connection.php");
 $bd = new Database();
 $conexion = $bd->conectar();
 
-session_start();
 
 // se trae el documento de la persona la cual vamos a actualizar
 $documento = $_GET['actualizar'];
@@ -53,7 +52,7 @@ if ((isset($_POST["btn_actualizar"]))) {
 
     $consulta3 = $conexion->prepare("UPDATE usuario SET tipoDocumento='$tipDocu', nombreCompleto='$nombre', nombreUsuario='$usuario', genero='$genero', estadoUsuario='$estado', idRol='$rol', correoElectronico='$correo' WHERE documento='$documento'");
     $consulta3->execute();
-    echo '<script>alert ("Registro exitoso, gracias");</script>';
+    echo '<script>alert ("Actualizacion exitosa, gracias");</script>';
     echo '<script>window.location="./listar_admin.php"</script>';
 }
 ?>
