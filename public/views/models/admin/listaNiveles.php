@@ -57,12 +57,14 @@ $niveles = $listniveles->fetchAll(PDO::FETCH_ASSOC);
                                                     <form method="GET" action="./actualizar_niveles.php">
                                                         <div class="mb-3 mt-3">
                                                             <input type="hidden" name="idNivel" value="<?= $nivel['idNivel'] ?>">
-                                                            <button class="btn bg-danger shadow btn-xs sharp me-1" type="submit" onclick="return confirm('¿Desea actualizar el nivel seleccionado?');"><i class="fas fa-pencil-alt"></i></button>
+                                                            <button class="btn bg-danger shadow btn-xxl sharp me-1" type="submit" onclick="return confirm('¿Desea actualizar el nivel seleccionado?');">
+                                                            <i class="fa fa-pencil-alt fa-2x"></i></button>
                                                         </div>
                                                     </form>
                                                     <form method="GET" action="./eliminar_niveles.php">
                                                         <input type="hidden" name="eliminar" value="<?= $nivel['idNivel'] ?>">
-                                                        <button class="btn btn-danger shadow btn-xs sharp" onclick="return confirm('¿Desea eliminar el nivel seleccionado?');" type="submit"><i class="fa fa-trash"></i></button>
+                                                        <button class="btn btn-danger shadow btn-xxl sharp" onclick="return confirm('¿Desea eliminar el nivel seleccionado?');" type="submit">
+                                                        <i class="fa fa-trash-alt fa-2x"></i></button>
                                                     </form>
                                                 </div>
                                                 

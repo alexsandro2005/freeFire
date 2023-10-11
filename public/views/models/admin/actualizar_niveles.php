@@ -90,7 +90,7 @@ if (isset($_POST["btn_actualizar"]) && $_POST["btn_actualizar"] == "formLevel") 
                                     
                                     <form method="POST" enctype="multipart/form-data" autocomplete="off">
                                         <?php    
-                                        echo $idNivel; 
+                                        // echo $idNivel; 
                                         ?>
                                         <div class="mb-3">
                                             <input class="form-control form-control-lg input-text"  minlength="4"  maxlength="30" type="text" required name="nombreNivel" placeholder="Ingresa el nombre del nivel" value="<?php echo $consull['nombreNivel'] ?>">
