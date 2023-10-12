@@ -96,20 +96,40 @@ $consulta->execute();
                                             </td>
 
                                             <td>
+                                                <form action="./activar_juga.php" method="get">
+                                                    <input type="hidden" name="activar" value="<?= $consul['documento'] ?> ">
+                                                    <button class="btn btn-success shadow btn-xxl sharp" 
+                                                        type="submit" onclick="return confirm('¿Está seguro de activar este usuario?')">
+                                                        <!-- <i class="fas fa-sync-alt fa-2x"></i> -->
+                                                        <i class="fas fa-lock-open fa-2x"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form action="./inactivar_juga.php" method="get">
+                                                    <input type="hidden" name="inactivar" value="<?= $consul['documento'] ?> ">
+                                                    <button class="btn btn-warning shadow btn-xxl sharp" 
+                                                        type="submit" onclick="return confirm('¿Está seguro de bloquear este usuario?')">
+                                                        <!-- <i class="fas fa-sync-alt fa-2x"></i> -->
+                                                        <i class="fas fa-lock fa-2x"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                            <td>
                                                 <form action="./actualizar_juga.php" method="get">
                                                     <input type="hidden" name="actualizar" value="<?= $consul['documento'] ?>">
-                                                    <button class="btn btn-primary shadow btn-xl sharp" 
+                                                    <button class="btn btn-primary shadow btn-xxl sharp" 
                                                         type="submit" onclick="return confirm('¿Está seguro de actualizar este usuario?')">
-                                                        <i class="fa fa-pencil-alt">
+                                                        <i class="fa fa-pencil-alt fa-2x"></i>
                                                     </button>
                                                 </form>
                                             </td>
                                             <td>
                                                 <form action="./eliminar_juga.php" method="get">
                                                     <input type="hidden" name="eliminar" value="<?= $consul['documento'] ?>">
-                                                    <button class="btn btn-danger shadow btn-xl sharp" type="submit"
+                                                    <button class="btn btn-danger shadow btn-xxl sharp" type="submit"
                                                         onclick="return confirm('¿Está seguro de eliminar este usuario?')">
-                                                        <i class="fa fa-trash"></i>
+                                                        <i class="fa fa-trash-alt fa-2x"></i>
                                                     </button>
                                                 </form>
                                             </td>
@@ -130,112 +150,7 @@ $consulta->execute();
     </div>
 </div>
 
-<!--**********************************
-            Footer start
-        ***********************************-->
-<div class="footer">
-    <div class="copyright">
-        <!-- <p>Copyright © Designdo &amp; Desarrollado por <a href="../index.htm" target="_blank">Garena</a> 2023</p> -->
-    </div>
-</div>
-<!--**********************************
-            Footer end
-        ***********************************-->
-
-<!--**********************************
-           Support ticket button start
-        ***********************************-->
-
-<!--**********************************
-           Support ticket button end
-        ***********************************-->
-
-
-</div>
-<!--**********************************
-        Main wrapper end
-    ***********************************-->
-<!--**********************************
-        Main wrapper end
-    ***********************************-->
-
-<!--**********************************
-        Scripts
-    ***********************************-->
-<!-- Required vendors -->
-<script src="vendor/global/global.min.js"></script>
-<script src="vendor/chart.js/Chart.bundle.min.js"></script>
-<script src="vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-
-<!-- Apex Chart -->
-<script src="vendor/apexchart/apexchart.js"></script>
-
-<script src="vendor/chart.js/Chart.bundle.min.js"></script>
-
-<!-- Chart piety plugin files -->
-<script src="vendor/peity/jquery.peity.min.js"></script>
-<!-- Dashboard 1 -->
-<script src="js/dashboard/dashboard-1.js"></script>
-
-<script src="vendor/owl-carousel/owl.carousel.js"></script>
-
-<script src="js/custom.min.js"></script>
-<script src="js/dlabnav-init.js"></script>
-<script src="js/demo.js"></script>
-<script src="js/styleSwitcher.js"></script>
-
-<!-- Datatable -->
-<script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
-<script src="js/plugins-init/datatables.init.js"></script>
 
 <?php
-require_once 'footer.php';
-
+    require_once 'footer.php';
 ?>
-<script>
-    function cardsCenter() {
-
-        /*  testimonial one function by = owl.carousel.js */
-
-        jQuery('.card-slider').owlCarousel({
-            loop: true,
-            margin: 0,
-            nav: true,
-            //center:true,
-            slideSpeed: 3000,
-            paginationSpeed: 3000,
-            dots: true,
-            navText: ['<i class="fas fa-arrow-left"></i>', '<i class="fas fa-arrow-right"></i>'],
-            responsive: {
-                0: {
-                    items: 1
-                },
-                576: {
-                    items: 1
-                },
-                800: {
-                    items: 1
-                },
-                991: {
-                    items: 1
-                },
-                1200: {
-                    items: 1
-                },
-                1600: {
-                    items: 1
-                }
-            }
-        })
-    }
-
-    jQuery(window).on('load', function() {
-        setTimeout(function() {
-            cardsCenter();
-        }, 1000);
-    });
-</script>
-
-</body>
-
-</html>

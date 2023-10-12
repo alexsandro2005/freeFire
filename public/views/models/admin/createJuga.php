@@ -4,13 +4,30 @@ require_once 'menu.php';
 require_once '../../../../database/connection.php';
 $basedatos = new Database();
 $conexion = $basedatos->conectar();
-session_start();
 
 $consulta = $conexion->prepare("SELECT * FROM usuario INNER JOIN roles ON usuario.idRol = roles.idRol INNER JOIN estado ON usuario.estadoUsuario = estado.id_estado INNER JOIN tipodocu ON usuario.tipoDocumento = tipodocu.id_tipoDocu INNER JOIN genero ON usuario.genero = genero.id_genero");
 $consulta->execute();
 $consul = $consulta->fetch();
 
 
+$consulta1 = $conexion->prepare("SELECT * FROM tipodocu");
+$consulta1->execute();
+$consul = $consulta1->fetch();
+
+$consulta2 = $conexion->prepare("SELECT * FROM genero");
+$consulta2->execute();
+$consulll = $consulta2->fetch();
+
+$consulta4 = $conexion->prepare("SELECT * FROM roles");
+$consulta4->execute();
+$consullll = $consulta4->fetch();
+
+$consulta5 = $conexion->prepare("SELECT * FROM estado");
+$consulta5->execute();
+$consulllll = $consulta5->fetch();
+?>
+
+<?php
 if ((isset($_POST["btn-registrar"]))) {
     $tipDocu = $_POST['tipoDocumento'];
     $documento = $_POST['documento'];
@@ -98,15 +115,15 @@ if ((isset($_POST["btn-registrar"]))) {
                                             <div class="mb-3 m-auto">
                                                 <select name="tipoDocumento" class="form-control form-control-lg input-text" required id="">
                                                     <option value="">Seleccione tipo de documento</option>
-                                                        <?php
-
-                                                        do{
-
-                                                        ?>
-                                                    <option value="<?php echo ($consul['id_tipoDocu'])?>"><?php echo ($consul['tipoDocu'])?></option>
                                                     <?php
-                                                        }while($consul=$consulta1->fetch());
-                                                        
+
+                                                    do {
+
+                                                    ?>
+                                                        <option value="<?php echo ($consul['id_tipoDocu']) ?>"><?php echo ($consul['tipoDocu']) ?></option>
+                                                    <?php
+                                                    } while ($consul = $consulta1->fetch());
+
                                                     ?>
                                                 </select>
                                                 <br>
@@ -118,15 +135,15 @@ if ((isset($_POST["btn-registrar"]))) {
                                                 <br>
                                                 <select name="genero" class="form-control form-control-lg input-text" required id="">
                                                     <option value="">Seleccione tipo de genero</option>
-                                                        <?php
-
-                                                        do{
-
-                                                        ?>
-                                                    <option value="<?php echo ($consulll['id_genero'])?>"><?php echo ($consulll['genero'])?></option>
                                                     <?php
-                                                        }while($consulll=$consulta2->fetch());
-                                                        
+
+                                                    do {
+
+                                                    ?>
+                                                        <option value="<?php echo ($consulll['id_genero']) ?>"><?php echo ($consulll['genero']) ?></option>
+                                                    <?php
+                                                    } while ($consulll = $consulta2->fetch());
+
                                                     ?>
                                                 </select>
 

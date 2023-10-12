@@ -53,11 +53,13 @@ $avatars = $listAvatars->fetchAll(PDO::FETCH_ASSOC);
                                                         <form method="GET" action="./updateAvatar.php">
 
                                                             <input type="hidden" name="idAvatar" value="<?= $avatar['id'] ?>">
-                                                            <button class="btn bg-danger shadow btn-xs sharp me-1" onclick="return confirm('¿Desea actualizar el avatar seleccionado?');" type="submit"><i class="fas fa-pencil-alt"></i></button>
+                                                            <button class="btn bg-danger shadow btn-xxl sharp me-1" onclick="return confirm('¿Desea actualizar el avatar seleccionado?');" type="submit">
+                                                            <i class="fa fa-pencil-alt fa-2x"></i></button>
                                                         </form>
                                                         <form method="GET" action="./deleteAvatar.php">
                                                             <input type="hidden" name="idAvatar" value="<?= $avatar['id'] ?>">
-                                                            <button class="btn btn-danger shadow btn-xs sharp" onclick="return confirm('¿Desea eliminar el avatar seleccionada?');" type="submit"><i class="fa fa-trash"></i></button>
+                                                            <button class="btn btn-danger shadow btn-xxl sharp" onclick="return confirm('¿Desea eliminar el avatar seleccionada?');" type="submit">
+                                                            <i class="fa fa-trash-alt fa-2x"></i></button>
                                                         </form>
 											</div>
                                         </span>
