@@ -13,7 +13,7 @@
         private $username = "root";
 
         // Variable para declarar el parametro de la contraseña de usuario
-        private $userpassword = "lucho2005533";
+        private $userpassword = "";
 
         // Variable para declarar el parametro de los caracteres 
         private $charset ="utf8";

@@ -16,25 +16,22 @@ if (isset($_POST["MM_registerAvatar"]) && $_POST["MM_registerAvatar"] == "formAv
     $validationAvatar = $avatarData->fetch(PDO::FETCH_ASSOC);
 
     if ($validationAvatar) {
-        echo '<script>alert("Los datos ingresados ya están registrados.");</script>';
-        echo '<script>window.location="../views/auth/index.php"</script>';
-    } else if (empty($serialAvatar) || empty($nombreAvatar) || empty($descripcionAvatar)) {
-        echo '<script>alert("Existen datos vacíos en el formulario, debes ingresar todos los datos.");</script>';
-        echo '<script>window.location="../views/models/admin/createAvatar.php"</script>';
+        showErrorAndRedirect("Los datos ingresados ya están registrados.", "../views/auth/index.php");
+    } elseif (isEmpty([$serialAvatar, $nombreAvatar, $descripcionAvatar])) {
+        showErrorAndRedirect("Existen datos vacíos en el formulario, debes ingresar todos los datos.", "../views/models/admin/createAvatar.php");
     } else {
         // Verifica si se ha enviado un archivo y si no hay errores al subirlo
-        if (isset($_FILES['imagenAvatar']) && $_FILES['imagenAvatar']['error'] === 0) {
+        if (isFileUploaded($_FILES['imagenAvatar'])) {
             $permitidos = array("image/png", "image/jpg", "image/jpeg");
             $limite_KB = 1000;
 
-            if (in_array($_FILES["imagenAvatar"]["type"], $permitidos) && $_FILES["imagenAvatar"]["size"] <= $limite_KB * 1024) {
+            if (isImageValid($_FILES["imagenAvatar"], $permitidos, $limite_KB)) {
                 $ruta = 'files/';
                 $imagenAvatar = $ruta . $_FILES['imagenAvatar']["name"];
-                if (!file_exists($ruta)) {
-                    mkdir($ruta);
-                }
+                createDirectoryIfNotExists($ruta);
+
                 if (!file_exists($imagenAvatar)) {
-                    $resultado = @move_uploaded_file($_FILES["imagenAvatar"]["tmp_name"], $imagenAvatar);
+                    $resultado = moveUploadedFile($_FILES["imagenAvatar"], $imagenAvatar);
 
                     if ($resultado) {
                         // Inserta los datos en la base de datos
@@ -45,21 +42,54 @@ if (isset($_POST["MM_registerAvatar"]) && $_POST["MM_registerAvatar"] == "formAv
                         $registerAvatar->bindParam(':imagenAvatar', $imagenAvatar);
                         $registerAvatar->execute();
 
-                        echo '<script>alert("Los datos han sido registrados correctamente.");</script>';
-                        echo '<script>window.location="../views/models/admin/listaAvatars.php"</script>';
+                        showSuccessAndRedirect("Los datos han sido registrados correctamente.", "../views/models/admin/listaAvatars.php");
                     } else {
-                        echo '<script>alert("Error al momento de cargar la imagen del avatar.");</script>';
-                        echo '<script>window.location="../views/models/admin/createAvatar.php"</script>';
+                        showErrorAndRedirect("Error al momento de cargar la imagen del avatar.", "../views/models/admin/createAvatar.php");
                     }
                 }
             } else {
-                echo '<script>alert("Error al momento de cargar la imagen del avatar. Asegúrate de que la imagen sea de tipo PNG, JPG o JPEG y que su tamaño sea menor o igual a 1 MB.");</script>';
-                echo '<script>window.location="../views/models/admin/createAvatar.php"</script>';
+                showErrorAndRedirect("Error al momento de cargar la imagen del avatar. Asegúrate de que la imagen sea de tipo PNG, JPG o JPEG y que su tamaño sea menor o igual a 1 MB.", "../views/models/admin/createAvatar.php");
             }
         } else {
-            echo '<script>alert("Error al cargar la imagen del avatar. Asegúrate de seleccionar una imagen válida.");</script>';
-            echo '<script>window.location="../views/models/admin/createAvatar.php"</script>';
+            showErrorAndRedirect("Error al cargar la imagen del avatar. Asegúrate de seleccionar una imagen válida.", "../views/models/admin/createAvatar.php");
         }
     }
+}
+
+function showErrorAndRedirect($message, $location) {
+    echo "<script>alert('$message');</script>";
+    echo "<script>window.location = '$location';</script>";
+}
+
+function isEmpty($fields) {
+    foreach ($fields as $field) {
+        if (empty($field)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function isFileUploaded($file) {
+    return isset($file) && $file['error'] === 0;
+}
+
+function isImageValid($file, $allowedTypes, $maxSizeKB) {
+    return in_array($file["type"], $allowedTypes) && $file["size"] <= $maxSizeKB * 1024;
+}
+
+function createDirectoryIfNotExists($directory) {
+    if (!file_exists($directory)) {
+        mkdir($directory);
+    }
+}
+
+function moveUploadedFile($file, $destination) {
+    return move_uploaded_file($file["tmp_name"], $destination);
+}
+
+function showSuccessAndRedirect($message, $location) {
+    echo "<script>alert('$message');</script>";
+    echo "<script>window.location = '$location';</script>";
 }
 ?>

@@ -7,8 +7,7 @@ if (isset($_POST["MM_registerWorld"]) && $_POST["MM_registerWorld"] == "formWorl
     $idMundo = $_POST['idMundo'];
     $nombreMundo = $_POST['nombreMundo'];
 
-
-    // Consulta para verificar si el avatar ya existe
+    // Consulta para verificar si el mundo ya existe
     $worldData = $connection->prepare("SELECT * FROM mundos WHERE idMundo = :idMundo OR nombreMundo = :nombreMundo");
     $worldData->bindParam(':idMundo', $idMundo);
     $worldData->bindParam(':nombreMundo', $nombreMundo);
@@ -16,49 +15,79 @@ if (isset($_POST["MM_registerWorld"]) && $_POST["MM_registerWorld"] == "formWorl
     $validationWorld = $worldData->fetch(PDO::FETCH_ASSOC);
 
     if ($validationWorld) {
-        echo '<script>alert("Los datos ingresados ya están registrados.");</script>';
-        echo '<script>window.location="../views/models/admin/createWorld.php"</script>';
-    } else if (empty($idMundo) || empty($nombreMundo)) {
-        echo '<script>alert("Existen datos vacíos en el formulario, debes ingresar todos los datos.");</script>';
-        echo '<script>window.location="../views/models/admin/createWorld.php"</script>';
+        showErrorAndRedirect("Los datos ingresados ya están registrados.", "../views/models/admin/createWorld.php");
+    } elseif (isEmpty([$idMundo, $nombreMundo])) {
+        showErrorAndRedirect("Existen datos vacíos en el formulario, debes ingresar todos los datos.", "../views/models/admin/createWorld.php");
     } else {
         // Verifica si se ha enviado un archivo y si no hay errores al subirlo
-        if (isset($_FILES['imagenMundo']) && $_FILES['imagenMundo']['error'] === 0) {
-            $permitidos = array("image/png", "image/jpg", "image/jpeg");
+        if (isFileUploaded($_FILES['imagenMundo'])) {
+            $permitidos = ["image/png", "image/jpg", "image/jpeg"];
             $limite_KB = 7000;
 
-            if (in_array($_FILES["imagenMundo"]["type"], $permitidos) && $_FILES["imagenMundo"]["size"] <= $limite_KB * 1024) {
+            if (isImageValid($_FILES["imagenMundo"], $permitidos, $limite_KB)) {
                 $ruta = 'worlds/';
                 $imagenMundo = $ruta . $_FILES['imagenMundo']["name"];
-                if (!file_exists($ruta)) {
-                    mkdir($ruta);
-                }
+                createDirectoryIfNotExists($ruta);
+
                 if (!file_exists($imagenMundo)) {
-                    $resultado = @move_uploaded_file($_FILES["imagenMundo"]["tmp_name"], $imagenMundo);
+                    $resultado = moveUploadedFile($_FILES["imagenMundo"], $imagenMundo);
 
                     if ($resultado) {
                         // Inserta los datos en la base de datos
-                        $registerworld = $connection->prepare("INSERT INTO mundos(idMundo, nombreMundo, imagenMundo) VALUES(:idMundo, :nombreMundo, :imagenMundo)");
-                        $registerworld->bindParam(':idMundo', $idMundo);
-                        $registerworld->bindParam(':nombreMundo', $nombreMundo);
-                        $registerworld->bindParam(':imagenMundo', $imagenMundo);
-                        $registerworld->execute();
+                        $registerWorld = $connection->prepare("INSERT INTO mundos(idMundo, nombreMundo, imagenMundo) VALUES(:idMundo, :nombreMundo, :imagenMundo)");
+                        $registerWorld->bindParam(':idMundo', $idMundo);
+                        $registerWorld->bindParam(':nombreMundo', $nombreMundo);
+                        $registerWorld->bindParam(':imagenMundo', $imagenMundo);
+                        $registerWorld->execute();
 
-                        echo '<script>alert("Los datos han sido registrados correctamente.");</script>';
-                        echo '<script>window.location="../views/models/admin/listaWorlds.php"</script>';
+                        showSuccessAndRedirect("Los datos han sido registrados correctamente.", "../views/models/admin/listaWorlds.php");
                     } else {
-                        echo '<script>alert("Error al momento de cargar la imagen del mundo.");</script>';
-                        echo '<script>window.location="../views/models/admin/createWorld.php"</script>';
+                        showErrorAndRedirect("Error al momento de cargar la imagen del mundo.", "../views/models/admin/createWorld.php");
                     }
                 }
             } else {
-                echo '<script>alert("Error al momento de cargar la imagen del mundo. Asegúrate de que la imagen sea de tipo PNG, JPG o JPEG y que su tamaño sea menor o igual a 3 MB.");</script>';
-                echo '<script>window.location="../views/models/admin/createWorld.php"</script>';
+                showErrorAndRedirect("Error al momento de cargar la imagen del mundo. Asegúrate de que la imagen sea de tipo PNG, JPG o JPEG y que su tamaño sea menor o igual a 7 MB.", "../views/models/admin/createWorld.php");
             }
         } else {
-            echo '<script>alert("Error al cargar la imagen del mundo. Asegúrate de seleccionar una imagen válida.");</script>';
-            echo '<script>window.location="../views/models/admin/createWorld.php"</script>';
+            showErrorAndRedirect("Error al cargar la imagen del mundo. Asegúrate de seleccionar una imagen válida.", "../views/models/admin/createWorld.php");
         }
     }
+}
+
+function showErrorAndRedirect($message, $location) {
+    echo "<script>alert('$message');</script>";
+    echo "<script>window.location = '$location';</script>";
+}
+
+function isEmpty($fields) {
+    foreach ($fields as $field) {
+        if (empty($field)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function isFileUploaded($file) {
+    return isset($file) && $file['error'] === 0;
+}
+
+function isImageValid($file, $allowedTypes, $maxSizeKB) {
+    return in_array($file["type"], $allowedTypes) && $file["size"] <= $maxSizeKB * 1024;
+}
+
+function createDirectoryIfNotExists($directory) {
+    if (!file_exists($directory)) {
+        mkdir($directory);
+    }
+}
+
+function moveUploadedFile($file, $destination) {
+    return move_uploaded_file($file["tmp_name"], $destination);
+}
+
+function showSuccessAndRedirect($message, $location) {
+    echo "<script>alert('$message');</script>";
+    echo "<script>window.location = '$location';</script>";
 }
 ?>

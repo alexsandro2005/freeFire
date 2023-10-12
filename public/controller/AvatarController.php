@@ -1,5 +1,11 @@
 <?php
 require_once '../../database/connection.php';
+
+function showAlertAndRedirect($message, $location) {
+    echo "<script>alert('$message');</script>";
+    echo "<script>window.location='$location';</script>";
+}
+
 $database = new Database();
 $connection = $database->conectar();
 
@@ -16,11 +22,9 @@ if (isset($_POST["MM_registerAvatar"]) && $_POST["MM_registerAvatar"] == "formAv
     $validationAvatar = $avatarData->fetch(PDO::FETCH_ASSOC);
 
     if ($validationAvatar) {
-        echo '<script>alert("Los datos ingresados ya están registrados.");</script>';
-        echo '<script>window.location="../views/models/admin/createAvatar.php"</script>';
-    } else if (empty($serialAvatar) || empty($nombreAvatar) || empty($descripcionAvatar)) {
-        echo '<script>alert("Existen datos vacíos en el formulario, debes ingresar todos los datos.");</script>';
-        echo '<script>window.location="../views/models/admin/createAvatar.php"</script>';
+        showAlertAndRedirect("Los datos ingresados ya están registrados.", "../views/models/admin/createAvatar.php");
+    } elseif (empty($serialAvatar) || empty($nombreAvatar) || empty($descripcionAvatar)) {
+        showAlertAndRedirect("Existen datos vacíos en el formulario, debes ingresar todos los datos.", "../views/models/admin/createAvatar.php");
     } else {
         // Verificamos si se ha enviado un archivo y si no hay errores al subirlo
         if (isset($_FILES['imagenAvatar']) && $_FILES['imagenAvatar']['error'] === 0) {
@@ -45,20 +49,16 @@ if (isset($_POST["MM_registerAvatar"]) && $_POST["MM_registerAvatar"] == "formAv
                         $registerAvatar->bindParam(':imagenAvatar', $imagenAvatar);
                         $registerAvatar->execute();
 
-                        echo '<script>alert("Los datos han sido registrados correctamente.");</script>';
-                        echo '<script>window.location="../views/models/admin/listaAvatars.php"</script>';
+                        showAlertAndRedirect("Los datos han sido registrados correctamente.", "../views/models/admin/listaAvatars.php");
                     } else {
-                        echo '<script>alert("Error al momento de cargar la imagen del avatar.");</script>';
-                        echo '<script>window.location="../views/models/admin/createAvatar.php"</script>';
+                        showAlertAndRedirect("Error al momento de cargar la imagen del avatar.", "../views/models/admin/createAvatar.php");
                     }
                 }
             } else {
-                echo '<script>alert("Error al momento de cargar la imagen del avatar. Asegúrate de que la imagen sea de tipo PNG, JPG o JPEG y que su tamaño sea menor o igual a 1 MB.");</script>';
-                echo '<script>window.location="../views/models/admin/createAvatar.php"</script>';
+                showAlertAndRedirect("Error al momento de cargar la imagen del avatar. Asegúrate de que la imagen sea de tipo PNG, JPG o JPEG y que su tamaño sea menor o igual a 1 MB.", "../views/models/admin/createAvatar.php");
             }
         } else {
-            echo '<script>alert("Error al cargar la imagen del avatar. Asegúrate de seleccionar una imagen válida.");</script>';
-            echo '<script>window.location="../views/models/admin/createAvatar.php"</script>';
+            showAlertAndRedirect("Error al cargar la imagen del avatar. Asegúrate de seleccionar una imagen válida.", "../views/models/admin/createAvatar.php");
         }
     }
 }
