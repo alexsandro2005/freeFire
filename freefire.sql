@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-10-2023 a las 09:43:09
+-- Tiempo de generación: 12-10-2023 a las 07:20:35
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -70,14 +70,23 @@ INSERT INTO `avatars` (`id`, `nombreAvatar`, `imagenAvatar`, `descripcionAvatar`
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `detallemundo`
+-- Estructura de tabla para la tabla `detalle_nivel`
 --
 
-CREATE TABLE `detallemundo` (
-  `id_detalleMundo` int(10) NOT NULL,
-  `id_mundo` int(10) NOT NULL,
-  `id_jugador` int(10) NOT NULL
+CREATE TABLE `detalle_nivel` (
+  `id_detalleNivel` int(10) NOT NULL,
+  `id_jugador` int(10) NOT NULL,
+  `id_nivel` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `detalle_nivel`
+--
+
+INSERT INTO `detalle_nivel` (`id_detalleNivel`, `id_jugador`, `id_nivel`) VALUES
+(9, 79464482, 1),
+(10, 2147483647, 1),
+(11, 1192907232, 1);
 
 -- --------------------------------------------------------
 
@@ -133,7 +142,35 @@ INSERT INTO `entrada_jugadores` (`id`, `horario_entrada`, `documento`) VALUES
 (20, '2023-10-05 22:35:31', 1106632525),
 (21, '2023-10-05 22:37:09', 1106632525),
 (22, '2023-10-06 01:05:13', 1106632525),
-(23, '2023-10-06 01:54:32', 1106632525);
+(23, '2023-10-06 01:54:32', 1106632525),
+(24, '2023-10-06 06:47:00', 1110460410),
+(25, '2023-10-06 07:18:00', 1110460410),
+(26, '2023-10-06 07:46:01', 1110460410),
+(27, '2023-10-08 21:26:31', 79464482),
+(28, '2023-10-08 21:27:57', 79464482),
+(29, '2023-10-08 21:36:39', 79464482),
+(30, '2023-10-08 21:43:30', 79464482),
+(31, '2023-10-08 21:45:04', 79464482),
+(32, '2023-10-08 22:03:43', 79464482),
+(33, '2023-10-08 22:13:38', 79464482),
+(34, '2023-10-08 22:22:52', 2147483647),
+(35, '2023-10-09 00:29:21', 79464482),
+(36, '2023-10-09 00:30:19', 79464482),
+(37, '2023-10-09 06:51:55', 79464482),
+(38, '2023-10-09 07:28:54', 79464482),
+(39, '2023-10-09 10:04:01', 1110460410),
+(40, '2023-10-09 10:10:47', 79464482),
+(41, '2023-10-09 10:23:40', 79464482),
+(42, '2023-10-09 11:26:14', 1110460410),
+(43, '2023-10-09 11:35:15', 1192907232),
+(44, '2023-10-09 11:44:05', 1110460410),
+(45, '2023-10-09 23:37:04', 79464482),
+(46, '2023-10-10 06:06:48', 79464482),
+(47, '2023-10-10 07:45:50', 79464482),
+(48, '2023-10-10 08:00:47', 79464482),
+(49, '2023-10-10 08:19:11', 1110460410),
+(50, '2023-10-10 09:16:43', 1110460410),
+(51, '2023-10-10 09:48:37', 79464482);
 
 -- --------------------------------------------------------
 
@@ -182,9 +219,16 @@ INSERT INTO `genero` (`id_genero`, `genero`) VALUES
 CREATE TABLE `mundos` (
   `idMundo` int(10) NOT NULL,
   `nombreMundo` varchar(100) NOT NULL,
-  `imagenMundo` varchar(255) NOT NULL,
-  `idNivel` int(10) NOT NULL
+  `imagenMundo` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `mundos`
+--
+
+INSERT INTO `mundos` (`idMundo`, `nombreMundo`, `imagenMundo`) VALUES
+(893021, 'DE- Clasificatoria', 'worlds/DE-clasificatoria.jpg'),
+(90203201, 'BR- Clasificatoria', 'worlds/mundoBr-clasificatoria.jpg');
 
 -- --------------------------------------------------------
 
@@ -195,19 +239,17 @@ CREATE TABLE `mundos` (
 CREATE TABLE `niveles` (
   `idNivel` int(10) NOT NULL,
   `nombreNivel` varchar(100) NOT NULL,
-  `puntosRequeridos` smallint(10) NOT NULL
+  `puntosRequeridos` smallint(10) NOT NULL,
+  `imagenNivel` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `niveles`
 --
 
-INSERT INTO `niveles` (`idNivel`, `nombreNivel`, `puntosRequeridos`) VALUES
-(12010, 'Principiante Oro-1', 0),
-(33220, 'Avanzado Maestro-3.', 0),
-(130201, 'Intermedio Diamante-1', 0),
-(230101, 'Principiante Platino-2', 0),
-(3201121, 'Intermedio Heroico-2', 0);
+INSERT INTO `niveles` (`idNivel`, `nombreNivel`, `puntosRequeridos`, `imagenNivel`) VALUES
+(1, 'Nivel 1', 0, 'niveles/br-clasificatoria.jpg'),
+(2, 'Nivel 2', 500, 'niveles/DE-clasificatoria.jpg');
 
 -- --------------------------------------------------------
 
@@ -226,6 +268,16 @@ CREATE TABLE `partida` (
   `id_jugadorGanador` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `partida`
+--
+
+INSERT INTO `partida` (`id_partida`, `cantidad_jugadores`, `id_mundo`, `fechaInicial`, `fechaFinal`, `jugadoresActivos`, `id_estado`, `id_jugadorGanador`) VALUES
+(1, 30, 90203201, '2023-10-10 09:38:33', '0000-00-00 00:00:00', 0, 1, 0),
+(2, 30, 893021, '2023-10-10 09:43:42', '0000-00-00 00:00:00', 0, 1, 0),
+(3, 30, 90203201, '2023-10-10 09:47:05', '0000-00-00 00:00:00', 0, 1, 0),
+(4, 30, 90203201, '2023-10-10 09:47:17', '0000-00-00 00:00:00', 0, 1, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -238,6 +290,17 @@ CREATE TABLE `rangos` (
   `imagenRango` varchar(255) NOT NULL,
   `puntosRequeridos` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `rangos`
+--
+
+INSERT INTO `rangos` (`idRango`, `nombreRango`, `imagenRango`, `puntosRequeridos`) VALUES
+(1, 'Principiante Oro-1', 'levels/Oro-1.png', 0),
+(2, 'Principiante Platino-2', 'levels/platino-1.png', 250),
+(3, 'Intermedio Diamante-1', 'levels/Diamante-2.png', 500),
+(4, 'Intermedio Heroico-2', 'levels/heroico-1.png', 750),
+(5, 'Avanzado Maestro-3', 'levels/maestro-1.png', 1000);
 
 -- --------------------------------------------------------
 
@@ -328,19 +391,19 @@ CREATE TABLE `usuario` (
   `genero` int(11) NOT NULL,
   `estadoUsuario` varchar(10) NOT NULL,
   `correoElectronico` varchar(255) NOT NULL,
-  `tipoDocumento` int(11) NOT NULL
+  `tipoDocumento` int(11) NOT NULL,
+  `puntosAcumulados` smallint(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`documento`, `nombreCompleto`, `nombreUsuario`, `avatar`, `password`, `idRol`, `fecha_registro`, `genero`, `estadoUsuario`, `correoElectronico`, `tipoDocumento`) VALUES
-(21013020, 'Alexander2301', 'ckkkd', NULL, '$2y$15$Rq3fLZwocjZbzHiVrwd/VuL/C.cguHiPsuYXEb7sxniQg7LtMAU2m', 2, '2023-10-02 09:46:41', 1, '1', 'alexander1201@gmail.com', 1),
-(1106632525, 'jhoen sahileth ramos joven', 'jhoenramos13', NULL, '$2y$15$Ug6rHj2KG66YGuZ0kJ.MDOQyUBQXeFVok70YNZAfyfsCChJEezYZS', 1, '2023-10-05 21:38:32', 2, '1', 'jsramos525@misena.edu.co', 1),
-(1108132210, 'Esteban Alvarez', 'estaban23', NULL, '$2y$15$/DrSQpi2wU1YlffpGrQQ4uRDc43X4cP8OKCIgB5MxZkB8sXawnlSS', 2, '2023-10-02 09:40:35', 1, '1', 'esteban2301@gmail.com', 1),
-(1110460410, 'Alejandro Muñoz', 'muñoz1201', NULL, '$2y$15$pwCAuKeppnbHB6VvkdlJCegmY5CK9EK.Psvs4lg3dlRZd1QnOqZ8q', 1, '2023-09-28 01:15:54', 1, '1', 'luisalejandrm533@gmail.com', 1),
-(1340302020, 'Camilo Acosta', 'camilin23', NULL, '$2y$15$tqbyqHGvEQfb08IbI8xxAeThqzgkyEUq2BXU8lfWgb8v4e10p/Uqu', 2, '2023-10-03 10:23:11', 1, '1', 'camilo@gmail.com', 1);
+INSERT INTO `usuario` (`documento`, `nombreCompleto`, `nombreUsuario`, `avatar`, `password`, `idRol`, `fecha_registro`, `genero`, `estadoUsuario`, `correoElectronico`, `tipoDocumento`, `puntosAcumulados`) VALUES
+(79464482, 'Daniel Alvarez', 'daniel23', 1293307, '$2y$15$me/qmrkP8AhLAEAaa8tDuu3Ms5TrGej7iJefN5uFsPUBAtuUIpuJi', 2, '2023-10-08 21:09:01', 1, '1', 'daniel@gmail.com', 1, 0),
+(1110460410, 'Alejandro Muñoz', 'muñoz1201', NULL, '$2y$15$pwCAuKeppnbHB6VvkdlJCegmY5CK9EK.Psvs4lg3dlRZd1QnOqZ8q', 1, '2023-09-28 01:15:54', 1, '1', 'luisalejandrm533@gmail.com', 1, 0),
+(1192907232, 'Jaime Orduz', 'jaime08', 1293305, '$2y$15$ovYN4Vtv17WrmM2GYkGv2.ZIdzUA.r89g4wCEnrFryrx5Jh1Dg/Ye', 2, '2023-10-09 11:34:44', 1, '1', 'jaime@gmail.com', 1, 0),
+(3492929291, 'Cesar Esquivel', 'esquivel13', 1293306, '$2y$15$2G27l18VQUSUABQ/IwnG9.1Xz5paWLv0L9iBbcopy4ndWM.b1i3Ha', 2, '2023-10-08 22:22:33', 1, '1', 'esquivel@gmail.com', 1, 0);
 
 --
 -- Índices para tablas volcadas
@@ -359,10 +422,10 @@ ALTER TABLE `avatars`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `detallemundo`
+-- Indices de la tabla `detalle_nivel`
 --
-ALTER TABLE `detallemundo`
-  ADD PRIMARY KEY (`id_detalleMundo`);
+ALTER TABLE `detalle_nivel`
+  ADD PRIMARY KEY (`id_detalleNivel`);
 
 --
 -- Indices de la tabla `detalle_partida`
@@ -461,10 +524,10 @@ ALTER TABLE `avatars`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1293315;
 
 --
--- AUTO_INCREMENT de la tabla `detallemundo`
+-- AUTO_INCREMENT de la tabla `detalle_nivel`
 --
-ALTER TABLE `detallemundo`
-  MODIFY `id_detalleMundo` int(10) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `detalle_nivel`
+  MODIFY `id_detalleNivel` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_partida`
@@ -476,7 +539,7 @@ ALTER TABLE `detalle_partida`
 -- AUTO_INCREMENT de la tabla `entrada_jugadores`
 --
 ALTER TABLE `entrada_jugadores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT de la tabla `estado`
@@ -491,16 +554,22 @@ ALTER TABLE `genero`
   MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de la tabla `niveles`
+--
+ALTER TABLE `niveles`
+  MODIFY `idNivel` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `partida`
 --
 ALTER TABLE `partida`
-  MODIFY `id_partida` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_partida` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `rangos`
 --
 ALTER TABLE `rangos`
-  MODIFY `idRango` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `idRango` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`

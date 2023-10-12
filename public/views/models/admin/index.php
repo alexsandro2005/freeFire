@@ -166,7 +166,7 @@ try {
                                         <div class="media-body text-white text-end">
                                             <p class="mb-1">Mundos Activos</p>
                                             <?php
-$conteoMundos = "SELECT COUNT(*) AS contadorMundos FROM armas";
+$conteoMundos = "SELECT COUNT(*) AS contadorMundos FROM mundos";
 try {
     $conteoMundos = $connection->query($conteoMundos);
     $contadorMundos = $conteoMundos->fetch(PDO::FETCH_ASSOC)['contadorMundos'];

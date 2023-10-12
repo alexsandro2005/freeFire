@@ -2,7 +2,6 @@
 require_once 'menu.php';
 
 ?>
-
 <div class="content-body">
     <!-- row -->
     <div class="container-fluid">
@@ -32,7 +31,7 @@ require_once 'menu.php';
                                 <div class="basic-form">
                                     <form method="POST" action="../../../controller/WorldController.php" enctype="multipart/form-data" autocomplete="off">
                                         <div class="mb-3">
-                                            <input class="form-control form-control-lg input-text" type="text" required name="idMundo" placeholder="Ingresa el identificador del mundo">
+                                            <input class="form-control form-control-lg input-text" type="number" onkeypress="return(multiplenumber(event));" oninput="maxlengthNumber(this);" maxlength="10" required name="idMundo" placeholder="Ingresa el identificador del mundo">
                                         </div>
                                         <div class="mb-3">
                                             <input class="form-control form-control-lg input-text" type="text" required name="nombreMundo" placeholder="Ingresa el nombre del mundo">

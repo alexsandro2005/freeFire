@@ -5,11 +5,6 @@ session_start();
 require_once '../../../../database/connection.php';
 $database = new Database();
 $connection = $database->conectar();
-if (!isset($_SESSION['usuario']) || !isset($_SESSION['rol'])) {
-    echo "<script>alert('Debes iniciar sesión');</script>";
-    header("Location:../../auth/index.php");
-    exit(); // Agregar exit para asegurar que el script se detenga
-} 
 
 $documento = $_SESSION['id_user'];
 
@@ -37,25 +32,25 @@ $rango = $rangosJuego->fetchAll(PDO::FETCH_ASSOC);
 
     <link rel="stylesheet" href="../../../assets/css/swiper-bundle.min.css">
 
-    <title>Bienvenido <?php echo $_SESSION['nombres'] ?></title>
+    <title>Seleccion de mundo <?php echo $_SESSION['nombres'] ?></title>
     <link rel="shortcut icon" href="../../../assets/images/Gareena.png" type="image/x-icon">
 
     <style>
 
-    .container_body::before {
-        content: "";
-        position: absolute;
-        height: 1000px;
-        width: 700px;
-        top: -10%;
-        right: 15%;
-        background-image: linear-gradient(180deg, #0000008c 0%, #0000008c 100%), url('../../../controller/<?php echo $user['imagenNivel']?>');
-        background-size: cover;
-        background-position: center center;
-        clip-path: circle(50% at 85% 14%);
-        z-index: -100;
+.container_body::before {
+    content: "";
+    position: absolute;
+    height: 1000px;
+    width: 700px;
+    top: -10%;
+    right: 15%;
+    background-image: linear-gradient(180deg, #0000008c 0%, #0000008c 100%), url('../../../controller/<?php echo $user['imagenNivel']?>');
+    background-size: cover;
+    background-position: center center;
+    clip-path: circle(50% at 85% 14%);
+    z-index: -100;
 
-    }
+}
 
 
     </style>
@@ -78,25 +73,14 @@ $rango = $rangosJuego->fetchAll(PDO::FETCH_ASSOC);
                     </li>
 
                     <li class="nav_item">
-                        <a href="dataUpdate.php" class="nav_link active-link">
+                        <a href="public/views/authentication/login.php" class="nav_link active-link">
                             <i class="uil uil-user-circle nav_icon"></i>Datos
                         </a>
                     </li>
-
-                    <?php
-                    
-                        if (isset($_POST['btncerrar'])) {
-
-                            session_destroy();
-                            header("Location:../../../index.php");
-                        }
-                    ?>
                     <li class="nav_item">
-                        <form method="POST" action="">
-							<span class="ms-2">
-                                <input type="submit" value="Cerrar Sesion" id="btn_quote" name="btncerrar" class="nav_link active-link button_input"/><i class="uil uil-user-circle nav_icon"></i>
-							</span>
-                        </form>
+                        <a href="public/views/authentication/register.php" class="nav_link active-link">
+                            <i class="uil uil-user-circle nav_icon"></i>Cerrar Sesion
+                        </a>
                     </li>
 
                 </ul>
@@ -124,12 +108,13 @@ $rango = $rangosJuego->fetchAll(PDO::FETCH_ASSOC);
             <div class="home_container container grid">
                 <div class="home_content grid">
                     <div class="home_social">
-                        <a href="./selectPartida.php" class=" button_home button button--flex">
-                            ¡Seleccionar partida!<i class="uil uil-message button_icon"></i>
+                    <a href="#contact" class=" button_home button button--flex">
+                            ¡Iniciar!<i class="uil uil-message button_icon"></i>
                         </a>
                         <a href="#contact" class=" button_home button button--flex">
-                            ¡Ver estadisticas!<i class="uil uil-message button_icon"></i>
+                            ¡Empezar ya!<i class="uil uil-message button_icon"></i>
                         </a>
+
                     </div>
 
                     <div class="home_img">

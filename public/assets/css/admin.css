@@ -69,6 +69,12 @@
 
 /* Font size for larges devices */
 
+
+
+.button_input{
+    border: none;
+    background: none;
+}
 @media screen and (min-width: 968px) {
     :root {
         --big-font-size: 3rem;
@@ -105,7 +111,7 @@ body.dark-theme {
     right: 14%;
     background-color: var(--first-color);
     clip-path: circle(50% at 85% 14%);
-    z-index: -100;
+    z-index: -100;  
 
 }
 
@@ -390,9 +396,14 @@ testimonial_icon-star {
 
 .home_images {
     display: flex;
-    margin-left: 50px;
+   
     transition: all 300ms;
     animation: move_vector 6s ease-in-out infinite;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 70px;
+    margin-top: 10px;
 
 }
 
@@ -426,6 +437,10 @@ testimonial_icon-star {
 
 .home_data {
     grid-column: 1/3;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+
 }
 
 .home_title {
@@ -795,10 +810,17 @@ testimonial_icon-star {
 
 /*============= STYLE SECTION SERVICES ===============*/
 
+
+.services{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
 .services_container {
     gap: 1.5rem;
     grid-template-columns: repeat(2, 1fr);
-    align-items: center;
+   
 
 }
 
@@ -810,9 +832,12 @@ testimonial_icon-star {
     border-radius: .25rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .15);
     transition: .3s;
+    border: solid 2px #fbc000;
+    text-align: center;
+    align-items: center;
+
 
 }
-
 .services_content:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, .15);
 }
