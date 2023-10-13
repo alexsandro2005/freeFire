@@ -164,7 +164,7 @@ $consulllll=$consulta5->fetch();
                         <input type="text" placeholder="Usuario" class="form-control form-control-lg input-text" name="nombreUsuario" required onkeyup="espacios(this), minuscula(this)" autocomplete="off">
 
                         <select name="genero" class="form-control form-control-lg input-text" required id="select2">
-                            <option value="">Seleccione tipo de genero</option>
+                            <option value="" disabled selected >Seleccione tipo de genero</option>
                                 <?php
 
                                 do{

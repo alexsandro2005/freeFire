@@ -141,9 +141,9 @@ $partidas = $selectPartida->fetchAll(PDO::FETCH_ASSOC);
                 <div class="services_content">
 
                         <div>
-                            <img src="../../../controller/<?=$partida['imagenMundo']?>" alt="" class="uil uil-window services_icon">
-                            <h3 class="services_title"><?=$partida['idMundo']?></h3>
-                            <h3 class="services_title"><?=$partida['nombreMundo']?></h3>
+                            <img src="../../../controller/<?= $partida['imagenMundo']?>" alt="" class="uil uil-window services_icon">
+                            <h3 class="services_tit le"><?= $partida['idMundo']?></h3>
+                            <h3 class="services_title"><?= $partida['nombreMundo']?></h3>
                         </div>
                         <form action="" method="GET" autocomplete="off">
                             <input type="hidden" value="<?=$partida['id_partida']?>">

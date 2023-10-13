@@ -26,6 +26,31 @@ class Encriptador {
     private function generarClave() {
         return md5($this->token);
     }
+
+    function checkExistingUser($connection, $documento, $nombreUsuario, $correoElectronico) {
+        // Escapa los valores para evitar SQL injection
+        $documento = mysqli_real_escape_string($connection, $documento);
+        $nombreUsuario = mysqli_real_escape_string($connection, $nombreUsuario);
+        $correoElectronico = mysqli_real_escape_string($connection, $correoElectronico);
+    
+        // Construye la consulta SQL para verificar la existencia del usuario
+        $query = "SELECT COUNT(*) as count FROM usuario WHERE documento = '$documento' OR nombreUsuario = '$nombreUsuario' OR correoElectronico = '$correoElectronico'";
+    
+        // Ejecuta la consulta
+        $result = mysqli_query($connection, $query);
+    
+        if (!$result) {
+            // Manejo de errores si la consulta falla
+            die("Error en la consulta: " . mysqli_error($connection));
+        }
+    
+        // Obtiene el resultado
+        $row = mysqli_fetch_assoc($result);
+        $count = $row['count'];
+    
+        // Si count es mayor que 0, significa que el usuario ya existe
+        return $count > 0;
+    }
 }
 
 $token = "11SXDLSLDDDDKFE332KDKS";
