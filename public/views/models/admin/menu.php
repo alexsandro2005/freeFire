@@ -910,8 +910,8 @@ try {
 
 							<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Armas</a>
                                 <ul aria-expanded="false">
-                                    <li><a href="./listaWeapons.php">Listar Armas</a></li>
-									<li><a href="./createWeapon.php">Crear Armas</a></li>
+                                    <li><a href="./listar_armas.php">Listar Armas</a></li>
+									<li><a href="./crear_armas.php">Crear Armas</a></li>
 
                                 </ul>
                             </li>
