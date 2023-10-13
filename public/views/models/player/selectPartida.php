@@ -9,7 +9,7 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['rol'])) {
     echo "<script>alert('Debes iniciar sesión');</script>";
     header("Location:../../auth/index.php");
     exit(); // Agregar exit para asegurar que el script se detenga
-} 
+}
 
 ?>
 
@@ -64,20 +64,20 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['rol'])) {
 
 
                     <li class="nav_item">
-                        <a href="dataUpdate.php" class="nav_link active-link">
+                        <a href="index.php" class="nav_link active-link">
                             <i class="uil uil-user-circle nav_icon"></i>Regresar
                         </a>
                     </li>
 
                     <?php
 
-                        if (isset($_POST['btncerrar'])) {
+if (isset($_POST['btncerrar'])) {
 
-                            session_destroy();
-                            
-                            header("Location:../../../index.php");
-                        }
-                        ?>
+    session_destroy();
+
+    header("Location:../../../index.php");
+}
+?>
                     <li class="nav_item">
                         <form method="POST" action="">
 							<span class="ms-2">
@@ -102,12 +102,12 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['rol'])) {
     </header>
 
      <?php
-        date_default_timezone_set('America/Bogota');
+date_default_timezone_set('America/Bogota');
 
-        $selectPartida = $connection->prepare("SELECT * FROM partida INNER JOIN mundos ON partida.id_mundo = mundos.idMundo");
-        $selectPartida->execute();
-        $partidas = $selectPartida->fetchAll(PDO::FETCH_ASSOC);
-    ?>
+$selectPartida = $connection->prepare("SELECT * FROM partida INNER JOIN mundos ON partida.id_mundo = mundos.idMundo");
+$selectPartida->execute();
+$partidas = $selectPartida->fetchAll(PDO::FETCH_ASSOC);
+?>
 
     <section class="services section" id="services">
 
@@ -133,78 +133,49 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['rol'])) {
                 <!--====================  SERVICES 1 ====================-->
 
                 <?php
-                
-                    if(!empty($partidas)){
 
-                        foreach($partidas as $partida){
-                ?>
+                if (!empty($partidas)) {
+
+                    foreach ($partidas as $partida) {
+                        ?>
                 <div class="services_content">
-                    <a href="" class="cardPartidas">
-                        <div>
-                            <img src="../../../controller/<?= $partida['imagenMundo']?>" alt="" class="uil uil-window services_icon">
-                            <h3 class="services_tit le"><?= $partida['idMundo']?></h3>
-                            <h3 class="services_title"><?= $partida['nombreMundo']?></h3>
-                        </div>
 
-                        <span class="button button--flex button--small button--link services_button">
-                            Iniciar 
-                            <i class="uil uil-arrow-right button_icon"></i>
-                        </span>
-                    </a>
+                        <div>
+                            <img src="../../../controller/<?=$partida['imagenMundo']?>" alt="" class="uil uil-window services_icon">
+                            <h3 class="services_title"><?=$partida['idMundo']?></h3>
+                            <h3 class="services_title"><?=$partida['nombreMundo']?></h3>
+                        </div>
+                        <form action="" method="GET" autocomplete="off">
+                            <input type="hidden" value="<?=$partida['id_partida']?>">
+                            <button class="button button--flex button--small button--link services_button" type="submit" onclick="return confirm('¿Desea ingresar en la partida seleccionada?');">Iniciar
+                            <i class="uil uil-arrow-right button_icon"></i></button>
+                        </form>
+
                 </div>
 
 
-                <?php
-                        }
-                    }else{
-    ?>
+                                <?php
+                }
+                } else {
+                    ?>
 
 
-<div class="services_content">
+            <div class="services_content">
                     <a href="">
                         <div>
                             <i class="uil uil-window-grid services_icon"></i>
                             <h3 class="services_title">No hay partidas disponibles</h3>
                         </div>
-
-                        <div class="services_modal">
-                            <div class="services_modal-content">
-                                <h4 class="services_modal-title">No hay partidas<br>disponibles</h4>
-                                <i class="uil uil-times services_modal-close"></i>
-
-                                <ul class="services_modal-services grid">
-                                    <li class="services_modal-service">
-                                        <i class="uil uil-check-circle services_modal-icon"></i>
-                                        <p>Nuestra principal tarea es beneficiar tu negocio.</p>
-                                    </li>
-
-                                    <li class="services_modal-service">
-                                        <i class="uil uil-check-circle services_modal-icon"></i>
-                                        <p>Genera un gran cambio en tu sucursal para atraer nuevos clientes.</p>
-                                    </li>
-
-                                    <li class="services_modal-service">
-                                        <i class="uil uil-check-circle services_modal-icon"></i>
-                                        <p>Acelera la atencion en tu establecimiento.</p>
-                                    </li>
-
-                                    <li class="services_modal-service">
-                                        <i class="uil uil-check-circle services_modal-icon"></i>
-                                        <p>Multiplica tus ventas con el mundo digital.</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
                     </a>
                 </div>
-    
-    
-    
-    
-    <?php
+
+
+
+
+                    <?php
 }
-                            ?>
-                    
+?>
+
 
             </div>
         </section>

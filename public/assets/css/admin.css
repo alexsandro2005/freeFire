@@ -820,6 +820,10 @@ testimonial_icon-star {
 .services_container {
     gap: 1.5rem;
     grid-template-columns: repeat(2, 1fr);
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    
    
 
 }
@@ -833,8 +837,7 @@ testimonial_icon-star {
     box-shadow: 0 2px 4px rgba(0, 0, 0, .15);
     transition: .3s;
     border: solid 2px #fbc000;
-    text-align: center;
-    align-items: center;
+
 
 
 }
@@ -858,8 +861,18 @@ testimonial_icon-star {
 .services_button {
     cursor: pointer;
     font-size: var(--small-font-size);
+    width: 100px;
+    text-align: center;
+    justify-content: center;
+    height: 40px;
 }
 
+.services_button:hover{
+    background-color: #fbc000;
+    box-shadow: solid 2rem #fbc000;
+    transition:  0.8s ease-in-out;
+    color: #fff;
+}
 .services_button:hover .button_icon {
 
     transform: translateX(.25rem);
@@ -947,6 +960,12 @@ testimonial_icon-star {
 
 }
 
+
+.services_button:hover{
+    background-color: #fbc000;
+    box-shadow: solid 2rem #fbc000;
+
+}
 .swiper-button-next {
     right: -.5rem;
 }

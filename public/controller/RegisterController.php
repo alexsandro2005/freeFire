@@ -1,6 +1,6 @@
 <?php
 require_once '../../database/connection.php';
-require_once '../controller/funciones/funciones.php';
+require_once './funciones/funciones.php';
 
 $database = new Database();
 $connection = $database->conectar();
@@ -20,36 +20,40 @@ if (isset($_POST["MM_register"]) && $_POST["MM_register"] == "formRegister") {
     $nombreCompleto = $_POST['nombreCompleto'];
     $nombreUsuario = $_POST['nombreUsuario'];
 
-    // Consultar si el usuario ya existe en la base de datos
-    $existingUser = checkExistingUser($connection, $documento, $nombreUsuario, $correoElectronico);
+    // CONSULTA SQL PARA VERIFICAR SI EL USUARIO YA EXISTE EN LA BASE DE DATOS
 
-    if ($existingUser) {
-        showErrorAndRedirect("Estimado Usuario, los datos ingresados ya están registrados.", "../views/auth/index.php");
-    } elseif (isAnyFieldEmpty([$tipoDocumento, $documento, $genero, $estadoUsuario, $idRol, $correoElectronico, $password, $nombreCompleto, $nombreUsuario])) {
-        showErrorAndRedirect("Estimado Usuario, Existen Datos Vacíos En El Formulario", "../views/auth/index.php");
+    $data = $connection->prepare("SELECT * FROM usuario WHERE documento = '$documento' OR nombreUsuario = '$nombreUsuario' OR correoElectronico = '$correoElectronico'");
+    $data->execute();
+    $register_validation = $data->fetchAll();
+    // CONDICIONALES DEPENDIENDO EL RESULTADO DE LA CONSULTA
+    if ($register_validation) {
+        // SI SE CUMPLE LA CONSULTA ES PORQUE EL USUARIO YA EXISTE
+        echo '<script> alert ("// Estimado Usuario, los datos ingresados ya estan registrados. //");</script>';
+        echo '<script> window.location= "../views/auth/index.php"</script>';
+    } elseif ($tipoDocumento == "" || $documento == "" || $genero == "" || $estadoUsuario == "" || $idRol == "" || $correoElectronico == "" || $password == "" || $nombreCompleto == "" || $nombreUsuario == "") {
+        // CONDICIONAL DEPENDIENDO SI EXISTEN ALGUN CAMPO VACIO EN EL FORMULARIO DE LA INTERFAZ
+        echo '<script> alert ("Estimado Usuario, Existen Datos Vacios En El Formulario");</script>';
+        echo '<script> window.location="../views/auth/index.php"</script>';
     } else {
-        // Hash de la contraseña
-        $user_password = password_hash($password, PASSWORD_DEFAULT);
+        // VARIABLES QUE CONTIENE EL NUMERO DE ENCRIPTACIONES DE LAS CONTRASEÑAS
+        $pass_encriptaciones = [
+            'cost' => 15,
+        ];
+        $user_password = password_hash($password, PASSWORD_DEFAULT, $pass_encriptaciones);
 
-        // Registrar el usuario en la base de datos
-        $userRegistered = registerUser($connection, $documento, $nombreCompleto, $nombreUsuario, $user_password, $idRol, $genero, $estadoUsuario, $correoElectronico, $tipoDocumento);
+        $registerUser = $connection->prepare("INSERT INTO usuario(documento,nombreCompleto,nombreUsuario,password,idRol,fecha_registro,genero,estadoUsuario,correoElectronico,tipoDocumento) VALUES('$documento','$nombreCompleto','$nombreUsuario','$user_password','$idRol',NOW(),'$genero','$estadoUsuario','$correoElectronico','$tipoDocumento')");
+        $registerUser->execute();
 
-        if ($userRegistered) {
-            // Insertar en la tabla detalle nivel usuario
-            $inserted = insertUserDetailLevel($connection, $documento);
-            if ($inserted) {
-                showSuccessAndRedirect("Registro Exitoso, Gracias por registrarte, puedes iniciar sesión.", "../views/auth/");
-            } else {
-                showErrorAndRedirect("Error al registrar el detalle del nivel del usuario.", "../views/auth/index.php");
+        if ($registerUser) {
+            $insertDetalleNivelUsuario = $connection->prepare("INSERT INTO detalle_nivel (id_jugador, id_nivel) VALUES('$documento', 1)");
+            $insertDetalleNivelUsuario->execute();
+
+            // creamos una funcion para encriptar el numero de documento del usuario
+            if ($insertDetalleNivelUsuario) {
+
+                echo '<script>alert ("Registro Exitoso, Gracias por registrarte, puedes iniciar sesion.");</script>';
+                echo '<script>window.location="../views/auth/"</script>';
             }
-        } else {
-            showErrorAndRedirect("Error al registrar el usuario.", "../views/auth/index.php");
         }
     }
 }
-
-function showErrorAndRedirect($message, $location) {
-    echo "<script>alert ('$message');</script>";
-    echo "<script>window.location = '$location';</script>";
-}
-?>

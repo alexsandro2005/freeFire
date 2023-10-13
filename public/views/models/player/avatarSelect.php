@@ -90,6 +90,25 @@ if ((isset($_POST["MM_avatarSelect"])) && ($_POST["MM_avatarSelect"] == "formAva
                             }
                         }
                         ?>
+
+                        <div class="alert alert-danger">
+                            <?php
+                                if (isset($_POST['btncerrar'])) {
+
+                                session_destroy();
+
+                                echo '<script>alert ("Lo sentimos pero no puedes iniciar sesion hasta que no selecciones tu avatar.");</script>';
+                                echo '<script>window.location="../../auth/  "</script>';
+                                }
+                        ?>
+            
+                                <form method="POST" action="">
+                                    <span class="ms-2">
+                                        <input type="submit" value="Mas tarde" id="btn_quote" name="btncerrar" class="btn bg-danger text-white"/><i class="uil uil-user-circle nav_icon"></i>
+                                    </span>
+                                </form>
+                
+                        </div>
                     </div>
                     <div class="row">
                         <?php

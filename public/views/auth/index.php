@@ -209,7 +209,7 @@ $consulllll=$consulta5->fetch();
 
 
                         <div class="redirecciones">
-                            <a href="passwords/changePassword.php" class="link return">Regresar</a>
+                            <a href="../../../index.php" class="link return">Regresar</a>
                         </div>
                     </form>
 
