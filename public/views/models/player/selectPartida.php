@@ -142,7 +142,7 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['rol'])) {
                     <a href="" class="cardPartidas">
                         <div>
                             <img src="../../../controller/<?= $partida['imagenMundo']?>" alt="" class="uil uil-window services_icon">
-                            <h3 class="services_tit le"><?= $partida['idMundo']?></h3>
+                            <h3 class="services_title"><?= $partida['idMundo']?></h3>
                             <h3 class="services_title"><?= $partida['nombreMundo']?></h3>
                         </div>
 
