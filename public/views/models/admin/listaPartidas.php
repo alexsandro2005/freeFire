@@ -1,10 +1,5 @@
 <?php
 require_once 'menu.php';
-
-
-$selectPartida = $connection->prepare("SELECT * FROM partida INNER JOIN mundos INNER JOIN estado INNER JOIN usuario ON partida.id_mundo = mundos.idMundo AND partida.id_estado = estado.id_estado AND partida.id_jugadorGanador = usuario.documento");
-$selectPartida->execute();
-$partidas = $selectPartida->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!--**********************************
@@ -22,7 +17,7 @@ $partidas = $selectPartida->fetchAll(PDO::FETCH_ASSOC);
             </ol>
         </div>
         <!-- row -->
-        
+
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -34,65 +29,71 @@ $partidas = $selectPartida->fetchAll(PDO::FETCH_ASSOC);
                             <table id="example3" class="display table-bordered" style="min-width: 845px">
                                 <thead>
                                     <tr>
-                                        
+                                        <th style="text-align: center;" colspan="2">Accion</th>
                                         <th style="text-align: center;" width="210px">Fecha Inicial</th>
                                         <th style="text-align: center;">Fecha Final</th>
                                         <th style="text-align: center;">Cantidad Jugadores</th>
                                         <th style="text-align: center;">Estado</th>
                                         <th style="text-align: center;">Ganador</th>
-                                        <th style="text-align: center;" colspan="2">Accion</th>
+                                        
                                     </tr>
                                 </thead>
 
                                 <?php
-                                foreach ($partidas as $partida) {
-                                ?>
+
+$selectPartida = $connection->prepare("SELECT p.id_partida, p.cantidad_jugadores, m.nombreMundo AS mundo_nombre, p.fechaInicial, p.fechaFinal, p.jugadoresActivos, e.estado AS estado_nombre, u.nombreCompleto AS jugador_ganador_nombre FROM partida p LEFT JOIN mundos m ON p.id_mundo = m.idMundo LEFT JOIN estado e ON p.id_estado = e.id_estado LEFT JOIN usuario u ON p.id_jugadorGanador = u.documento;
+");
+$selectPartida->execute();
+$partidas = $selectPartida->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($partidas as $partida) {
+    ?>
                                     <tbody>
                                         <tr style="text-align: center;">
 
-                                            <td style="text-align: center;">
-                                                <?= $partida['fechaInicial'] ?>
-                                            </td>
-                                            <td style="text-align: center;">
-                                                <?= $partida['fechaFinal'] ?>
-                                            </td>
-                                            <td style="text-align: center;">
-                                                <?= $consul['cantidadJugadores'] ?>
-                                            </td>
-                                            <td style="text-align: center;">
-                                                <?= $consul['estado'] ?>
-                                            </td>
-                                            <td style="text-align: center;">
-                                                <?= $consul['nombreUsuario'] ?>
-                                            </td>
-                                            
                                             <td>
                                                 <form action="./activar_admin.php" method="get">
-                                                    <input type="hidden" name="activar" value="<?= $partida['id_partida'] ?> ">
-                                                    <button class="btn btn-success shadow btn-xxl sharp" 
-                                                        type="submit" onclick="return confirm('¿Está seguro de activar este usuario?')">
+                                                    <input type="hidden" name="activar" value="<?=$partida['id_partida']?> ">
+                                                    <button class="btn btn-success shadow btn-xxl sharp"
+                                                        type="submit" onclick="return confirm('¿Dsea ver las estadisticas de la partida seleccionada?')">Ver detalles 
                                                         <!-- <i class="fas fa-sync-alt fa-2x"></i> -->
-                                                        <i class="fas fa-lock-open fa-2x"></i>
+                                                        <i class="fa fa-pencil-alt fa-2x"></i>
                                                     </button>
                                                 </form>
                                             </td>
                                             <td>
                                                 <form action="./inactivar_admin.php" method="get">
-                                                    <input type="hidden" name="inactivar" value="<?= $partida['id_partida'] ?> ">
-                                                    <button class="btn btn-warning shadow btn-xxl sharp" 
-                                                        type="submit" onclick="return confirm('¿Está seguro de bloquear este usuario?')">
+                                                    <input type="hidden" name="inactivar" value="<?=$partida['id_partida']?> ">
+                                                    <button class="btn btn-danger shadow btn-xxl sharp"
+                                                        type="submit" onclick="return confirm('¿Desea eliminar los datos de la partida?')">
                                                         <!-- <i class="fas fa-sync-alt fa-2x"></i> -->
-                                                        <i class="fas fa-lock fa-2x"></i>
+                                                        <i class="fa fa-trash-alt fa-2x"></i>
                                                     </button>
                                                 </form>
+                                            </td>
+
+                                            <td style="text-align: center;">
+                                                <?=$partida['fechaInicial']?>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <?=$partida['fechaFinal']?>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <?=$partida['cantidad_jugadores']?>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <?=$partida['estado_nombre']?>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <?=$partida['jugador_ganador_nombre']?>
                                             </td>
 
                                         </tr>
                                     </tbody>
 
                                 <?php
-                                }
-                                ?>
+}
+?>
 
                             </table>
                         </div>
@@ -105,6 +106,6 @@ $partidas = $selectPartida->fetchAll(PDO::FETCH_ASSOC);
 
 <?php
 
- require_once('./footer.php');
+require_once './footer.php';
 
 ?>

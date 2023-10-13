@@ -126,70 +126,43 @@ if (isset($_POST['btncerrar'])) {
                 <!--====================  SERVICES 1 ====================-->
 
                 <?php
-
-// Obtenemos la fecha actual en formato YYYY-MM-DD H:i:s
-$fechaActual = date('Y-m-d H:i:s');
-
-// Verificar si la hora actual ya pasó la medianoche
-$medianoche = strtotime('today midnight');
-$horaActual = strtotime('now');
-if ($horaActual > $medianoche) {
-    // La hora actual ya pasó la medianoche, por lo que consultamos las partidas para el día siguiente
-    $fechaSiguiente = date('Y-m-d H:i:s', strtotime('+1 day', $medianoche));
-    $selectPartida = $connection->prepare("SELECT * FROM partida INNER JOIN mundos INNER JOIN estado ON partida.id_mundo = mundos.idMundo AND partida.id_estado = estado.id_estado WHERE partida.fechaInicial = :fecha_siguiente AND partida.id_estado = 1");
-    $selectPartida->bindParam(':fecha_siguiente', $fechaSiguiente);
-} else {
-    // La hora actual todavía es del día actual, por lo que consultamos las partidas para el día actual
-    $selectPartida = $connection->prepare("SELECT * FROM partida INNER JOIN mundos INNER JOIN estado ON partida.id_mundo = mundos.idMundo AND partida.id_estado = estado.id_estado WHERE partida.fechaInicial = :fecha_actual AND partida.id_estado = 1");
-    $selectPartida->bindParam(':fecha_actual', $fechaActual);
-}
-
+$selectPartida = $connection->prepare("SELECT p.id_partida, p.cantidad_jugadores, m.nombreMundo AS mundo_nombre, p.fechaInicial, p.fechaFinal, p.jugadoresActivos, e.estado AS estado_nombre, u.nombreCompleto AS jugador_ganador_nombre FROM partida p LEFT JOIN mundos m ON p.id_mundo = m.idMundo LEFT JOIN estado e ON p.id_estado = e.id_estado LEFT JOIN usuario u ON p.id_jugadorGanador = u.documento WHERE p.id_estado = 1 AND ;
+");
 $selectPartida->execute();
 $partidas = $selectPartida->fetchAll(PDO::FETCH_ASSOC);
 
 if (!empty($partidas)) {
-
     foreach ($partidas as $partida) {
         ?>
-                <div class="services_content">
-
-                        <div class="content-wrapper">
-                            <img src="../../../controller/<?=$partida['imagenMundo']?>" alt="" class="uil uil-window services_icon">
-                            <h3 class="services_title"><?=$partida['idMundo']?></h3>
-                            <h3 class="services_title"><?=$partida['idMundo']?></h3>
-                            <h3 class="services_title"><?=$partida['nombreMundo']?></h3>
-
-                            <form action="" method="GET" autocomplete="off">
-                                <input type="hidden" value="<?=$partida['id_partida']?>">
-                                <button class="button button--flex button--small button--link services_button" type="submit" onclick="return confirm('¿Desea ingresar en la partida seleccionada?');">Iniciar
-                                <i class="uil uil-arrow-right button_icon"></i></button>
-                            </form>
-                        </div>
-
-                </div>
-
-
-                                <?php
+        <div class="services_content">
+            <div class="content-wrapper">
+                <img src="../../../controller/<?=$partida['imagenMundo']?>" alt="" class="uil uil-window services_icon">
+                <h3 class="services_title"><?=$partida['nombreMundo']?></h3>
+                <!-- Agrega aquí otros campos que quieras mostrar -->
+                <form action="" method="GET" autocomplete="off">
+                    <input type="hidden" name="id_partida" value="<?=$partida['id_partida']?>">
+                    <button class="button button--flex button--small button--link services_button" type="submit" onclick="return confirm('¿Desea ingresar en la partida seleccionada?');">Iniciar
+                        <i class="uil uil-arrow-right button_icon"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <?php
 }
 } else {
     ?>
-
-
-            <div class="services_content">
-                    <a href="">
-                        <div>
-                            <i class="uil uil-window-grid services_icon"></i>
-                            <h3 class="services_title">No hay partidas disponibles</h3>
-                        </div>
-                    </a>
-                </div>
-
-
-
-
-                    <?php
+    <div class="services_content">
+        <a href="">
+            <div>
+                <i class="uil uil-window-grid services_icon"></i>
+                <h3 class="services_title">No hay partidas disponibles</h3>
+            </div>
+        </a>
+    </div>
+    <?php
 }
 ?>
+
 
 
             </div>

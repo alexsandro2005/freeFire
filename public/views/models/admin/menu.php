@@ -652,11 +652,11 @@ try {
 											<li>
 												<div class="timeline-panel">
 													<div class="media me-2">
-														<img alt="image" width="50" src="../../../controller/<?=$level["imagenAvatar"]?>">
+														<img alt="image" width="50" src="../../../controller/<?=$entrada["imagenAvatar"]?>">
 													</div>
 													<div class="media-body">
-														<h6 class="mb-1"><?=$level['nombreCompleto']?></h6>
-														<small class="d-block"><?=$level['horario_entradsa']?></small>
+														<h6 class="mb-1"><?=$entrada['nombreCompleto']?></h6>
+														<small class="d-block"><?=$entrada['horario_entrada']?></small>
 													</div>
 												</div>
 											</li>
@@ -684,7 +684,7 @@ try {
 
 										</ul>
 									</div>
-                                    <a class="all-notification" href="javascript:void(0);">Ver todas<i class="ti-arrow-end"></i></a>
+                                    <a class="all-notification" href="./index.php">Ver todas<i class="ti-arrow-end"></i></a>
                                 </div>
                             </li>
 							<li class="nav-item dropdown notification_dropdown">
@@ -842,7 +842,7 @@ try {
 							<span class="nav-text">PARTIDAS</span>
 						</a>
                         <ul aria-expanded="false">
-							<li><a href="./crearPartida.php">Lista Partida</a></li>
+							<li><a href="./listaPartidas.php">Lista Partida</a></li>
 							<li><a href="./crearPartida.php">crear Partida</a></li>
 						</ul>
                     </li>

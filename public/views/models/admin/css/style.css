@@ -2690,11 +2690,11 @@ textarea.form-control-lg {
 
 .btn-danger {
   color: #000;
-  background-color: #2ec2fc;
+  background-color: #FC2E53;
   border-color: #FC2E53; }
   .btn-danger:hover {
     color: #000;
-    background-color: #504dfc;
+    background-color: #FC2E53;
     border-color: #fc4364; }
   .btn-check:focus + .btn-danger, .btn-danger:focus {
     color: #000;
