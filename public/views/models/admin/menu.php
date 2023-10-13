@@ -848,7 +848,6 @@ try {
                     </li>
 
 					<!-- MODULO DE RANGOS -->
-
 					<li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
 							<i class="fas fa-home"></i>
 							<span class="nav-text">RANGOS</span>
@@ -859,9 +858,8 @@ try {
 						</ul>
                     </li>
 
-						<!-- MODULO DE NIVELES -->
-
-						<li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+					<!-- MODULO DE NIVELES -->
+					<li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
 							<i class="fas fa-home"></i>
 							<span class="nav-text">NIVELES</span>
 						</a>
@@ -871,15 +869,26 @@ try {
 						</ul>
                     </li>
 
-					<!-- MODULO DE NIVELES -->
-
+					<!-- MODULO DE MUNDOS -->
 					<li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
 							<i class="fas fa-home"></i>
 							<span class="nav-text">MUNDOS</span>
 						</a>
-                        <ul aria-expanded="false">
+						<ul aria-expanded="false">
 							<li><a href="./listaWorlds.php">Listar Mundos</a></li>
 							<li><a href="./createWorld.php">crear Mundo</a></li>
+						</ul>
+                    </li>
+					
+					<!-- MODULO DE DAÑO -->
+					<li>
+						<a class="has-arrow " href="javascript:void()" aria-expanded="false">
+							<i class="fas fa-home"></i>
+							<span class="nav-text">DAÑO</span>
+						</a>
+                        <ul aria-expanded="false">
+							<li><a href="#">Listar Daño</a></li>
+							<li><a href="#">crear Daño</a></li>
 						</ul>
                     </li>
 
@@ -890,25 +899,26 @@ try {
 						</a>
                         <ul aria-expanded="false">
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Tipo Arma</a>
-								<!-- MODULO PARA ENLISTAR O CREAR UN ADMINISTRADOR -->
+								<!-- MODULO PARA ENLISTAR O CREAR UN TIPO DE ARMA -->
                                 <ul aria-expanded="false">
-                                    <li><a href="email-compose.html">Listado</a></li>
-                                    <li><a href="./createWeapon.php">Crear</a></li>
+                                    <li><a href="./listar_tipoArma.php">Listar Tipo de Armas</a></li>
+                                    <li><a href="./crearTiparma.php">Crear Tipo de Armas</a></li>
 
                                 </ul>
                             </li>
-								<!-- MODULO PARA ENLISTAR O CREAR JUGADORES  -->
+								<!-- MODULO PARA ENLISTAR O CREAR ARMAS  -->
 
 							<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Armas</a>
                                 <ul aria-expanded="false">
-                                    <li><a href="./listaWeapons.php">Listado</a></li>
-									<li><a href="./createWeapon.php">Crear</a></li>
+                                    <li><a href="./listaWeapons.php">Listar Armas</a></li>
+									<li><a href="./createWeapon.php">Crear Armas</a></li>
 
                                 </ul>
                             </li>
                         </ul>
                     </li>
 
+					<!-- MODULO DE ESTADISTICAS -->
 					<li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
 							<i class="fas fa-home"></i>
 							<span class="nav-text">ESTADISTICAS</span>
