@@ -14,16 +14,19 @@ if (isset($_GET['actualizar'])) {
 }
 
 if (isset($_POST["btn_actualizar"])) {
-    $id = $_POST['idTipoArma'];
+    $newId = $_POST['idTipoArma']; // Nuevo ID (clave primaria)
     $tipoArma = $_POST['tipoArma'];
 
-    $consulta2 = $conexion->prepare("SELECT * FROM tipoarma WHERE idTipoArma = :id");
-    $consulta2->bindParam(":id", $id);
-    $consulta2->execute();
-    $consul1 = $consulta2->fetch();
+    // Comprobamos si el nuevo ID ya existe en la base de datos
+    $consultaExistencia = $conexion->prepare("SELECT * FROM tipoarma WHERE idTipoArma = :newId");
+    $consultaExistencia->bindParam(":newId", $newId);
+    $consultaExistencia->execute();
+    $count = $consultaExistencia->fetchColumn();
 
-    if ($consul1) {
-        $consulta3 = $conexion->prepare("UPDATE tipoarma SET tipoArma = :tipoArma WHERE idTipoArma = :id");
+    if ($count == 0) {
+        // El nuevo ID no existe, por lo que podemos actualizar
+        $consulta3 = $conexion->prepare("UPDATE tipoarma SET idTipoArma = :newId, tipoArma = :tipoArma WHERE idTipoArma = :id");
+        $consulta3->bindParam(":newId", $newId);
         $consulta3->bindParam(":tipoArma", $tipoArma);
         $consulta3->bindParam(":id", $id);
 
@@ -34,7 +37,7 @@ if (isset($_POST["btn_actualizar"])) {
             echo '<script>alert("Error al actualizar el tipo de arma");</script>';
         }
     } else {
-        echo '<script>alert("El registro a actualizar no existe.");</script>';
+        echo '<script>alert("El nuevo ID ya existe en la base de datos.");</script>';
     }
 }
 ?>
@@ -80,11 +83,10 @@ if (isset($_POST["btn_actualizar"])) {
                                         <form method="POST" enctype="multipart/form-data" autocomplete="off">
 
                                             <div class="mb-3 m-auto">
-                                                <input type="number" placeholder="Codigo del tipo de arma" class="form-control form-control-lg input-text" name="idTipoArma" onkeypress="return(multiplenumber(event));" oninput="maxlengthNumber(this);" maxlength="5" required value="<?php echo $consul1['idTipoArma'] ?>">
-                                                <br>
-
+                                                <input type="number" placeholder="Nuevo Codigo del tipo de arma" class="form-control form-control-lg input-text" name="idTipoArma" onkeypress="return(multiplenumber(event));" oninput="maxlengthNumber(this);" maxlength="5" required value="<?php echo $consul1['idTipoArma'] ?>">
+                                            </div>
+                                            <div class="mb-3 m-auto">
                                                 <input type="text" placeholder="Nombre del tipo de arma" class="form-control form-control-lg input-text" name="tipoArma" minlength="5" oninput="soloLetrasEspacios(event)" maxlength="25" required onkeyup="minuscula(this)" value="<?php echo $consul1['tipoArma'] ?>">
-                                                <br>
                                             </div>
 
                                             <div class=" mb-3 m-auto">
