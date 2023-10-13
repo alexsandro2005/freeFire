@@ -49,10 +49,10 @@ $ranges = $listranges->fetchAll(PDO::FETCH_ASSOC);
                                         </ul>
                                         <span class="price mg-center text-center align-content-center">
                                             <div class="d-flex">
-                                                        <form method="GET" action="./updateRange.php">
+                                                        <!-- <form method="GET" action="./updateRange.php">
                                                             <input type="hidden" name="idRango" value="<?= $range['idRango'] ?>">
                                                             <button class="btn bg-danger shadow btn-xxl sharp me-1" onclick="return confirm('¿Desea actualizar el rango seleccionado?');" type="submit"><i class="fa fa-pencil-alt fa-2x"></i></button>
-                                                        </form>
+                                                        </form> -->
                                                         
                                                         <form method="GET" action="./eliminar_rangos.php">
                                                             <input type="hidden" name="eliminar" value="<?= $range['idRango'] ?>">

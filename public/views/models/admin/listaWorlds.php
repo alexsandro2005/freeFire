@@ -51,12 +51,12 @@ $mundos = $listMundos->fetchAll(PDO::FETCH_ASSOC);
                                             <div class="shopping-cart  mb-2 me-3">
                                                 <form action="">
                                                     <div>
-                                                        <form method="GET" action="./updateRange.php">
+                                                        <!-- <form method="GET" action="./updateRange.php">
                                                             <div class="mb-3 mt-3">
                                                                 <input type="hidden" name="idRango" value="<?= $mundo['idMundo'] ?>">
                                                                 <button class="btn bg-danger" type="submit" onclick="return confirm('¿Desea actualizar el nivel seleccionado?');"><i class="fa fa-pencil-alt fa-2x"></i></button>
                                                             </div>
-                                                        </form>
+                                                        </form> -->
                                                         <form method="GET" action="./eliminar_mundos.php">
                                                             <input type="hidden" name="eliminar" value="<?= $mundo['idMundo'] ?>">
                                                             <button class="btn btn-danger" type="submit"><i class="fa fa-trash-alt fa-2x"></i></button>

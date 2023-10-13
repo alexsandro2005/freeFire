@@ -44,7 +44,7 @@ $range=$selectRange->fetch(PDO::FETCH_ASSOC);
 										<div class=" mb-3 m-auto">
 											<input type="submit" class="btn bg-danger" value="Registrar"></input>
 											<input type="hidden"  value="formRange" name="MM_registerRange"></input>
-											<a href="./index.php" class="btn btn-danger">Cancelar Registro</a>
+											<a href="./listaLevels.php" class="btn btn-danger">Cancelar Registro</a>
 										</div>
                                     </form>
                                 </div>
