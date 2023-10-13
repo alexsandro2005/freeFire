@@ -159,7 +159,7 @@ $consulllll=$consulta5->fetch();
 
                         <input type="number" placeholder="Numero de documento" class="form-control form-control-lg input-text" name="documento" onkeypress="return(multiplenumber(event));" oninput="maxlengthNumber(this);" maxlength="10" required>
 
-                        <input type="text" placeholder="nombre Completo" class="form-control form-control-lg input-text" name="nombreCompleto" minlength="11" oninput="soloLetrasEspacios(event)" onkeypress="return(textspace(event));" maxlength="40" required>
+                        <input type="text" placeholder="Nombre Completo" class="form-control form-control-lg input-text" name="nombreCompleto" minlength="11" oninput="soloLetrasEspacios(event)" onkeypress="return(textspace(event));" maxlength="40" required>
 
                         <input type="text" placeholder="Usuario" class="form-control form-control-lg input-text" name="nombreUsuario" required onkeyup="espacios(this), minuscula(this)" autocomplete="off">
 

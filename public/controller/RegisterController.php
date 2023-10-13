@@ -101,6 +101,7 @@ if (isset($_POST["MM_register"]) && $_POST["MM_register"] == "formRegister") {
     $password = $_POST['password'];
     $nombreCompleto = $_POST['nombreCompleto'];
     $nombreUsuario = $_POST['nombreUsuario'];
+    $avatar = null;
 
     // CONSULTA SQL PARA VERIFICAR SI EL USUARIO YA EXISTE EN LA BASE DE DATOS
 
@@ -121,7 +122,7 @@ if (isset($_POST["MM_register"]) && $_POST["MM_register"] == "formRegister") {
         $user_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Registrar el usuario en la base de datos
-        $userRegistered = registerUser($connection, $documento, $nombreCompleto, $nombreUsuario, $user_password, $idRol, $genero, $estadoUsuario, $correoElectronico, $tipoDocumento);
+        $userRegistered = registerUser($connection, $documento, $nombreCompleto, $nombreUsuario, $avatar, $user_password, $idRol, $genero, $estadoUsuario, $correoElectronico, $tipoDocumento);
 
         if ($userRegistered) {
             // Insertar en la tabla detalle nivel usuario
@@ -129,7 +130,7 @@ if (isset($_POST["MM_register"]) && $_POST["MM_register"] == "formRegister") {
             if ($inserted) {
                 showSuccessAndRedirect("Registro Exitoso, Gracias por registrarte, puedes iniciar sesión.", "../views/auth/");
             } else {
-                showErrorAndRedirect("Error al registrar el detalle del nivel del usuario.", "../views/auth/index.php");
+                showErrorAndRedirect("Error al momento de registrar los datos.", "../views/auth/index.php");
             }
         } else {
             showErrorAndRedirect("Error al registrar el usuario.", "../views/auth/index.php");
@@ -137,8 +138,4 @@ if (isset($_POST["MM_register"]) && $_POST["MM_register"] == "formRegister") {
     }
 }
 
-function showErrorAndRedirect($message, $location) {
-    echo "<script>alert ('$message');</script>";
-    echo "<script>window.location = '$location';</script>";
-}
 ?>
