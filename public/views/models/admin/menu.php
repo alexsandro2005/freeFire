@@ -836,14 +836,13 @@ try {
 						</ul>
                     </li>
 
-					<!-- MODULO DE AVATARS -->
+					<!-- MODULO DE PARTIDAS -->
 					<li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
 							<i class="fas fa-home"></i>
 							<span class="nav-text">PARTIDAS</span>
 						</a>
                         <ul aria-expanded="false">
-							<li><a href="./crearPartida.php">Lista Partida</a></li>
-							<li><a href="./crearPartida.php">crear Partida</a></li>
+							<li><a href="./crearPartida.php">crear Partidas</a></li>
 						</ul>
                     </li>
 
