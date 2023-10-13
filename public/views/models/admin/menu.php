@@ -842,7 +842,7 @@ try {
 							<span class="nav-text">PARTIDAS</span>
 						</a>
                         <ul aria-expanded="false">
-							<li><a href="./crearPartida.php">Lista Partida</a></li>
+							<li><a href="./listaPartidas.php">Lista Partida</a></li>
 							<li><a href="./crearPartida.php">crear Partida</a></li>
 						</ul>
                     </li>

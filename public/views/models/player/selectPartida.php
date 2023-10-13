@@ -101,13 +101,6 @@ if (isset($_POST['btncerrar'])) {
         </nav>
     </header>
 
-     <?php
-date_default_timezone_set('America/Bogota');
-
-$selectPartida = $connection->prepare("SELECT * FROM partida INNER JOIN mundos ON partida.id_mundo = mundos.idMundo");
-$selectPartida->execute();
-$partidas = $selectPartida->fetchAll(PDO::FETCH_ASSOC);
-?>
 
     <section class="services section" id="services">
 
@@ -134,30 +127,52 @@ $partidas = $selectPartida->fetchAll(PDO::FETCH_ASSOC);
 
                 <?php
 
-                if (!empty($partidas)) {
+// Obtenemos la fecha actual en formato YYYY-MM-DD H:i:s
+$fechaActual = date('Y-m-d H:i:s');
 
-                    foreach ($partidas as $partida) {
-                        ?>
+// Verificar si la hora actual ya pasó la medianoche
+$medianoche = strtotime('today midnight');
+$horaActual = strtotime('now');
+if ($horaActual > $medianoche) {
+    // La hora actual ya pasó la medianoche, por lo que consultamos las partidas para el día siguiente
+    $fechaSiguiente = date('Y-m-d H:i:s', strtotime('+1 day', $medianoche));
+    $selectPartida = $connection->prepare("SELECT * FROM partida INNER JOIN mundos INNER JOIN estado ON partida.id_mundo = mundos.idMundo AND partida.id_estado = estado.id_estado WHERE partida.fechaInicial = :fecha_siguiente AND partida.id_estado = 1");
+    $selectPartida->bindParam(':fecha_siguiente', $fechaSiguiente);
+} else {
+    // La hora actual todavía es del día actual, por lo que consultamos las partidas para el día actual
+    $selectPartida = $connection->prepare("SELECT * FROM partida INNER JOIN mundos INNER JOIN estado ON partida.id_mundo = mundos.idMundo AND partida.id_estado = estado.id_estado WHERE partida.fechaInicial = :fecha_actual AND partida.id_estado = 1");
+    $selectPartida->bindParam(':fecha_actual', $fechaActual);
+}
+
+$selectPartida->execute();
+$partidas = $selectPartida->fetchAll(PDO::FETCH_ASSOC);
+
+if (!empty($partidas)) {
+
+    foreach ($partidas as $partida) {
+        ?>
                 <div class="services_content">
 
-                        <div>
-                            <img src="../../../controller/<?= $partida['imagenMundo']?>" alt="" class="uil uil-window services_icon">
-                            <h3 class="services_tit le"><?= $partida['idMundo']?></h3>
-                            <h3 class="services_title"><?= $partida['nombreMundo']?></h3>
+                        <div class="content-wrapper">
+                            <img src="../../../controller/<?=$partida['imagenMundo']?>" alt="" class="uil uil-window services_icon">
+                            <h3 class="services_title"><?=$partida['idMundo']?></h3>
+                            <h3 class="services_title"><?=$partida['idMundo']?></h3>
+                            <h3 class="services_title"><?=$partida['nombreMundo']?></h3>
+
+                            <form action="" method="GET" autocomplete="off">
+                                <input type="hidden" value="<?=$partida['id_partida']?>">
+                                <button class="button button--flex button--small button--link services_button" type="submit" onclick="return confirm('¿Desea ingresar en la partida seleccionada?');">Iniciar
+                                <i class="uil uil-arrow-right button_icon"></i></button>
+                            </form>
                         </div>
-                        <form action="" method="GET" autocomplete="off">
-                            <input type="hidden" value="<?=$partida['id_partida']?>">
-                            <button class="button button--flex button--small button--link services_button" type="submit" onclick="return confirm('¿Desea ingresar en la partida seleccionada?');">Iniciar
-                            <i class="uil uil-arrow-right button_icon"></i></button>
-                        </form>
 
                 </div>
 
 
                                 <?php
-                }
-                } else {
-                    ?>
+}
+} else {
+    ?>
 
 
             <div class="services_content">

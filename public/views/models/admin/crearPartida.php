@@ -12,24 +12,22 @@ if ((isset($_POST["MM_registerPartida"])) && ($_POST["MM_registerPartida"] == "f
 
 
     $idMundo = $_POST['idMundo'];
+    $idNivel = $_POST['idNivel'];
 
-    if (empty($idMundo)) {
+    if (empty($idMundo) || empty($idNivel)) {
         // CONDICIONAL DEPENDIENDO SI EXISTEN ALGUN CAMPO VACIO EN EL FORMULARIO DE LA INTERFAZ
         echo '<script> alert ("Estimado Usuario, Existen Datos Vacios En El Formulario");</script>';
-        echo '<script> window.location="../views/auth/index.php"</script>';
+        echo '<script> window.location="./crearPartida.php"</script>';
     } else {
         // VARIABLES QUE CONTIENE EL NUMERO DE ENCRIPTACIONES DE LAS CONTRASEÑAS
 
 
-        $registerPartida = $connection->prepare("INSERT INTO partida(cantidad_jugadores,id_mundo,fechaInicial,id_estado) VALUES(30,'$idMundo',NOW(),1)");
+        $registerPartida = $connection->prepare("INSERT INTO partida(cantidad_jugadores,id_mundo,idNivel,fechaInicial,id_estado) VALUES(30,'$idMundo','$idNivel',NOW(),1)");
         $registerPartida->execute();
 
         if ($registerPartida) {
-
                 echo '<script>alert ("Registro Exitoso de partida.");</script>';
                 echo '<script>window.location="./listaPartidas.php"</script>';
-
-
         }
     }
 
@@ -67,7 +65,7 @@ if ((isset($_POST["MM_registerPartida"])) && ($_POST["MM_registerPartida"] == "f
 
 
                                         <select name="idMundo" class="form-control form-control-lg input-text" required id="">
-                                            <option value="">Selecciona el mundo</option>
+                                            <option selected disabled value="">Selecciona el mundo</option>
                                             <?php
                                             $mundos = $connection->prepare("SELECT * FROM mundos");
                                             $mundos->execute();
@@ -85,6 +83,32 @@ if ((isset($_POST["MM_registerPartida"])) && ($_POST["MM_registerPartida"] == "f
 
                                              ?>                                       
                                             <option value="">No hay mundos disponibles</option>
+
+                                            <?php
+
+
+                                            }?>
+                                        </select>
+
+                                        <select name="idNivel" class="form-control form-control-lg input-text mt-4" required id="">
+                                            <option selected disabled value="">Selecciona el nivel de dificultad</option>
+                                            <?php
+                                            $niveles=$connection->prepare("SELECT * FROM niveles");
+                                            $niveles->execute();
+                                            $nivel = $niveles->fetchAll();
+                                            
+
+                                            if(!empty($nivel)) {
+
+                                                foreach ($nivel as $nivel) {
+                                                    ?>
+                                                <option value="<?php echo($nivel['idNivel']) ?>"><?php echo($nivel['nombreNivel']) ?></option>
+                                            <?php
+                                                }
+                                            }else{
+
+                                             ?>                                       
+                                            <option value="">No hay niveles disponibles</option>
 
                                             <?php
 

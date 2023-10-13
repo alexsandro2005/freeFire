@@ -71,10 +71,11 @@
 
 
 
-.button_input{
+.button_input {
     border: none;
     background: none;
 }
+
 @media screen and (min-width: 968px) {
     :root {
         --big-font-size: 3rem;
@@ -111,7 +112,7 @@ body.dark-theme {
     right: 14%;
     background-color: var(--first-color);
     clip-path: circle(50% at 85% 14%);
-    z-index: -100;  
+    z-index: -100;
 
 }
 
@@ -241,7 +242,7 @@ img {
     font-weight: var(--font-medium);
 }
 
-.nav_logo img{
+.nav_logo img {
     width: 150px;
     height: 40px;
 }
@@ -396,7 +397,7 @@ testimonial_icon-star {
 
 .home_images {
     display: flex;
-   
+
     transition: all 300ms;
     animation: move_vector 6s ease-in-out infinite;
     justify-content: center;
@@ -811,7 +812,7 @@ testimonial_icon-star {
 /*============= STYLE SECTION SERVICES ===============*/
 
 
-.services{
+.services {
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -823,8 +824,8 @@ testimonial_icon-star {
     text-align: center;
     align-items: center;
     justify-content: center;
-    
-   
+
+
 
 }
 
@@ -837,9 +838,21 @@ testimonial_icon-star {
     box-shadow: 0 2px 4px rgba(0, 0, 0, .15);
     transition: .3s;
     border: solid 2px #fbc000;
-
-
-
+    text-align: center;
+    /* Esto solo afecta al texto dentro del contenedor */
+    display: flex;
+    flex-direction: column;
+    /* Usar flexbox para centrar contenido */
+    justify-content: center;
+    /* Centrar horizontalmente */
+    align-items: center;
+    /* Centrar verticalmente */
+    align-content: center;
+    /* Esto no es necesario */
+}
+.content-wrapper{
+    text-align: center;
+    margin-left: -20%;
 }
 .services_content:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, .15);
@@ -867,12 +880,13 @@ testimonial_icon-star {
     height: 40px;
 }
 
-.services_button:hover{
+.services_button:hover {
     background-color: #fbc000;
     box-shadow: solid 2rem #fbc000;
-    transition:  0.8s ease-in-out;
+    transition: 0.8s ease-in-out;
     color: #fff;
 }
+
 .services_button:hover .button_icon {
 
     transform: translateX(.25rem);
@@ -961,11 +975,12 @@ testimonial_icon-star {
 }
 
 
-.services_button:hover{
+.services_button:hover {
     background-color: #fbc000;
     box-shadow: solid 2rem #fbc000;
 
 }
+
 .swiper-button-next {
     right: -.5rem;
 }
